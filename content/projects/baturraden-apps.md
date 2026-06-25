@@ -6,6 +6,8 @@ year: 2025
 status: "Completed"
 category: "Full-stack Web Application"
 role: "Full-stack Developer"
+context: "Academic Final Project"
+published: true
 featured: true
 order: 1
 stack:
@@ -14,6 +16,11 @@ stack:
   - "MySQL"
   - "Midtrans"
   - "QR Code"
+responsibilities:
+  - "Full-stack application development"
+  - "Payment and digital ticket integration"
+  - "Administrative ticket validation workflow"
+  - "Usability and endpoint performance evaluation"
 repositoryUrl: "https://github.com/fjrRA/qr-ticketing-app"
 ---
 <!-- content/projects/baturraden-apps.md -->

@@ -1,25 +1,21 @@
-// src/components/home/home-selected-work.tsx
-import Link from "next/link";
-
+// src/components/projects/project-index/project-index.tsx
 import { Container } from "@/components/layout/container";
-import { ProjectPreview } from "@/components/projects/project-preview";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { SectionLabel } from "@/components/ui/section-label";
-import type { HomeSelectedWorkContent } from "@/types/home";
 import type { Project } from "@/types/project";
 
-type HomeSelectedWorkProps = {
-  content: HomeSelectedWorkContent;
+import { ProjectIndexItem } from "./project-index-item";
+
+type ProjectIndexProps = {
   projects: Project[];
 };
 
-export function HomeSelectedWork({
-  content,
+export function ProjectIndex({
   projects,
-}: HomeSelectedWorkProps) {
+}: ProjectIndexProps) {
   return (
     <section
-      aria-labelledby="home-selected-work-heading"
+      aria-labelledby="project-index-heading"
       className="border-b border-line"
     >
       <Container>
@@ -28,7 +24,7 @@ export function HomeSelectedWork({
             grid
             border-x
             border-line
-            lg:grid-cols-[minmax(16rem,0.42fr)_minmax(0,1fr)]
+            lg:grid-cols-[minmax(15rem,0.38fr)_minmax(0,1fr)]
           "
         >
           <header
@@ -44,58 +40,62 @@ export function HomeSelectedWork({
             "
           >
             <SectionLabel index="01">
-              Work
+              Archive
             </SectionLabel>
 
             <SectionHeading
-              id="home-selected-work-heading"
+              id="project-index-heading"
               className="mt-3"
             >
-              {content.heading}
+              Project Index
             </SectionHeading>
 
             <p className="type-body mt-6 max-w-md text-muted">
-              {content.description}
+              A chronological and curated index of
+              web applications, ticketing systems,
+              content tools, and technical projects.
             </p>
 
-            <Link
-              href={content.allWorkHref}
-              className="
-                group
-                mt-10
-                inline-flex
-                items-center
-                gap-4
-                border-b
-                border-ink
-                pb-2
-                font-mono
-                text-xs
-                font-semibold
-                tracking-[0.1em]
-                uppercase
-                transition-colors
-                duration-150
-                hover:border-accent
-                hover:text-accent
-              "
-            >
-              {content.allWorkLabel} / 01
-
-              <span
-                aria-hidden="true"
+            <dl className="mt-10 border-t border-line font-mono text-xs uppercase">
+              <div
                 className="
-                  h-px
-                  w-8
-                  bg-current
-                  transition-transform
-                  duration-200
-                  ease-out
-                  group-hover:translate-x-1
-                  motion-reduce:transition-none
+                  flex
+                  justify-between
+                  gap-6
+                  border-b
+                  border-line
+                  py-4
                 "
-              />
-            </Link>
+              >
+                <dt className="text-muted">
+                  Published
+                </dt>
+
+                <dd>
+                  {String(projects.length).padStart(
+                    2,
+                    "0",
+                  )}
+                </dd>
+              </div>
+
+              <div
+                className="
+                  flex
+                  justify-between
+                  gap-6
+                  border-b
+                  border-line
+                  py-4
+                "
+              >
+                <dt className="text-muted">
+                  Order
+                </dt>
+
+                <dd>Curated</dd>
+              </div>
+            </dl>
           </header>
 
           {projects.length > 0 ? (
@@ -109,7 +109,7 @@ export function HomeSelectedWork({
                     last:border-b-0
                   "
                 >
-                  <ProjectPreview
+                  <ProjectIndexItem
                     project={project}
                     displayIndex={String(
                       index + 1,
@@ -121,13 +121,13 @@ export function HomeSelectedWork({
           ) : (
             <div className="px-6 py-12 md:px-8 lg:px-10">
               <p className="type-label text-muted">
-                No Featured Projects
+                No Published Projects
               </p>
 
               <p className="type-body mt-4 max-w-lg text-muted">
-                Featured projects will appear here
-                after they are configured in the
-                homepage content.
+                Published projects will appear here
+                after they are added to the content
+                directory.
               </p>
             </div>
           )}

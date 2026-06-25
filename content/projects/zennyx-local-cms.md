@@ -6,6 +6,8 @@ year: 2026
 status: "In Development"
 category: "Local Content Management System"
 role: "Full-stack Developer"
+context: "Personal Studio Tool"
+published: true
 featured: true
 order: 2
 stack:
@@ -16,6 +18,11 @@ stack:
   - "MySQL"
   - "JSON"
   - "Markdown"
+responsibilities:
+  - "Admin dashboard development"
+  - "REST API and local database design"
+  - "Content model and CRUD implementation"
+  - "JSON and Markdown export workflow"
 repositoryUrl: "https://github.com/fjrRA/zennyx-local-cms"
 ---
 

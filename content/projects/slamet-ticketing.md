@@ -6,6 +6,8 @@ year: 2025
 status: "Completed"
 category: "Full-stack Ticketing System"
 role: "Full-stack Developer"
+context: "Independent Technical Project"
+published: true
 featured: true
 order: 3
 stack:
@@ -16,6 +18,11 @@ stack:
   - "Prisma"
   - "MySQL"
   - "Midtrans"
+responsibilities:
+  - "Frontend and backend application development"
+  - "Reservation and ticket workflow implementation"
+  - "Payment gateway integration"
+  - "Responsive interface implementation"
 repositoryUrl: "https://github.com/fjrRA/slamet-ticketing"
 ---
 
