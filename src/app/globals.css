@@ -1,26 +1,249 @@
+/* src/app/globals.css */
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+ * Tailwind theme tokens
+ *
+ * Token-token ini menghasilkan utility class seperti:
+ * bg-paper, text-ink, border-line, bg-accent,
+ * rounded-control, dan rounded-panel.
+ */
+@theme {
+  --color-paper: #edeae2;
+  --color-panel: #dfddd5;
+  --color-panel-strong: #d1cfc7;
+
+  --color-ink: #171918;
+  --color-muted: #676b68;
+  --color-line: #b8bab4;
+
+  --color-accent: #c7552d;
+  --color-accent-strong: #963b21;
+
+  --color-inverse: #f6f3eb;
+
+  --radius-control: 0.125rem;
+  --radius-panel: 0.25rem;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans:
+    var(--font-archivo),
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  --font-mono:
+    var(--font-ibm-plex-mono),
+    "Courier New",
+    monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/*
+ * Layout dan motion tokens
+ *
+ * Token ini tidak menghasilkan utility Tailwind secara langsung.
+ * Kita mengaksesnya menggunakan var(...).
+ */
+:root {
+  color-scheme: light;
+
+  --site-max-width: 90rem;
+  --reading-max-width: 46rem;
+
+  --page-gutter: clamp(1rem, 3vw, 2rem);
+  --section-space: clamp(4rem, 8vw, 8rem);
+
+  --header-height: 4rem;
+  --border-thin: 1px;
+
+  --transition-fast: 160ms ease;
+  --transition-medium: 240ms ease;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  scroll-behavior: smooth;
+  background: var(--color-paper);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  margin: 0;
+
+  background: var(--color-paper);
+  color: var(--color-ink);
+
+  font-family:
+    var(--font-archivo),
+    Arial,
+    Helvetica,
+    sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+main {
+  min-height: 100vh;
+}
+
+img,
+picture,
+svg,
+video,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+p,
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-inverse);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/*
+ * Mengurangi animasi bagi pengguna yang memilih
+ * reduced motion pada perangkatnya.
+ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/*
+ * Layout utilities
+ */
+@utility site-container {
+  width: 100%;
+  max-width: var(--site-max-width);
+  margin-inline: auto;
+  padding-inline: var(--page-gutter);
+}
+
+@utility reading-column {
+  width: 100%;
+  max-width: var(--reading-max-width);
+}
+
+@utility section-block {
+  padding-block: clamp(2.75rem, 6vw, 5rem);
+}
+
+@utility section-divider {
+  border-top: var(--border-thin) solid var(--color-line);
+}
+
+/*
+ * Typography utilities
+ */
+@utility type-label {
+  font-family:
+    var(--font-ibm-plex-mono),
+    "Courier New",
+    monospace;
+
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+@utility type-display {
+  font-family:
+    var(--font-archivo),
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: clamp(3.5rem, 8vw, 7.5rem);
+  line-height: 0.9;
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  text-transform: uppercase;
+}
+
+@utility type-section-title {
+  font-family:
+    var(--font-archivo),
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+}
+
+@utility type-body {
+  font-family:
+    var(--font-archivo),
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+@utility type-meta {
+  font-family:
+    var(--font-ibm-plex-mono),
+    "Courier New",
+    monospace;
+
+  font-size: 0.75rem;
+  line-height: 1.5;
 }
