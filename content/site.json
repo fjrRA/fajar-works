@@ -1,8 +1,12 @@
 {
   "siteName": "Fajar Works",
+  "siteCode": "FRA—26",
   "name": "Fajar Rahmana Akbar",
   "role": "Web Developer",
   "location": "Bekasi, Indonesia",
+  "locationCode": "Bekasi / ID",
+  "tagline": "Works, notes, and ongoing progress.",
   "description": "A working archive of selected projects, technical notes, learning logs, and personal observations.",
-  "availability": "Open to junior and entry-level opportunities"
+  "availability": "Open to junior and entry-level opportunities",
+  "availabilityCode": "Open"
 }

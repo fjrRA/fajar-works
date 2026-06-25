@@ -4,6 +4,10 @@ import { Archivo, IBM_Plex_Mono } from "next/font/google";
 
 import "./globals.css";
 
+import { SiteHeader } from "@/components/layout/site-header";
+import { SiteFooter } from "@/components/layout/site-footer";
+import { SkipLink } from "@/components/layout/skip-link";
+
 const archivo = Archivo({
   subsets: ["latin"],
   variable: "--font-archivo",
@@ -32,11 +36,19 @@ type RootLayoutProps = Readonly<{
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      data-scroll-behavior="smooth"
+    >
       <body
         className={`${archivo.variable} ${ibmPlexMono.variable}`}
       >
+        <SkipLink />
+        <SiteHeader />
+
         {children}
+
+        <SiteFooter />
       </body>
     </html>
   );
