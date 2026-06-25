@@ -1,0 +1,43 @@
+---
+title: "Slamet Ticketing"
+slug: "slamet-ticketing"
+summary: "A full-stack mountain tourism ticketing system with reservation, payment, and ticket management features."
+year: 2025
+status: "Completed"
+category: "Full-stack Ticketing System"
+role: "Full-stack Developer"
+featured: true
+order: 3
+stack:
+  - "React"
+  - "Vite"
+  - "TypeScript"
+  - "Express.js"
+  - "Prisma"
+  - "MySQL"
+  - "Midtrans"
+repositoryUrl: "https://github.com/fjrRA/slamet-ticketing"
+---
+
+<!-- content/projects/slamet-ticketing.md -->
+
+## Overview
+
+Slamet Ticketing is a full-stack ticketing application created for managing mountain tourism reservations and digital ticket transactions.
+
+## Architecture
+
+The frontend was built using React, Vite, and TypeScript. The backend uses Express.js, Prisma, and MySQL.
+
+## Main Features
+
+- Tourism ticket reservation
+- Frontend and backend API integration
+- Midtrans payment processing
+- Ticket data management
+- Administrative operations
+- Responsive user interface
+
+## Technical Focus
+
+The project demonstrates the separation between a React frontend and an Express API, along with database and third-party payment integration.

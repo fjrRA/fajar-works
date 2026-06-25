@@ -1,1 +1,50 @@
-[]
+[
+  {
+    "id": "frontend-development",
+    "index": "01",
+    "title": "Frontend Development",
+    "description": "Building responsive and structured user interfaces with attention to reusable components, content hierarchy, and maintainability.",
+    "technologies": [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS"
+    ]
+  },
+  {
+    "id": "api-backend-integration",
+    "index": "02",
+    "title": "API & Backend Integration",
+    "description": "Connecting frontend applications with REST APIs, databases, authentication flows, and third-party services.",
+    "technologies": [
+      "Express.js",
+      "Prisma",
+      "MySQL",
+      "REST API"
+    ]
+  },
+  {
+    "id": "content-driven-architecture",
+    "index": "03",
+    "title": "Content-Driven Architecture",
+    "description": "Organizing websites around structured JSON and Markdown content without requiring a permanently running backend.",
+    "technologies": [
+      "JSON",
+      "Markdown",
+      "Static Generation",
+      "Local CMS"
+    ]
+  },
+  {
+    "id": "testing-documentation",
+    "index": "04",
+    "title": "Testing & Documentation",
+    "description": "Documenting development decisions, evaluating application behavior, and recording technical findings in a structured form.",
+    "technologies": [
+      "Performance Testing",
+      "Usability Evaluation",
+      "Technical Writing",
+      "Git"
+    ]
+  }
+]

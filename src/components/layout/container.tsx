@@ -1,9 +1,10 @@
 // src/components/layout/container.tsx
-import type { ComponentPropsWithoutRef } from "react";
+import type { HTMLAttributes } from "react";
 
 import { cn } from "@/lib/utils/cn";
 
-type ContainerProps = ComponentPropsWithoutRef<"div">;
+type ContainerProps =
+  HTMLAttributes<HTMLDivElement>;
 
 export function Container({
   className,
@@ -11,7 +12,10 @@ export function Container({
 }: ContainerProps) {
   return (
     <div
-      className={cn("site-container", className)}
+      className={cn(
+        "site-container min-w-0",
+        className,
+      )}
       {...props}
     />
   );

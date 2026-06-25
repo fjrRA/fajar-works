@@ -6,7 +6,15 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { SectionLabel } from "@/components/ui/section-label";
 import { mainNavigation } from "@/config/navigation";
 
-export function HomeDirectory() {
+type HomeDirectoryProps = {
+  heading: string;
+  description: string;
+};
+
+export function HomeDirectory({
+  heading,
+  description,
+}: HomeDirectoryProps) {
   return (
     <section className="border-b border-line">
       <Container>
@@ -30,18 +38,16 @@ export function HomeDirectory() {
               lg:px-10
             "
           >
-            <SectionLabel index="01">
+            <SectionLabel index="06">
               Directory
             </SectionLabel>
 
             <SectionHeading className="mt-3">
-              Explore Fajar Works
+              {heading}
             </SectionHeading>
 
             <p className="type-body mt-6 max-w-md text-muted">
-              A directory of selected projects, writing,
-              learning records, professional information,
-              and ways to get in touch.
+              {description}
             </p>
           </header>
 

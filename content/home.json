@@ -1,0 +1,101 @@
+{
+  "heroEyebrow": "FRA—26 / Portfolio & Field Notes",
+  "selectedWork": {
+    "heading": "Selected Work",
+    "description": "A selection of practical web applications, ticketing systems, and content management tools.",
+    "allWorkHref": "/projects",
+    "allWorkLabel": "View All Work"
+  },
+  "capabilities": {
+    "heading": "Capabilities & Current Focus",
+    "description": "Practical areas I have worked with through projects, technical study, documentation, and ongoing development.",
+    "focusHeading": "Current Focus",
+    "focusDescription": "A live index of what I am currently building, developing, learning, and seeking."
+  },
+  "latestNotes": {
+    "heading": "Latest Notes",
+    "description": "Recent writing about development work, learning progress, technical decisions, and personal observations.",
+    "allNotesHref": "/notes",
+    "allNotesLabel": "View All Notes"
+  },
+  "learningProgress": {
+    "heading": "Learning Progress",
+    "description": "Recent records of structured study, technical practice, experiments, and lessons gathered while building projects.",
+    "allLogsHref": "/learning-log",
+    "allLogsLabel": "View Learning Log"
+  },
+  "featuredProjectSlugs": [
+    "baturraden-apps",
+    "zennyx-local-cms",
+    "slamet-ticketing"
+  ],
+  "featuredCapabilityIds": [
+    "frontend-development",
+    "api-backend-integration",
+    "content-driven-architecture",
+    "testing-documentation"
+  ],
+  "latestNotesLimit": 3,
+  "latestLearningLogsLimit": 3,
+  "currentFocus": [
+    {
+      "index": "01",
+      "label": "Building",
+      "value": "Fajar Works portfolio and writing platform"
+    },
+    {
+      "index": "02",
+      "label": "Developing",
+      "value": "Zennyx Local CMS and admin dashboard"
+    },
+    {
+      "index": "03",
+      "label": "Learning",
+      "value": "JavaScript, React, and modern frontend foundations"
+    },
+    {
+      "index": "04",
+      "label": "Seeking",
+      "value": "Junior and entry-level web development opportunities"
+    }
+  ],
+  "shortProfile": {
+    "heading": "A Practical Developer in Progress",
+    "description": "I build practical web applications while continuing to strengthen my JavaScript, React, and software development foundations.",
+    "profileHref": "/about",
+    "profileLabel": "Read Full Profile",
+    "points": [
+      {
+        "index": "01",
+        "label": "Based In",
+        "value": "Bekasi, Indonesia"
+      },
+      {
+        "index": "02",
+        "label": "Working On",
+        "value": "Content-driven websites, local CMS tools, and practical web applications"
+      },
+      {
+        "index": "03",
+        "label": "Approach",
+        "value": "Build carefully, document decisions, test behavior, and improve through iteration"
+      },
+      {
+        "index": "04",
+        "label": "Direction",
+        "value": "Junior and entry-level web development opportunities"
+      }
+    ]
+  },
+  "directory": {
+    "heading": "Explore Fajar Works",
+    "description": "A directory of selected projects, writing, learning records, professional information, and ways to get in touch."
+  },
+  "contact": {
+    "eyebrow": "Available for opportunities",
+    "heading": "Have an opportunity or project to discuss?",
+    "description": "I am open to junior and entry-level opportunities, professional discussions, and connections related to web development.",
+    "href": "/contact",
+    "linkLabel": "Start a Conversation"
+  }
+}
