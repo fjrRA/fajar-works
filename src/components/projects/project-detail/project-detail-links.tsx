@@ -1,36 +1,33 @@
-// src/components/projects/project-index/project-index-item/project-index-item-links.tsx
-import Link from "next/link";
-
-type ProjectIndexItemLinksProps = {
-  projectSlug: string;
+// src/components/projects/project-detail/project-detail-links.tsx
+type ProjectDetailLinksProps = {
   projectTitle: string;
   repositoryUrl: string;
   liveUrl?: string;
 };
 
-export function ProjectIndexItemLinks({
-  projectSlug,
+export function ProjectDetailLinks({
   projectTitle,
   repositoryUrl,
   liveUrl,
-}: ProjectIndexItemLinksProps) {
+}: ProjectDetailLinksProps) {
   return (
     <nav
-      aria-label={`${projectTitle} project links`}
+      aria-label={`${projectTitle} external links`}
       className="
-        mt-8
         flex
         flex-col
         items-start
-        gap-4
+        gap-5
         sm:flex-row
         sm:flex-wrap
         sm:items-center
         sm:gap-x-8
       "
     >
-      <Link
-        href={`/projects/${projectSlug}`}
+      <a
+        href={repositoryUrl}
+        target="_blank"
+        rel="noreferrer"
         className="
           group
           inline-flex
@@ -50,7 +47,7 @@ export function ProjectIndexItemLinks({
           hover:text-accent
         "
       >
-        View Case Study
+        View Repository
 
         <span
           aria-hidden="true"
@@ -65,30 +62,6 @@ export function ProjectIndexItemLinks({
             motion-reduce:transition-none
           "
         />
-      </Link>
-
-      <a
-        href={repositoryUrl}
-        target="_blank"
-        rel="noreferrer"
-        className="
-          inline-flex
-          items-center
-          border-b
-          border-line
-          pb-2
-          font-mono
-          text-xs
-          font-semibold
-          tracking-[0.1em]
-          uppercase
-          transition-colors
-          duration-150
-          hover:border-accent
-          hover:text-accent
-        "
-      >
-        Repository
       </a>
 
       {liveUrl ? (
@@ -113,7 +86,7 @@ export function ProjectIndexItemLinks({
             hover:text-accent
           "
         >
-          Live Website
+          Visit Live Website
         </a>
       ) : null}
     </nav>

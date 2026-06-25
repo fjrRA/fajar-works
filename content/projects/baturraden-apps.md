@@ -23,7 +23,6 @@ responsibilities:
   - "Usability and endpoint performance evaluation"
 repositoryUrl: "https://github.com/fjrRA/qr-ticketing-app"
 ---
-<!-- content/projects/baturraden-apps.md -->
 
 ## Overview
 

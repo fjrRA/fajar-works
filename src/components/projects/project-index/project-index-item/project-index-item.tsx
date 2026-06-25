@@ -75,6 +75,7 @@ export function ProjectIndexItem({
         </p>
 
         <ProjectIndexItemLinks
+          projectSlug={project.slug}
           projectTitle={project.title}
           repositoryUrl={project.repositoryUrl}
           liveUrl={project.liveUrl}
