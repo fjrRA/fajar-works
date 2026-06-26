@@ -5,6 +5,14 @@ import {
 import { SectionHeading } from "@/components/ui/section-heading";
 import { SectionLabel } from "@/components/ui/section-label";
 
+import {
+  extractProjectHeadings,
+} from "@/lib/content/project-headings";
+
+import {
+  ProjectTableOfContents,
+} from "./project-table-of-contents";
+
 type ProjectDetailContentProps = {
   content: string;
 };
@@ -15,6 +23,9 @@ const PROJECT_CONTENT_HEADING_ID =
 export function ProjectDetailContent({
   content,
 }: ProjectDetailContentProps) {
+  const headings =
+    extractProjectHeadings(content);
+
   return (
     <section
       aria-labelledby={
@@ -69,6 +80,10 @@ export function ProjectDetailContent({
           lg:py-16
         "
       >
+        <ProjectTableOfContents
+          headings={headings}
+        />
+
         <ProjectMarkdown content={content} />
       </div>
     </section>

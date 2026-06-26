@@ -1,7 +1,15 @@
-// src/components/projects/project-detail/project-detail.tsx
+// src/components/projects/project-detail/
+// project-detail.tsx
+
 import { Container } from "@/components/layout/container";
+import type {
+  ProjectNavigation,
+} from "@/lib/content/project-navigation";
 import type { Project } from "@/types/project";
 
+import {
+  ProjectCaseStudyNavigation,
+} from "./project-case-study-navigation";
 import {
   ProjectDetailContent,
 } from "./project-detail-content";
@@ -14,6 +22,7 @@ import {
 
 type ProjectDetailProps = {
   project: Project;
+  navigation: ProjectNavigation;
 };
 
 const PROJECT_DETAIL_HEADING_ID =
@@ -21,6 +30,7 @@ const PROJECT_DETAIL_HEADING_ID =
 
 export function ProjectDetail({
   project,
+  navigation,
 }: ProjectDetailProps) {
   return (
     <section className="border-b border-line">
@@ -48,6 +58,10 @@ export function ProjectDetail({
 
           <ProjectDetailContent
             content={project.content}
+          />
+
+          <ProjectCaseStudyNavigation
+            navigation={navigation}
           />
         </article>
       </Container>

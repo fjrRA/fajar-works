@@ -1,7 +1,12 @@
 // src/app/notes/page.tsx
+
 import type { Metadata } from "next";
 
 import { PageHeader } from "@/components/layout/page-header";
+import { NotesIndex } from "@/components/notes/notes-index";
+import {
+  getPublishedNotes,
+} from "@/lib/content/get-notes";
 
 export const metadata: Metadata = {
   title: "Notes",
@@ -10,6 +15,8 @@ export const metadata: Metadata = {
 };
 
 export default function NotesPage() {
+  const notes = getPublishedNotes();
+
   return (
     <main id="main-content">
       <PageHeader
@@ -25,6 +32,8 @@ export default function NotesPage() {
         }
         description="Writing about web development, projects, career experiences, technology, activities, and personal observations."
       />
+
+      <NotesIndex notes={notes} />
     </main>
   );
 }

@@ -1,0 +1,286 @@
+/* src/styles/notes/note-markdown.css */
+
+/* ========================================
+ * Note Markdown
+ * ======================================== */
+
+.note-markdown {
+  min-width: 0;
+  color: var(--color-ink);
+}
+
+.note-markdown> :first-child {
+  margin-top: 0;
+}
+
+.note-markdown> :last-child {
+  margin-bottom: 0;
+}
+
+/* ========================================
+ * Heading
+ * ======================================== */
+
+.note-markdown-heading {
+  position: relative;
+
+  display: grid;
+  grid-template-columns:
+    auto minmax(0, 1fr);
+  gap: 0.75rem;
+
+  scroll-margin-top:
+    calc(var(--header-height) + 1.5rem);
+}
+
+/*
+ * Teks heading harus boleh mengecil di dalam
+ * grid dan tidak mendorong batas artikel.
+ */
+.note-markdown-heading>span:last-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.note-markdown .note-markdown-heading-anchor {
+  align-self: start;
+
+  color: var(--color-accent);
+  text-decoration: none;
+
+  font-family:
+    var(--font-ibm-plex-mono),
+    "Courier New",
+    monospace;
+  font-size: 0.7rem;
+  line-height: 1;
+
+  transform: translateY(0.55em);
+}
+
+.note-markdown .note-markdown-heading-anchor:hover {
+  color: var(--color-accent-strong);
+}
+
+.note-markdown h2 {
+  max-width: var(--reading-max-width);
+  margin-top: clamp(3.5rem, 7vw, 6rem);
+  padding-top: clamp(2rem, 4vw, 3rem);
+
+  border-top:
+    var(--border-thin) solid var(--color-line);
+
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 0.95;
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.note-markdown>h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.note-markdown h3 {
+  max-width: var(--reading-max-width);
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+
+  font-size: clamp(1.5rem,
+      3vw,
+      2.25rem);
+  line-height: 1;
+  font-weight: 650;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.note-markdown h4 {
+  max-width: var(--reading-max-width);
+  margin-top: 2.5rem;
+
+  color: var(--color-accent);
+
+  font-family:
+    var(--font-ibm-plex-mono),
+    "Courier New",
+    monospace;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* ========================================
+ * Text
+ * ======================================== */
+
+.note-markdown p {
+  max-width: var(--reading-max-width);
+  margin-top: 1.25rem;
+
+  font-size: clamp(1rem,
+      1.5vw,
+      1.125rem);
+  line-height: 1.8;
+}
+
+.note-markdown strong {
+  font-weight: 700;
+}
+
+.note-markdown em,
+.note-markdown del {
+  color: var(--color-muted);
+}
+
+.note-markdown a {
+  color: var(--color-accent);
+
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+
+  transition:
+    color var(--transition-fast),
+    text-decoration-color var(--transition-fast);
+}
+
+.note-markdown a:hover {
+  color: var(--color-accent-strong);
+}
+
+/* ========================================
+ * Lists
+ * ======================================== */
+
+.note-markdown ul,
+.note-markdown ol {
+  max-width: var(--reading-max-width);
+  margin-top: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.note-markdown ul {
+  list-style-type: square;
+}
+
+.note-markdown ol {
+  list-style-type: decimal;
+}
+
+.note-markdown li {
+  padding-left: 0.35rem;
+
+  font-size: clamp(1rem,
+      1.5vw,
+      1.125rem);
+  line-height: 1.75;
+}
+
+.note-markdown li+li {
+  margin-top: 0.65rem;
+}
+
+.note-markdown li::marker {
+  color: var(--color-accent);
+
+  font-family:
+    var(--font-ibm-plex-mono),
+    monospace;
+  font-size: 0.8em;
+}
+
+.note-markdown li>ul,
+.note-markdown li>ol {
+  margin-top: 0.75rem;
+}
+
+/* GitHub-style task list */
+
+.note-markdown .contains-task-list {
+  padding-left: 0;
+  list-style: none;
+}
+
+.note-markdown .task-list-item {
+  list-style: none;
+}
+
+.note-markdown input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.65rem;
+
+  accent-color: var(--color-accent);
+}
+
+/* ========================================
+ * Blockquote
+ * ======================================== */
+
+.note-markdown blockquote {
+  max-width: var(--reading-max-width);
+  margin-top: 2rem;
+  padding: 1.5rem;
+
+  border-left:
+    0.25rem solid var(--color-accent);
+
+  background: var(--color-panel);
+  color: var(--color-muted);
+}
+
+.note-markdown blockquote p {
+  margin-top: 0;
+}
+
+.note-markdown blockquote p+p {
+  margin-top: 1rem;
+}
+
+/* ========================================
+ * Separator
+ * ======================================== */
+
+.note-markdown hr {
+  max-width: var(--reading-max-width);
+  margin-block:
+    clamp(3rem, 6vw, 5rem);
+
+  border: 0;
+  border-top:
+    var(--border-thin) solid var(--color-line);
+}
+
+@media (max-width: 22rem) {
+
+  /*
+   * Viewport 320–352px membutuhkan jarak
+   * anchor yang lebih rapat.
+   */
+  .note-markdown-heading {
+    gap: 0.5rem;
+  }
+
+  .note-markdown h2 {
+    font-size: 1.75rem;
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+  }
+
+  .note-markdown h3 {
+    font-size: 1.3rem;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+
+  .note-markdown .note-markdown-heading-anchor {
+    font-size: 0.625rem;
+    transform: translateY(0.5em);
+  }
+}

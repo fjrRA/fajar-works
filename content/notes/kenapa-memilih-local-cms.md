@@ -40,6 +40,37 @@ Local CMS terdiri dari:
 
 CMS tidak harus aktif ketika website publik dibuka. CMS hanya digunakan ketika saya ingin mengubah atau menambahkan konten.
 
+### Contoh Struktur Data Ekspor
+
+Setelah konten dikelola melalui local CMS, exporter dapat menghasilkan struktur data yang dibaca oleh website publik.
+
+```ts title="TypeScript" showLineNumbers
+type ExportedGame = {
+  slug: string;
+  title: string;
+  status: "Draft" | "Published";
+  tags: string[];
+};
+
+const game: ExportedGame = {
+  slug: "andara-beat-em-up",
+  title: "Untitled Andara Beat 'em Up",
+  status: "Published",
+  tags: ["Beat 'em Up", "2D"],
+};
+```
+
+Perintah `export:all` kemudian menghasilkan file `games.json` dan Markdown yang dapat dipindahkan ke repository website publik.
+
+> Local CMS bukan bagian dari server production. Sistem ini hanya digunakan ketika konten perlu diperbarui atau diekspor.
+
+| Bagian | Teknologi | Output |
+| --- | --- | --- |
+| Admin dashboard | React dan TypeScript | Form pengelolaan konten |
+| Local API | Express.js | Endpoint CRUD |
+| Storage | Prisma dan MySQL | Data lokal |
+| Exporter | Node.js | JSON dan Markdown |
+
 ## Kelebihan dan Keterbatasan
 
 Pendekatan ini murah, dapat dipelajari secara bertahap, dan memberi kontrol penuh terhadap struktur data.

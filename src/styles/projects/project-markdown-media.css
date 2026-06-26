@@ -1,0 +1,116 @@
+/* src/styles/projects/project-markdown-media.css */
+/* ========================================
+ * Project Markdown Media
+ * ======================================== */
+
+.project-markdown-media {
+  width: 100%;
+  min-width: 0;
+  margin:
+    clamp(2.5rem, 6vw, 4rem) 0;
+  border:
+    1px solid var(--color-line);
+  background:
+    var(--color-panel);
+}
+
+.project-markdown-media__frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  padding: clamp(0.5rem,
+      1.5vw,
+      0.75rem);
+  background:
+    var(--color-panel-strong);
+}
+
+.project-markdown-media__image {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  background:
+    var(--color-panel);
+}
+
+.project-markdown-media__caption {
+  display: grid;
+  grid-template-columns:
+    auto minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: baseline;
+  margin: 0;
+  padding:
+    0.85rem 1rem;
+  border-top:
+    1px solid var(--color-line);
+  color:
+    var(--color-muted);
+}
+
+.project-markdown-media__caption-label {
+  color:
+    var(--color-accent);
+  font-family:
+    var(--font-ibm-plex-mono),
+    "Courier New",
+    monospace;
+  font-size: 0.68rem;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.project-markdown-media__caption-text {
+  min-width: 0;
+  font-family:
+    var(--font-ibm-plex-mono),
+    "Courier New",
+    monospace;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+/*
+ * Gambar portrait tidak perlu memenuhi
+ * seluruh lebar artikel.
+ */
+
+.project-markdown-media[ data-orientation="portrait"
+
+] {
+  max-width: 34rem;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.project-markdown-media[ data-orientation="square"
+
+] {
+  max-width: 42rem;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (max-width: 40rem) {
+  .project-markdown-media {
+    margin:
+      2.25rem 0;
+  }
+
+  .project-markdown-media__frame {
+    padding: 0.4rem;
+  }
+
+  .project-markdown-media__caption {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+    padding:
+      0.75rem 0.85rem;
+  }
+}

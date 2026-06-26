@@ -1,0 +1,171 @@
+/* src/styles/notes/note-markdown-code.css */
+
+/* ========================================
+ * Note Markdown Code
+ * ======================================== */
+
+/* ========================================
+ * Inline Code
+ * ======================================== */
+
+.note-markdown :not(pre)>code {
+  padding: 0.15rem 0.35rem;
+
+  border:
+    var(--border-thin) solid var(--color-line);
+
+  background: var(--color-panel);
+
+  font-family:
+    var(--font-ibm-plex-mono),
+    "Courier New",
+    monospace;
+  font-size: 0.9em;
+}
+
+/* ========================================
+ * Highlighted Code Block
+ * ======================================== */
+
+.note-markdown figure[data-rehype-pretty-code-figure] {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  margin: 2rem 0 0;
+
+  border:
+    var(--border-thin) solid var(--color-muted);
+
+  background: var(--color-ink);
+}
+
+/*
+ * Contoh Markdown:
+ *
+ * ```ts title="TypeScript"
+ */
+
+.note-markdown [data-rehype-pretty-code-title] {
+  padding: 0.85rem 1.25rem;
+
+  border-bottom:
+    var(--border-thin) solid var(--color-muted);
+
+  color: var(--color-accent);
+  background: var(--color-ink);
+
+  font-family:
+    var(--font-ibm-plex-mono),
+    "Courier New",
+    monospace;
+  font-size: 0.7rem;
+  line-height: 1.5;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.note-markdown figure[data-rehype-pretty-code-figure] pre {
+  max-width: 100%;
+  margin: 0;
+  padding: 1.25rem 0;
+
+  overflow-x: auto;
+
+  border: 0;
+  background:
+    var(--color-ink) !important;
+
+  font-family:
+    var(--font-ibm-plex-mono),
+    "Courier New",
+    monospace;
+  font-size: 0.875rem;
+  line-height: 1.75;
+  tab-size: 2;
+}
+
+.note-markdown figure[data-rehype-pretty-code-figure] code {
+  display: grid;
+  min-width: max-content;
+
+  font: inherit;
+}
+
+.note-markdown figure[data-rehype-pretty-code-figure] [data-line] {
+  display: inline-block;
+  width: 100%;
+  min-width: max-content;
+  padding-inline: 1.25rem;
+}
+
+/* Highlighted lines */
+
+.note-markdown [data-highlighted-line] {
+  border-left:
+    0.2rem solid var(--color-accent);
+
+  background:
+    rgb(199 85 45 / 14%);
+}
+
+/* Highlighted characters */
+
+.note-markdown [data-highlighted-chars] {
+  padding: 0.1rem 0.2rem;
+
+  border:
+    var(--border-thin) solid rgb(199 85 45 / 45%);
+
+  background:
+    rgb(199 85 45 / 20%);
+}
+
+/* Optional line numbers */
+
+.note-markdown code[data-line-numbers] {
+  counter-reset: line;
+}
+
+.note-markdown code[data-line-numbers]>[data-line]::before {
+  display: inline-block;
+  width: 2rem;
+  margin-right: 1rem;
+
+  counter-increment: line;
+  content: counter(line);
+
+  color: var(--color-muted);
+  text-align: right;
+}
+
+/* Optional caption */
+
+.note-markdown [data-rehype-pretty-code-caption] {
+  padding: 0.75rem 1.25rem;
+
+  border-top:
+    var(--border-thin) solid var(--color-muted);
+
+  color: var(--color-muted);
+  background: var(--color-ink);
+
+  font-family:
+    var(--font-ibm-plex-mono),
+    "Courier New",
+    monospace;
+  font-size: 0.7rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 40rem) {
+
+  .note-markdown [data-rehype-pretty-code-title],
+  .note-markdown [data-rehype-pretty-code-caption] {
+    padding-inline: 1rem;
+  }
+
+  .note-markdown figure[data-rehype-pretty-code-figure] [data-line] {
+    padding-inline: 1rem;
+  }
+}

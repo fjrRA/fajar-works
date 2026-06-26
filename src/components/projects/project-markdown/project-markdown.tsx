@@ -1,9 +1,10 @@
 // src/components/projects/project-markdown/project-markdown.tsx
+
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
 import {
-  projectMarkdownComponents,
+  createProjectMarkdownComponents,
 } from "./project-markdown-components";
 
 type ProjectMarkdownProps = {
@@ -28,6 +29,9 @@ export function ProjectMarkdown({
     );
   }
 
+  const components =
+    createProjectMarkdownComponents();
+
   return (
     <div className="project-markdown">
       <Markdown
@@ -44,9 +48,7 @@ export function ProjectMarkdown({
             },
           ],
         ]}
-        components={
-          projectMarkdownComponents
-        }
+        components={components}
         skipHtml
       >
         {content}

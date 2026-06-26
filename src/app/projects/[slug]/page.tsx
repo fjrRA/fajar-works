@@ -1,4 +1,5 @@
 // src/app/projects/[slug]/page.tsx
+
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -7,8 +8,12 @@ import {
 } from "@/components/projects/project-detail";
 import {
   getProjectBySlug,
+  getPublishedProjects,
   getPublishedProjectSlugs,
 } from "@/lib/content/get-projects";
+import {
+  getAdjacentProjects,
+} from "@/lib/content/project-navigation";
 import type { Project } from "@/types/project";
 
 type ProjectDetailPageProps = {
@@ -77,9 +82,21 @@ export default async function ProjectDetailPage({
   const project =
     await getProjectFromParams(params);
 
+  const publishedProjects =
+    getPublishedProjects();
+
+  const navigation =
+    getAdjacentProjects(
+      publishedProjects,
+      project.slug,
+    );
+
   return (
     <main id="main-content">
-      <ProjectDetail project={project} />
+      <ProjectDetail
+        project={project}
+        navigation={navigation}
+      />
     </main>
   );
 }

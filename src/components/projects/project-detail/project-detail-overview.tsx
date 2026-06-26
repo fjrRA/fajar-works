@@ -1,4 +1,6 @@
-// src/components/projects/project-detail/project-detail-overview.tsx
+// src/components/projects/project-detail/
+// project-detail-overview.tsx
+
 import { SectionHeading } from "@/components/ui/section-heading";
 import { SectionLabel } from "@/components/ui/section-label";
 import type { Project } from "@/types/project";
@@ -6,6 +8,12 @@ import type { Project } from "@/types/project";
 import {
   ProjectDetailLinks,
 } from "./project-detail-links";
+import {
+  ProjectDetailResponsibilities,
+} from "./project-detail-responsibilities";
+import {
+  ProjectDetailStack,
+} from "./project-detail-stack";
 
 type ProjectDetailOverviewProps = {
   project: Project;
@@ -58,127 +66,15 @@ export function ProjectDetailOverview({
       </header>
 
       <div className="min-w-0">
-        <section
-          aria-labelledby="project-stack-heading"
-          className="
-            border-b
-            border-line
-            px-6
-            py-10
-            md:px-8
-            lg:px-10
-            lg:py-12
-          "
-        >
-          <p className="type-label text-muted">
-            Technology Stack
-          </p>
+        <ProjectDetailStack
+          stack={project.stack}
+        />
 
-          <h3
-            id="project-stack-heading"
-            className="
-              mt-4
-              text-3xl
-              leading-none
-              font-semibold
-              tracking-[-0.04em]
-              uppercase
-            "
-          >
-            Tools & Technologies
-          </h3>
-
-          <ul
-            aria-label="Project technology stack"
-            className="
-              mt-8
-              flex
-              flex-wrap
-              border-t
-              border-l
-              border-line
-            "
-          >
-            {project.stack.map((technology) => (
-              <li
-                key={technology}
-                className="
-                  border-r
-                  border-b
-                  border-line
-                  px-4
-                  py-3
-                  font-mono
-                  text-xs
-                  tracking-[0.08em]
-                  uppercase
-                "
-              >
-                {technology}
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section
-          aria-labelledby="project-responsibilities-heading"
-          className="
-            border-b
-            border-line
-            px-6
-            py-10
-            md:px-8
-            lg:px-10
-            lg:py-12
-          "
-        >
-          <p className="type-label text-muted">
-            Contribution
-          </p>
-
-          <h3
-            id="project-responsibilities-heading"
-            className="
-              mt-4
-              text-3xl
-              leading-none
-              font-semibold
-              tracking-[-0.04em]
-              uppercase
-            "
-          >
-            Responsibilities
-          </h3>
-
-          <ol className="mt-8 border-t border-line">
-            {project.responsibilities.map(
-              (responsibility, index) => (
-                <li
-                  key={responsibility}
-                  className="
-                    grid
-                    grid-cols-[2rem_minmax(0,1fr)]
-                    gap-4
-                    border-b
-                    border-line
-                    py-5
-                  "
-                >
-                  <span className="type-meta text-muted">
-                    {String(index + 1).padStart(
-                      2,
-                      "0",
-                    )}
-                  </span>
-
-                  <p className="type-body">
-                    {responsibility}
-                  </p>
-                </li>
-              ),
-            )}
-          </ol>
-        </section>
+        <ProjectDetailResponsibilities
+          responsibilities={
+            project.responsibilities
+          }
+        />
 
         <div
           className="
@@ -191,7 +87,9 @@ export function ProjectDetailOverview({
         >
           <ProjectDetailLinks
             projectTitle={project.title}
-            repositoryUrl={project.repositoryUrl}
+            repositoryUrl={
+              project.repositoryUrl
+            }
             liveUrl={project.liveUrl}
           />
         </div>

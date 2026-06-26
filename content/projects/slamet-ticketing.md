@@ -32,6 +32,8 @@ repositoryUrl: "https://github.com/fjrRA/slamet-ticketing"
 
 Slamet Ticketing is a full-stack ticketing application created for managing mountain tourism reservations and digital ticket transactions.
 
+![Slamet Ticketing case study displayed on the Fajar Works portfolio](/images/projects/baturraden-apps/baturraden-apps.png "Early case study presentation for slamet-ticketing inside Fajar Works [1920x1080]")
+
 ## Architecture
 
 The frontend was built using React, Vite, and TypeScript. The backend uses Express.js, Prisma, and MySQL.

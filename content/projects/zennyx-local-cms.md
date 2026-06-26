@@ -32,6 +32,8 @@ repositoryUrl: "https://github.com/fjrRA/zennyx-local-cms"
 
 Zennyx Local CMS is a locally operated content management system for the Zennyx Interactive Studio website.
 
+![Zennyx Local CMS case study displayed on the Fajar Works portfolio](/images/projects/baturraden-apps/baturraden-apps.png "Early case study presentation for Zennyx Local CMS inside Fajar Works [1920x1080]")
+
 ## Problem
 
 The public website uses static JSON and Markdown content, but editing those files manually becomes increasingly difficult as the amount of content grows.

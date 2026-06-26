@@ -1,0 +1,131 @@
+/* src/styles/notes/note-toc.css */
+
+/* ========================================
+ * Note Table of Contents
+ * ======================================== */
+
+.note-toc {
+  min-width: 0;
+
+  border:
+    var(--border-thin) solid var(--color-line);
+
+  background: var(--color-panel);
+}
+
+.note-toc__header {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: baseline;
+
+  padding: 0.9rem 1rem;
+
+  border-bottom:
+    var(--border-thin) solid var(--color-line);
+}
+
+.note-toc__label,
+.note-toc__count {
+  margin: 0;
+
+  font-family:
+    var(--font-ibm-plex-mono),
+    "Courier New",
+    monospace;
+  font-size: 0.68rem;
+  line-height: 1.5;
+  font-weight: 600;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.note-toc__count {
+  color: var(--color-muted);
+  text-align: right;
+}
+
+.note-toc__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.note-toc__item+.note-toc__item {
+  border-top:
+    var(--border-thin) solid var(--color-line);
+}
+
+.note-toc__link {
+  display: grid;
+  grid-template-columns:
+    2rem minmax(0, 1fr);
+  gap: 0.5rem;
+
+  min-width: 0;
+  padding: 0.85rem 1rem;
+
+  color: var(--color-ink);
+  text-decoration: none;
+
+  transition:
+    color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.note-toc__index {
+  color: var(--color-muted);
+
+  font-family:
+    var(--font-ibm-plex-mono),
+    "Courier New",
+    monospace;
+  font-size: 0.68rem;
+  line-height: 1.5;
+}
+
+.note-toc__text {
+  min-width: 0;
+
+  font-size: 0.875rem;
+  line-height: 1.45;
+  font-weight: 600;
+
+  overflow-wrap: anywhere;
+}
+
+.note-toc__item[data-depth="3"] .note-toc__text {
+  padding-left: 0.75rem;
+}
+
+.note-toc__item[data-depth="4"] .note-toc__text,
+.note-toc__item[data-depth="5"] .note-toc__text,
+.note-toc__item[data-depth="6"] .note-toc__text {
+  padding-left: 1.5rem;
+}
+
+.note-toc__link:focus-visible {
+  position: relative;
+  z-index: 1;
+
+  outline:
+    2px solid var(--color-accent);
+  outline-offset: -3px;
+}
+
+@media (hover: hover) {
+  .note-toc__link:hover {
+    color: var(--color-accent);
+    background:
+      var(--color-panel-strong);
+  }
+}
+
+@media (min-width: 64rem) {
+  .note-toc {
+    position: sticky;
+    top:
+      calc(var(--header-height) + 1.5rem);
+  }
+}

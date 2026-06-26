@@ -1,0 +1,61 @@
+/* src/styles/notes/note-markdown-table.css */
+
+/* ========================================
+ * Note Markdown Table
+ * ======================================== */
+
+.note-markdown-table {
+  max-width: 100%;
+  margin-top: 2rem;
+
+  overflow-x: auto;
+
+  border:
+    var(--border-thin) solid var(--color-line);
+}
+
+.note-markdown-table table {
+  width: 100%;
+  min-width: 36rem;
+
+  border-collapse: collapse;
+
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.note-markdown-table th,
+.note-markdown-table td {
+  padding: 0.9rem 1rem;
+
+  border-right:
+    var(--border-thin) solid var(--color-line);
+
+  border-bottom:
+    var(--border-thin) solid var(--color-line);
+
+  text-align: left;
+  vertical-align: top;
+}
+
+.note-markdown-table th:last-child,
+.note-markdown-table td:last-child {
+  border-right: 0;
+}
+
+.note-markdown-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.note-markdown-table th {
+  background: var(--color-panel);
+
+  font-family:
+    var(--font-ibm-plex-mono),
+    "Courier New",
+    monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}

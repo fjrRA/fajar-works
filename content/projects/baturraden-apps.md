@@ -28,6 +28,8 @@ repositoryUrl: "https://github.com/fjrRA/qr-ticketing-app"
 
 Baturraden Apps is a digital tourism ticketing application developed to support online ticket purchasing and ticket validation.
 
+![Baturraden Apps case study displayed on the Fajar Works portfolio](/images/projects/baturraden-apps/baturraden-apps.png "Early case study presentation for Baturraden Apps inside Fajar Works [1920x1080]")
+
 ## Problem
 
 The project explored how a tourism destination could manage reservations, online payments, ticket generation, and visitor validation through one application.

@@ -1,4 +1,5 @@
 // src/lib/content/notes/note.validators.ts
+
 function createInvalidFieldError(
   fieldName: string,
   fileName: string,
@@ -41,6 +42,33 @@ export function requireBoolean(
   return value;
 }
 
+export function requireSlug(
+  value: unknown,
+  fileName: string,
+): string {
+  const slug = requireString(
+    value,
+    "slug",
+    fileName,
+  );
+
+  const isValidSlug =
+    /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(
+      slug,
+    );
+
+  if (!isValidSlug) {
+    throw new Error(
+      [
+        `Note "${fileName}" has invalid slug "${slug}".`,
+        "Use lowercase kebab-case without spaces.",
+      ].join(" "),
+    );
+  }
+
+  return slug;
+}
+
 export function requireStringArray(
   value: unknown,
   fieldName: string,
@@ -61,7 +89,25 @@ export function requireStringArray(
     );
   }
 
-  return value.map((item) => item.trim());
+  const normalizedItems = value.map(
+    (item) => item.trim(),
+  );
+
+  const normalizedKeys =
+    normalizedItems.map((item) =>
+      item.toLowerCase(),
+    );
+
+  if (
+    new Set(normalizedKeys).size !==
+    normalizedKeys.length
+  ) {
+    throw new Error(
+      `Note "${fileName}" has duplicate values in "${fieldName}".`,
+    );
+  }
+
+  return normalizedItems;
 }
 
 export function requireAllowedValue<
@@ -118,7 +164,8 @@ export function requireDateString(
 
   const isValidDate =
     parsedDate.getUTCFullYear() === year &&
-    parsedDate.getUTCMonth() === month - 1 &&
+    parsedDate.getUTCMonth() ===
+    month - 1 &&
     parsedDate.getUTCDate() === day;
 
   if (!isValidDate) {
@@ -166,4 +213,70 @@ export function optionalDateString(
     fieldName,
     fileName,
   );
+}
+
+export function optionalLocalImagePath(
+  value: unknown,
+  fieldName: string,
+  fileName: string,
+): string | undefined {
+  const imagePath = optionalString(
+    value,
+    fieldName,
+    fileName,
+  );
+
+  if (!imagePath) {
+    return undefined;
+  }
+
+  if (
+    !imagePath.startsWith("/images/") ||
+    imagePath.includes("..")
+  ) {
+    throw new Error(
+      [
+        `Note "${fileName}" has invalid "${fieldName}" path "${imagePath}".`,
+        'Use a local path inside "/public/images/".',
+      ].join(" "),
+    );
+  }
+
+  return imagePath;
+}
+
+export function validateDateOrder(
+  publishedAt: string,
+  updatedAt: string | undefined,
+  fileName: string,
+): void {
+  if (
+    updatedAt &&
+    updatedAt < publishedAt
+  ) {
+    throw new Error(
+      `Note "${fileName}" has "updatedAt" earlier than "publishedAt".`,
+    );
+  }
+}
+
+export function validateKnownFields(
+  data: Record<string, unknown>,
+  allowedFields: readonly string[],
+  fileName: string,
+): void {
+  const unknownFields = Object.keys(
+    data,
+  ).filter(
+    (field) =>
+      !allowedFields.includes(field),
+  );
+
+  if (unknownFields.length > 0) {
+    throw new Error(
+      `Note "${fileName}" has unsupported frontmatter field(s): ${unknownFields.join(
+        ", ",
+      )}.`,
+    );
+  }
 }
