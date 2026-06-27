@@ -9,7 +9,7 @@ status: "In Progress"
 category: "Build Log"
 source: "Fajar Works"
 module: "Homepage Content System"
-progress: "Stage 3 — Homepage Content"
+progress: "Stage 3 - Homepage Content"
 topics:
   - "Next.js"
   - "TypeScript"
@@ -18,27 +18,27 @@ topics:
   - "Content Architecture"
 ---
 
-## Tujuan Pengembangan
+## Development Goals
 
-Fajar Works dibangun sebagai website portfolio, arsip proyek, tempat menulis catatan, dan dokumentasi perkembangan belajar.
+Fajar Works was built as a portfolio website, a project archive, a place for writing technical notes, and documentation of my learning progress.
 
-Saya tidak ingin website ini hanya menjadi sebuah landing page yang berisi nama, daftar teknologi, dan beberapa tautan proyek.
+I did not want this website to be only a landing page containing my name, a list of technologies, and a few project links.
 
-## Fondasi yang Sudah Dibangun
+## Foundations Already Built
 
-Pengembangan dimulai dari design foundation yang mencakup warna, tipografi, spacing, container, border, serta komponen antarmuka dasar.
+Development began with a design foundation covering colors, typography, spacing, containers, borders, and basic interface components.
 
-Setelah fondasi visual selesai, saya melanjutkan ke global layout berupa navbar desktop, mobile navigation, footer, page header, dan struktur route utama.
+After completing the visual foundation, I continued with the global layout, including the desktop navbar, mobile navigation, footer, page header, and main route structure.
 
-## Arsitektur Konten
+## Content Architecture
 
-Konten website disimpan melalui JSON dan Markdown.
+The website content is stored using JSON and Markdown.
 
-JSON digunakan untuk data terstruktur seperti konfigurasi homepage, profil, capability, dan navigasi. Markdown digunakan untuk proyek, notes, dan learning log.
+JSON is used for structured data such as homepage configuration, profile information, capabilities, and navigation. Markdown is used for projects, notes, and Learning Logs.
 
-Pendekatan ini membuat website tetap dapat diprerender tanpa memerlukan database cloud atau backend yang aktif terus-menerus.
+This approach allows the website to remain prerenderable without requiring a cloud database or a continuously running backend.
 
-## Contoh Struktur Data
+## Example Data Structure
 
 ```ts title="learning-log.ts"
 export type LearningLog = {
@@ -48,8 +48,8 @@ export type LearningLog = {
 };
 ```
 
-## Kondisi Saat Ini
+## Current State
 
-Homepage sudah memiliki Hero, Selected Work, Capabilities, Current Focus, dan Latest Notes.
+The homepage already includes the Hero, Selected Work, Capabilities, Current Focus, and Latest Notes sections.
 
-Tahap selanjutnya adalah menyelesaikan Learning Progress, profil singkat, dan contact call-to-action.
+The next stage is to complete Learning Progress, the short profile section, and the contact call-to-action.

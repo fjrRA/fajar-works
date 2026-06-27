@@ -8,7 +8,7 @@ published: true
 status: "Completed"
 category: "Course Log"
 source: "Modern JavaScript From The Beginning 2.0"
-module: "Section 5 — Logic & Control Flow"
+module: "Section 5 - Logic & Control Flow"
 progress: "Section 5 Completed"
 topics:
   - "If Statements"
@@ -19,21 +19,21 @@ topics:
   - "Ternary Operator"
 ---
 
-## Materi yang Dipelajari
+## What I Learned
 
-Bagian ini membahas cara program mengambil keputusan berdasarkan kondisi.
+This section discusses how programs make decisions based on conditions.
 
-Materinya mencakup penggunaan if, else if, else, nested condition, operator perbandingan, dan switch statement.
+The material covers the use of `if`, `else if`, `else`, nested conditions, comparison operators, and switch statements.
 
-## Truthy dan Falsy
+## Truthy and Falsy
 
-Saya mempelajari bahwa nilai tidak selalu harus berupa boolean agar dapat diperiksa sebagai kondisi.
+I learned that a value does not always need to be a boolean to be evaluated as a condition.
 
-Nilai seperti string kosong, angka nol, null, undefined, dan NaN dianggap falsy. Sementara itu, array kosong dan object kosong tetap dianggap truthy.
+Values such as an empty string, zero, `null`, `undefined`, and `NaN` are considered falsy. Empty arrays and empty objects, however, are still considered truthy.
 
 ## Logical Operators
 
-Operator yang dipelajari meliputi:
+The operators covered in this section include:
 
 - AND
 - OR
@@ -41,14 +41,14 @@ Operator yang dipelajari meliputi:
 - Nullish coalescing
 - Logical assignment
 
-Saya juga mempelajari short-circuit evaluation, yaitu kondisi ketika JavaScript tidak melanjutkan evaluasi karena hasilnya sudah dapat ditentukan dari operand sebelumnya.
+I also learned about short-circuit evaluation, where JavaScript stops evaluating an expression because the result can already be determined from an earlier operand.
 
-## Tantangan
+## Challenges
 
-Salah satu hal yang perlu diperhatikan adalah membedakan nilai nol yang memang valid dengan nilai yang dianggap tidak tersedia.
+One important challenge is distinguishing between zero as a valid value and a value that should be considered unavailable.
 
-Penggunaan nullish coalescing dapat membantu ketika angka nol masih harus dipertahankan sebagai nilai yang sah.
+Nullish coalescing can help in situations where zero must still be preserved as a valid value.
 
-## Hasil
+## Outcome
 
-Bagian ini sudah selesai dan diperkuat melalui latihan output, perbaikan kode, serta contoh penggunaan pada sistem ticketing dan dashboard.
+This section has been completed and reinforced through output-prediction exercises, code corrections, and examples based on ticketing and dashboard systems.

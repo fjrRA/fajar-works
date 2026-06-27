@@ -8,7 +8,7 @@ published: true
 status: "Completed"
 category: "Course Log"
 source: "Modern JavaScript From The Beginning 2.0"
-module: "Section 4 — Functions, Scope & Execution Context"
+module: "Section 4 - Functions, Scope & Execution Context"
 progress: "Section 4 Completed"
 topics:
   - "Functions"
@@ -19,15 +19,15 @@ topics:
   - "Hoisting"
 ---
 
-## Materi yang Dipelajari
+## What I Learned
 
-Bagian ini membahas function sebagai blok kode yang dapat digunakan kembali.
+This section discusses functions as reusable blocks of code.
 
-Saya mempelajari function declaration, function expression, parameter, argument, default parameter, rest parameter, dan object sebagai argument.
+I learned about function declarations, function expressions, parameters, arguments, default parameters, rest parameters, and passing objects as arguments.
 
 ## Scope
 
-Materi scope mencakup:
+The scope material covers:
 
 - Global scope
 - Function scope
@@ -35,20 +35,20 @@ Materi scope mencakup:
 - Nested scope
 - Lexical scope
 
-Bagian nested dan lexical scope menjadi materi yang cukup menantang karena saya harus memahami bagaimana JavaScript mencari variabel dari scope terdekat menuju scope di luarnya.
+Nested and lexical scope were particularly challenging because I needed to understand how JavaScript searches for variables from the nearest scope and then continues outward through the surrounding scopes.
 
-## Arrow Function
+## Arrow Functions
 
-Saya mempelajari bentuk dasar arrow function, implicit return, serta cara mengembalikan object menggunakan tanda kurung.
+I learned the basic syntax of arrow functions, implicit returns, and how to return an object by wrapping it in parentheses.
 
-Arrow function dapat membuat penulisan lebih ringkas, tetapi bentuk ringkas tidak selalu lebih mudah dibaca untuk function yang memiliki logika panjang.
+Arrow functions can make code more concise, but shorter syntax is not always easier to read when a function contains complex or lengthy logic.
 
-## IIFE dan Hoisting
+## IIFE and Hoisting
 
-IIFE digunakan untuk menjalankan function secara langsung setelah dibuat.
+An IIFE is used to execute a function immediately after it is created.
 
-Saya juga mulai memahami perbedaan perilaku hoisting pada function declaration dan function expression.
+I also began to understand the differences between how function declarations and function expressions behave during hoisting.
 
-## Hasil
+## Outcome
 
-Bagian ini sudah selesai, tetapi lexical scope, IIFE, nested scope, dan hoisting tetap menjadi topik yang perlu ditinjau kembali melalui latihan berikutnya.
+This section has been completed, but lexical scope, IIFE, nested scope, and hoisting remain topics that I need to review through additional practice.
