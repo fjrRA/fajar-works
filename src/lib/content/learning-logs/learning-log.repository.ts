@@ -1,10 +1,18 @@
 // src/lib/content/learning-logs/learning-log.repository.ts
+
 import fs from "node:fs";
 
-import type { LearningLog } from "@/types/learning-log";
+import type {
+  LearningLog,
+} from "@/types/learning-log";
 
-import { LEARNING_LOGS_DIRECTORY } from "./learning-log.constants";
-import { parseLearningLogFile } from "./parse-learning-log-file";
+import {
+  LEARNING_LOGS_DIRECTORY,
+} from "./learning-log.constants";
+
+import {
+  parseLearningLogFile,
+} from "./parse-learning-log-file";
 
 function validateLimit(limit: number) {
   if (
@@ -37,17 +45,30 @@ function sortByNewest(
 
 export function getAllLearningLogs():
   LearningLog[] {
-  if (!fs.existsSync(LEARNING_LOGS_DIRECTORY)) {
+  if (
+    !fs.existsSync(
+      LEARNING_LOGS_DIRECTORY,
+    )
+  ) {
     return [];
   }
 
   const learningLogFiles = fs
-    .readdirSync(LEARNING_LOGS_DIRECTORY)
-    .filter((fileName) =>
-      fileName.endsWith(".md"),
+    .readdirSync(
+      LEARNING_LOGS_DIRECTORY,
     )
-    .sort((firstFile, secondFile) =>
-      firstFile.localeCompare(secondFile),
+    .filter((fileName) => {
+      return fileName.endsWith(".md");
+    })
+    .sort(
+      (
+        firstFile,
+        secondFile,
+      ) => {
+        return firstFile.localeCompare(
+          secondFile,
+        );
+      },
     );
 
   return learningLogFiles.map(
@@ -72,5 +93,24 @@ export function getLatestLearningLogs(
   return getPublishedLearningLogs().slice(
     0,
     limit,
+  );
+}
+
+export function getLearningLogBySlug(
+  slug: string,
+): LearningLog | undefined {
+  return getPublishedLearningLogs().find(
+    (learningLog) => {
+      return learningLog.slug === slug;
+    },
+  );
+}
+
+export function getPublishedLearningLogSlugs():
+  string[] {
+  return getPublishedLearningLogs().map(
+    (learningLog) => {
+      return learningLog.slug;
+    },
   );
 }

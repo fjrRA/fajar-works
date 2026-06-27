@@ -14,6 +14,10 @@ import {
   createAbsoluteUrl,
 } from "@/lib/metadata/site-url";
 
+import {
+  getPublishedLearningLogs,
+} from "@/lib/content/get-learning-logs";
+
 export default function sitemap():
   MetadataRoute.Sitemap {
   const staticRoutes:
@@ -94,9 +98,26 @@ export default function sitemap():
       }),
     );
 
+  const learningLogRoutes:
+    MetadataRoute.Sitemap =
+    getPublishedLearningLogs().map(
+      (learningLog) => ({
+        url: createAbsoluteUrl(
+          `/learning-log/${learningLog.slug}`,
+        ),
+        lastModified:
+          learningLog.updatedAt ??
+          learningLog.loggedAt,
+        changeFrequency:
+          "monthly" as const,
+        priority: 0.7,
+      }),
+    );
+
   return [
     ...staticRoutes,
     ...projectRoutes,
     ...noteRoutes,
+    ...learningLogRoutes,
   ];
 }

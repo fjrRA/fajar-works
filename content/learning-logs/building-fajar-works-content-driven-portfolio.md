@@ -38,6 +38,16 @@ JSON digunakan untuk data terstruktur seperti konfigurasi homepage, profil, capa
 
 Pendekatan ini membuat website tetap dapat diprerender tanpa memerlukan database cloud atau backend yang aktif terus-menerus.
 
+## Contoh Struktur Data
+
+```ts title="learning-log.ts"
+export type LearningLog = {
+  title: string;
+  slug: string;
+  published: boolean;
+};
+```
+
 ## Kondisi Saat Ini
 
 Homepage sudah memiliki Hero, Selected Work, Capabilities, Current Focus, dan Latest Notes.

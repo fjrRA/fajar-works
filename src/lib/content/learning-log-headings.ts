@@ -1,0 +1,130 @@
+// src/lib/content/learning-log-headings.ts
+
+import {
+  createHeadingIdGenerator,
+} from "./heading-id";
+
+export type LearningLogHeadingDepth =
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6;
+
+export type LearningLogHeading =
+  Readonly<{
+    id: string;
+    text: string;
+    depth: LearningLogHeadingDepth;
+  }>;
+
+type MarkdownFence = {
+  character: "`" | "~";
+  length: number;
+};
+
+function getPlainHeadingText(
+  value: string,
+): string {
+  return value
+    .replace(
+      /!\[([^\]]*)\]\([^)]*\)/g,
+      "$1",
+    )
+    .replace(
+      /\[([^\]]+)\]\([^)]*\)/g,
+      "$1",
+    )
+    .replace(/`([^`]+)`/g, "$1")
+    .replace(/[*_~]/g, "")
+    .trim();
+}
+
+function getFenceToken(
+  line: string,
+): string | undefined {
+  return line
+    .trimStart()
+    .match(/^(`{3,}|~{3,})/)?.[1];
+}
+
+export function extractLearningLogHeadings(
+  content: string,
+): LearningLogHeading[] {
+  const headings: LearningLogHeading[] =
+    [];
+
+  const getHeadingId =
+    createHeadingIdGenerator();
+
+  let activeFence: MarkdownFence | null =
+    null;
+
+  for (
+    const line of content.split(/\r?\n/)
+  ) {
+    const fenceToken =
+      getFenceToken(line);
+
+    if (fenceToken) {
+      const character =
+        fenceToken[0] as "`" | "~";
+
+      if (!activeFence) {
+        activeFence = {
+          character,
+          length: fenceToken.length,
+        };
+      } else if (
+        activeFence.character ===
+        character &&
+        fenceToken.length >=
+        activeFence.length
+      ) {
+        activeFence = null;
+      }
+
+      continue;
+    }
+
+    if (activeFence) {
+      continue;
+    }
+
+    const headingMatch = line.match(
+      /^(#{1,6})[ \t]+(.+?)[ \t]*#*[ \t]*$/,
+    );
+
+    if (!headingMatch) {
+      continue;
+    }
+
+    const markdownDepth =
+      headingMatch[1].length;
+
+    /*
+     * H1 Markdown diturunkan menjadi H2
+     * karena judul Learning Log sudah menjadi H1.
+     */
+    const depth = Math.max(
+      2,
+      markdownDepth,
+    ) as LearningLogHeadingDepth;
+
+    const text = getPlainHeadingText(
+      headingMatch[2],
+    );
+
+    if (!text) {
+      continue;
+    }
+
+    headings.push({
+      id: getHeadingId(text),
+      text,
+      depth,
+    });
+  }
+
+  return headings;
+}
