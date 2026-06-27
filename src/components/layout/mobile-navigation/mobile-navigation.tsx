@@ -30,6 +30,7 @@ export function MobileNavigation(
     <div className="ml-auto flex h-full items-stretch lg:hidden">
       <MobileNavigationToggle
         isOpen={isOpen}
+        isMounted={isMounted}
         controlsId={MOBILE_NAVIGATION_ID}
         buttonRef={menuButtonRef}
         onToggle={toggleMenu}

@@ -1,4 +1,5 @@
 // src/components/projects/project-detail/project-detail-links.tsx
+
 type ProjectDetailLinksProps = {
   projectTitle: string;
   repositoryUrl: string;
@@ -47,7 +48,13 @@ export function ProjectDetailLinks({
           hover:text-accent
         "
       >
-        View Repository
+        <span>
+          View Repository
+
+          <span className="sr-only">
+            {` for ${projectTitle}, opens in a new tab`}
+          </span>
+        </span>
 
         <span
           aria-hidden="true"
@@ -87,6 +94,10 @@ export function ProjectDetailLinks({
           "
         >
           Visit Live Website
+
+          <span className="sr-only">
+            {` for ${projectTitle}, opens in a new tab`}
+          </span>
         </a>
       ) : null}
     </nav>

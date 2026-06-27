@@ -1,4 +1,5 @@
 // src/components/projects/project-preview/project-preview-links.tsx
+
 type ProjectPreviewLinksProps = {
   projectTitle: string;
   repositoryUrl: string;
@@ -45,7 +46,13 @@ export function ProjectPreviewLinks({
           hover:text-accent
         "
       >
-        Repository
+        <span>
+          Repository
+
+          <span className="sr-only">
+            {` for ${projectTitle}, opens in a new tab`}
+          </span>
+        </span>
 
         <span
           aria-hidden="true"
@@ -85,6 +92,10 @@ export function ProjectPreviewLinks({
           "
         >
           Live Website
+
+          <span className="sr-only">
+            {` for ${projectTitle}, opens in a new tab`}
+          </span>
         </a>
       ) : null}
     </nav>

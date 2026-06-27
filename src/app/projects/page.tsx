@@ -1,22 +1,32 @@
 // src/app/projects/page.tsx
-import type { Metadata } from "next";
+import {
+  createPageMetadata,
+} from "@/lib/metadata/create-page-metadata";
 
 import { PageHeader } from "@/components/layout/page-header";
 
 import { ProjectIndex } from "@/components/projects/project-index";
 import { getPublishedProjects } from "@/lib/content/get-projects";
 
-export const metadata: Metadata = {
-  title: "Projects",
-  description:
-    "Selected web development projects and technical case studies by Fajar Rahmana Akbar.",
-};
+import {
+  MainContent,
+} from "@/components/layout/main-content";
+
+export const metadata =
+  createPageMetadata({
+    title: "Projects",
+
+    description:
+      "Selected web development projects and technical case studies by Fajar Rahmana Akbar.",
+
+    pathname: "/projects",
+  });
 
 export default function ProjectsPage() {
   const projects = getPublishedProjects();
 
   return (
-    <main id="main-content">
+    <MainContent>
       <PageHeader
         index="01"
         label="Work"
@@ -25,6 +35,6 @@ export default function ProjectsPage() {
       />
 
       <ProjectIndex projects={projects} />
-    </main>
+    </MainContent>
   );
 }

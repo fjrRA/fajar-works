@@ -48,12 +48,12 @@
   border-top:
     1px solid var(--color-line);
   color:
-    var(--color-muted);
+    var(--color-muted-strong);
 }
 
 .project-markdown-media__caption-label {
   color:
-    var(--color-accent);
+    var(--color-accent-strong);
   font-family:
     var(--font-ibm-plex-mono),
     "Courier New",

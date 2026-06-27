@@ -22,9 +22,6 @@ export function useMobileNavigation() {
   const firstLinkRef =
     useRef<HTMLAnchorElement>(null);
 
-  const shouldRestoreFocusRef =
-    useRef(false);
-
   /*
    * Menyelesaikan siklus penutupan panel.
    * Fungsi ini dipanggil oleh transitionend
@@ -32,16 +29,6 @@ export function useMobileNavigation() {
    */
   const completeClose = useCallback(() => {
     setIsMounted(false);
-
-    if (!shouldRestoreFocusRef.current) {
-      return;
-    }
-
-    shouldRestoreFocusRef.current = false;
-
-    window.requestAnimationFrame(() => {
-      menuButtonRef.current?.focus();
-    });
   }, []);
 
   const {
@@ -60,26 +47,29 @@ export function useMobileNavigation() {
   usePageInteractionLock(isMounted);
 
   const closeMenu = useCallback(() => {
+    /*
+     * Pindahkan fokus keluar dari panel sebelum
+     * panel memperoleh aria-hidden="true".
+     *
+     * Ini juga aman ketika closeMenu dipanggil
+     * melalui pemilihan link navigasi.
+     */
+    menuButtonRef.current?.focus({
+      preventScroll: true,
+    });
+
     setIsOpen(false);
     scheduleCloseFallback();
   }, [scheduleCloseFallback]);
 
-  const closeMenuAndRestoreFocus =
-    useCallback(() => {
-      shouldRestoreFocusRef.current = true;
-      closeMenu();
-    }, [closeMenu]);
-
   useMobileNavigationFocus({
     isOpen,
     firstLinkRef,
-    onEscape: closeMenuAndRestoreFocus,
+    onEscape: closeMenu,
   });
 
   const openMenu = useCallback(() => {
     cancelCloseFallback();
-
-    shouldRestoreFocusRef.current = false;
 
     setIsMounted(true);
 

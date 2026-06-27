@@ -1,20 +1,66 @@
 // src/app/contact/page.tsx
-import type { Metadata } from "next";
 
-import { PageHeader } from "@/components/layout/page-header";
+import {
+  createPageMetadata,
+} from "@/lib/metadata/create-page-metadata";
 
-export const metadata: Metadata = {
-  title: "Contact",
-  description:
-    "Contact Fajar Rahmana Akbar regarding web development opportunities and professional discussions.",
-};
+import {
+  ContactAvailability,
+  ContactChannels,
+  ContactOpportunities,
+} from "@/components/contact";
+import {
+  PageHeader,
+} from "@/components/layout/page-header";
+import {
+  getContactContent,
+} from "@/lib/content/get-contact-content";
+import {
+  getSiteContent,
+} from "@/lib/content/get-site-content";
+import {
+  getSocials,
+} from "@/lib/content/get-socials";
+import {
+  MainContent,
+} from "@/components/layout/main-content";
+
+export const metadata =
+  createPageMetadata({
+    title: "Contact",
+
+    description:
+      "Contact Fajar Rahmana Akbar regarding web development opportunities and professional discussions.",
+
+    pathname: "/contact",
+  });
 
 export default function ContactPage() {
+  const content =
+    getContactContent();
+
+  const site =
+    getSiteContent();
+
+  const socials =
+    getSocials();
+
+  const email =
+    socials.find(
+      (social) => social.id === "email",
+    );
+
+  if (!email) {
+    throw new Error(
+      'Contact social with id "email" was not found.',
+    );
+  }
+
   return (
-    <main id="main-content">
+    <MainContent>
       <PageHeader
-        index="05"
-        label="Contact"
+        index={content.header.index}
+        label={content.header.label}
         titleSize="long"
         title={
           <>
@@ -23,8 +69,28 @@ export default function ContactPage() {
             Conversation
           </>
         }
-        description="Available for junior and entry-level opportunities, web development discussions, and professional connections."
+        description={
+          content.header.description
+        }
       />
-    </main>
+
+      <ContactAvailability
+        content={content.availability}
+        site={site}
+      />
+
+      <ContactChannels
+        content={content.channels}
+        socials={socials}
+      />
+
+      <ContactOpportunities
+        opportunities={
+          content.opportunities
+        }
+        closing={content.closing}
+        email={email}
+      />
+    </MainContent>
   );
 }

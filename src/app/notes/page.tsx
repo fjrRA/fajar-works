@@ -1,24 +1,33 @@
 // src/app/notes/page.tsx
 
-import type { Metadata } from "next";
+import {
+  createPageMetadata,
+} from "@/lib/metadata/create-page-metadata";
 
 import { PageHeader } from "@/components/layout/page-header";
 import { NotesIndex } from "@/components/notes/notes-index";
 import {
   getPublishedNotes,
 } from "@/lib/content/get-notes";
+import {
+  MainContent,
+} from "@/components/layout/main-content";
 
-export const metadata: Metadata = {
-  title: "Notes",
-  description:
-    "Technical notes, opinions, activities, and personal observations by Fajar Rahmana Akbar.",
-};
+export const metadata =
+  createPageMetadata({
+    title: "Notes",
+
+    description:
+      "Technical notes, opinions, activities, and personal observations by Fajar Rahmana Akbar.",
+
+    pathname: "/notes",
+  });
 
 export default function NotesPage() {
   const notes = getPublishedNotes();
 
   return (
-    <main id="main-content">
+    <MainContent>
       <PageHeader
         index="02"
         label="Notes"
@@ -34,6 +43,6 @@ export default function NotesPage() {
       />
 
       <NotesIndex notes={notes} />
-    </main>
+    </MainContent>
   );
 }

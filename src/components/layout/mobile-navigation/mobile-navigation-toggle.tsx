@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils/cn";
 
 type MobileNavigationToggleProps = {
   isOpen: boolean;
+  isMounted: boolean;
   controlsId: string;
   buttonRef: RefObject<HTMLButtonElement | null>;
   onToggle: () => void;
@@ -12,6 +13,7 @@ type MobileNavigationToggleProps = {
 
 export function MobileNavigationToggle({
   isOpen,
+  isMounted,
   controlsId,
   buttonRef,
   onToggle,
@@ -21,7 +23,7 @@ export function MobileNavigationToggle({
       ref={buttonRef}
       type="button"
       aria-expanded={isOpen}
-      aria-controls={controlsId}
+      aria-controls={isMounted ? controlsId : undefined}
       onClick={onToggle}
       className="
         flex

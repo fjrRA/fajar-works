@@ -1,5 +1,20 @@
 // src/app/projects/[slug]/page.tsx
 
+import {
+  createPageMetadata,
+} from "@/lib/metadata/create-page-metadata";
+
+import {
+  JsonLd,
+} from "@/components/seo/json-ld";
+import {
+  createProjectStructuredData,
+} from "@/lib/metadata/structured-data";
+
+import {
+  MainContent,
+} from "@/components/layout/main-content";
+
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -55,25 +70,14 @@ export async function generateMetadata({
   const title =
     `${project.title} — Case Study | Fajar Works`;
 
-  return {
-    title: {
-      absolute: title,
-    },
-
+  return createPageMetadata({
+    title,
     description: project.summary,
-
-    openGraph: {
-      title,
-      description: project.summary,
-      type: "article",
-    },
-
-    twitter: {
-      card: "summary",
-      title,
-      description: project.summary,
-    },
-  };
+    pathname:
+      `/projects/${project.slug}`,
+    absoluteTitle: true,
+    openGraphType: "article",
+  });
 }
 
 export default async function ProjectDetailPage({
@@ -81,6 +85,11 @@ export default async function ProjectDetailPage({
 }: ProjectDetailPageProps) {
   const project =
     await getProjectFromParams(params);
+
+  const projectStructuredData =
+    createProjectStructuredData(
+      project,
+    );
 
   const publishedProjects =
     getPublishedProjects();
@@ -92,11 +101,17 @@ export default async function ProjectDetailPage({
     );
 
   return (
-    <main id="main-content">
-      <ProjectDetail
-        project={project}
-        navigation={navigation}
+    <>
+      <JsonLd
+        data={projectStructuredData}
       />
-    </main>
+
+      <MainContent>
+        <ProjectDetail
+          project={project}
+          navigation={navigation}
+        />
+      </MainContent>
+    </>
   );
 }

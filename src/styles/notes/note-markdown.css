@@ -45,7 +45,7 @@
 .note-markdown .note-markdown-heading-anchor {
   align-self: start;
 
-  color: var(--color-accent);
+  color: var(--color-accent-strong);
   text-decoration: none;
 
   font-family:
@@ -102,7 +102,7 @@
   max-width: var(--reading-max-width);
   margin-top: 2.5rem;
 
-  color: var(--color-accent);
+  color: var(--color-accent-strong);
 
   font-family:
     var(--font-ibm-plex-mono),
@@ -139,7 +139,7 @@
 }
 
 .note-markdown a {
-  color: var(--color-accent);
+  color: var(--color-accent-strong);
 
   text-decoration-line: underline;
   text-decoration-thickness: 1px;
@@ -187,7 +187,7 @@
 }
 
 .note-markdown li::marker {
-  color: var(--color-accent);
+  color: var(--color-accent-strong);
 
   font-family:
     var(--font-ibm-plex-mono),
@@ -229,10 +229,10 @@
   padding: 1.5rem;
 
   border-left:
-    0.25rem solid var(--color-accent);
+    0.25rem solid var(--color-accent-strong);
 
   background: var(--color-panel);
-  color: var(--color-muted);
+  color: var(--color-muted-strong);
 }
 
 .note-markdown blockquote p {

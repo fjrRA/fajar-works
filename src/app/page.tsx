@@ -1,29 +1,65 @@
 // src/app/page.tsx
-import type { Metadata } from "next";
 
 import siteData from "../../content/site.json";
 
-import { HomeDirectory } from "@/components/home/home-directory";
-import { HomeHero } from "@/components/home/home-hero";
-import { getHomeContent } from "@/lib/content/get-home-content";
-import { HomeSelectedWork } from "@/components/home/home-selected-work";
-import { getProjectsBySlugs } from "@/lib/content/get-projects";
-import { HomeCapabilities } from "@/components/home/home-capabilities";
-import { getCapabilitiesByIds } from "@/lib/content/get-capabilities";
-import { HomeLatestNotes } from "@/components/home/home-latest-notes";
-import { getLatestNotes } from "@/lib/content/get-notes";
-import { HomeLearningProgress } from "@/components/home/home-learning-progress";
-import { getLatestLearningLogs } from "@/lib/content/get-learning-logs";
-import { HomeContactCta } from "@/components/home/home-contact-cta";
-import { HomeShortProfile } from "@/components/home/home-short-profile";
+import {
+  HomeCapabilities,
+} from "@/components/home/home-capabilities";
+import {
+  HomeContactCta,
+} from "@/components/home/home-contact-cta";
+import {
+  HomeDirectory,
+} from "@/components/home/home-directory";
+import {
+  HomeHero,
+} from "@/components/home/home-hero";
+import {
+  HomeLatestNotes,
+} from "@/components/home/home-latest-notes";
+import {
+  HomeLearningProgress,
+} from "@/components/home/home-learning-progress";
+import {
+  HomeSelectedWork,
+} from "@/components/home/home-selected-work";
+import {
+  HomeShortProfile,
+} from "@/components/home/home-short-profile";
+import {
+  getCapabilitiesByIds,
+} from "@/lib/content/get-capabilities";
+import {
+  getHomeContent,
+} from "@/lib/content/get-home-content";
+import {
+  getLatestLearningLogs,
+} from "@/lib/content/get-learning-logs";
+import {
+  getLatestNotes,
+} from "@/lib/content/get-notes";
+import {
+  getProjectsBySlugs,
+} from "@/lib/content/get-projects";
+import {
+  createPageMetadata,
+} from "@/lib/metadata/create-page-metadata";
+import {
+  MainContent,
+} from "@/components/layout/main-content";
 
-export const metadata: Metadata = {
-  title: {
-    absolute:
+export const metadata =
+  createPageMetadata({
+    title:
       "Fajar Rahmana Akbar — Web Developer | Fajar Works",
-  },
-  description: siteData.description,
-};
+
+    description:
+      siteData.description,
+
+    pathname: "/",
+
+    absoluteTitle: true,
+  });
 
 export default function HomePage() {
   const homeContent = getHomeContent();
@@ -47,7 +83,7 @@ export default function HomePage() {
     );
 
   return (
-    <main id="main-content">
+    <MainContent>
       <HomeHero
         eyebrow={homeContent.heroEyebrow}
       />
@@ -87,6 +123,6 @@ export default function HomePage() {
       <HomeContactCta
         content={homeContent.contact}
       />
-    </main>
+    </MainContent>
   );
 }

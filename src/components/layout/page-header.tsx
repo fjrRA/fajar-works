@@ -5,7 +5,9 @@ import { Container } from "@/components/layout/container";
 import { SectionLabel } from "@/components/ui/section-label";
 import { cn } from "@/lib/utils/cn";
 
-type PageHeaderTitleSize = "default" | "long";
+type PageHeaderTitleSize =
+  | "default"
+  | "long";
 
 type PageHeaderProps = {
   index: string;
@@ -26,8 +28,9 @@ const titleSizeClasses: Record<
     md:text-[clamp(3.25rem,7vw,5.5rem)]
     lg:text-[clamp(3.25rem,5.75vw,6.5rem)]
   `,
+
   long: `
-    text-[clamp(2.25rem,9.5vw,3.75rem)]
+    text-[clamp(2rem,9.5vw,3.75rem)]
     leading-[0.94]
     tracking-[-0.045em]
     md:text-[clamp(3.25rem,7vw,5.5rem)]
@@ -37,6 +40,9 @@ const titleSizeClasses: Record<
   `,
 };
 
+const PAGE_HEADER_HEADING_ID =
+  "page-header-heading";
+
 export function PageHeader({
   index,
   label,
@@ -45,7 +51,12 @@ export function PageHeader({
   titleSize = "default",
 }: PageHeaderProps) {
   return (
-    <section className="border-b border-line">
+    <section
+      aria-labelledby={
+        PAGE_HEADER_HEADING_ID
+      }
+      className="border-b border-line"
+    >
       <Container>
         <div
           className="
@@ -79,6 +90,7 @@ export function PageHeader({
             </SectionLabel>
 
             <h1
+              id={PAGE_HEADER_HEADING_ID}
               className={cn(
                 "mt-16 max-w-full text-balance font-bold uppercase",
                 titleSizeClasses[titleSize],

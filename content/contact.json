@@ -1,0 +1,38 @@
+{
+  "header": {
+    "index": "05",
+    "label": "Contact",
+    "title": "Start a Conversation",
+    "description": "Available for junior and entry-level opportunities, web development discussions, and professional connections."
+  },
+  "availability": {
+    "label": "Current Availability",
+    "title": "Open to junior and entry-level web development opportunities.",
+    "description": "I am currently looking for opportunities where I can contribute through practical web development work while continuing to strengthen my technical foundations."
+  },
+  "channels": {
+    "label": "Contact Channels",
+    "title": "Three direct ways to reach and review my work.",
+    "description": "Email is the primary communication channel. LinkedIn provides professional context, while GitHub contains repositories and ongoing technical work."
+  },
+  "opportunities": {
+    "label": "Opportunity Scope",
+    "title": "Areas where I can contribute and continue learning.",
+    "description": "My current professional direction is focused on web development roles that value practical project experience, structured learning, and technical growth.",
+    "items": [
+      "Junior Web Developer",
+      "Frontend Developer",
+      "Junior Full-stack Developer",
+      "Web Development Internship or Entry-Level Program"
+    ]
+  },
+  "closing": {
+    "label": "Professional Note",
+    "title": "Clear context helps the conversation move forward.",
+    "paragraphs": [
+      "When contacting me regarding an opportunity, including the position, company, work arrangement, and expected responsibilities will help me understand the context.",
+      "For project discussions, a short description of the problem, intended users, scope, and expected timeline is a useful starting point."
+    ],
+    "ctaLabel": "Send an Email"
+  }
+}

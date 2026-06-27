@@ -1,17 +1,27 @@
 // src/app/learning-log/page.tsx
-import type { Metadata } from "next";
+import {
+  createPageMetadata,
+} from "@/lib/metadata/create-page-metadata";
 
 import { PageHeader } from "@/components/layout/page-header";
 
-export const metadata: Metadata = {
-  title: "Learning Log",
-  description:
-    "A structured record of programming study, technical practice, and learning progress.",
-};
+import {
+  MainContent,
+} from "@/components/layout/main-content";
+
+export const metadata =
+  createPageMetadata({
+    title: "Learning Log",
+
+    description:
+      "A structured record of programming study, technical practice, and learning progress.",
+
+    pathname: "/learning-log",
+  });
 
 export default function LearningLogPage() {
   return (
-    <main id="main-content">
+    <MainContent>
       <PageHeader
         index="03"
         label="Learning Log"
@@ -24,6 +34,6 @@ export default function LearningLogPage() {
         }
         description="Structured records of courses, programming exercises, experiments, mistakes, discoveries, and ongoing technical development."
       />
-    </main>
+    </MainContent>
   );
 }

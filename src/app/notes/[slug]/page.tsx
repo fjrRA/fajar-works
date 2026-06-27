@@ -4,20 +4,30 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import {
+  JsonLd,
+} from "@/components/seo/json-ld";
+import {
+  createNoteStructuredData,
+} from "@/lib/metadata/structured-data";
+
+import {
   NoteDetail,
 } from "@/components/notes/note-detail";
 import {
   getNoteBySlug,
-  getPublishedNoteSlugs,
-} from "@/lib/content/get-notes";
-import type { Note } from "@/types/note";
-
-import {
   getPublishedNotes,
+  getPublishedNoteSlugs,
 } from "@/lib/content/get-notes";
 import {
   getRelatedNotes,
 } from "@/lib/content/note-related";
+import {
+  createPageMetadata,
+} from "@/lib/metadata/create-page-metadata";
+import type { Note } from "@/types/note";
+import {
+  MainContent,
+} from "@/components/layout/main-content";
 
 type NoteDetailPageProps = {
   params: Promise<{
@@ -61,32 +71,23 @@ export async function generateMetadata({
   const publishedTime =
     `${note.publishedAt}T00:00:00.000Z`;
 
-  const modifiedTime = note.updatedAt
-    ? `${note.updatedAt}T00:00:00.000Z`
-    : publishedTime;
+  const modifiedTime =
+    note.updatedAt
+      ? `${note.updatedAt}T00:00:00.000Z`
+      : publishedTime;
 
-  return {
-    title: {
-      absolute: title,
-    },
-
+  return createPageMetadata({
+    title,
     description: note.excerpt,
-
-    openGraph: {
-      title,
-      description: note.excerpt,
-      type: "article",
+    pathname: `/notes/${note.slug}`,
+    absoluteTitle: true,
+    openGraphType: "article",
+    article: {
       publishedTime,
       modifiedTime,
       tags: note.tags,
     },
-
-    twitter: {
-      card: "summary",
-      title,
-      description: note.excerpt,
-    },
-  };
+  });
 }
 
 export default async function NoteDetailPage({
@@ -94,6 +95,11 @@ export default async function NoteDetailPage({
 }: NoteDetailPageProps) {
   const note =
     await getNoteFromParams(params);
+
+  const noteStructuredData =
+    createNoteStructuredData(
+      note,
+    );
 
   const publishedNotes =
     getPublishedNotes();
@@ -106,11 +112,17 @@ export default async function NoteDetailPage({
     );
 
   return (
-    <main id="main-content">
-      <NoteDetail
-        note={note}
-        relatedNotes={relatedNotes}
+    <>
+      <JsonLd
+        data={noteStructuredData}
       />
-    </main>
+
+      <MainContent>
+        <NoteDetail
+          note={note}
+          relatedNotes={relatedNotes}
+        />
+      </MainContent>
+    </>
   );
 }

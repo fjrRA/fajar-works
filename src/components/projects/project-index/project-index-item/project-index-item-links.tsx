@@ -1,4 +1,5 @@
 // src/components/projects/project-index/project-index-item/project-index-item-links.tsx
+
 import Link from "next/link";
 
 type ProjectIndexItemLinksProps = {
@@ -50,7 +51,13 @@ export function ProjectIndexItemLinks({
           hover:text-accent
         "
       >
-        View Case Study
+        <span>
+          View Case Study
+
+          <span className="sr-only">
+            {`: ${projectTitle}`}
+          </span>
+        </span>
 
         <span
           aria-hidden="true"
@@ -89,6 +96,10 @@ export function ProjectIndexItemLinks({
         "
       >
         Repository
+
+        <span className="sr-only">
+          {` for ${projectTitle}, opens in a new tab`}
+        </span>
       </a>
 
       {liveUrl ? (
@@ -114,6 +125,10 @@ export function ProjectIndexItemLinks({
           "
         >
           Live Website
+
+          <span className="sr-only">
+            {` for ${projectTitle}, opens in a new tab`}
+          </span>
         </a>
       ) : null}
     </nav>

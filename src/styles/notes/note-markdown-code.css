@@ -51,7 +51,7 @@
   border-bottom:
     var(--border-thin) solid var(--color-muted);
 
-  color: var(--color-accent);
+  color: var(--color-accent-on-dark);
   background: var(--color-ink);
 
   font-family:
@@ -135,7 +135,7 @@
   counter-increment: line;
   content: counter(line);
 
-  color: var(--color-muted);
+  color: var(--color-line);
   text-align: right;
 }
 
@@ -147,7 +147,7 @@
   border-top:
     var(--border-thin) solid var(--color-muted);
 
-  color: var(--color-muted);
+  color: var(--color-line);
   background: var(--color-ink);
 
   font-family:

@@ -113,7 +113,7 @@ export function HomeShortProfile({
                     "sm:border-b-0",
                   )}
                 >
-                  <article>
+                  <div>
                     <div className="flex items-center gap-4">
                       <span className="type-label text-muted">
                         {point.index}
@@ -127,33 +127,33 @@ export function HomeShortProfile({
 
                     <p
                       className="
-                        mt-8
-                        font-mono
-                        text-xs
-                        font-medium
-                        tracking-[0.12em]
-                        text-accent
-                        uppercase
-                      "
+              mt-8
+              font-mono
+              text-xs
+              font-medium
+              tracking-[0.12em]
+              text-accent
+              uppercase
+            "
                     >
                       {point.label}
                     </p>
 
                     <p
                       className="
-                        mt-4
-                        max-w-lg
-                        text-xl
-                        leading-7
-                        font-medium
-                        tracking-[-0.02em]
-                        md:text-2xl
-                        md:leading-8
-                      "
+              mt-4
+              max-w-lg
+              text-xl
+              leading-7
+              font-medium
+              tracking-[-0.02em]
+              md:text-2xl
+              md:leading-8
+            "
                     >
                       {point.value}
                     </p>
-                  </article>
+                  </div>
                 </li>
               );
             })}

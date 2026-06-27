@@ -1,0 +1,93 @@
+{
+  "header": {
+    "index": "04",
+    "label": "Profile",
+    "title": "About Fajar",
+    "description": "A web developer based in Bekasi, focused on building practical, responsive, and maintainable web applications while continuing to strengthen his technical foundations."
+  },
+  "profile": {
+    "label": "Profile Statement",
+    "title": "Building practical web applications while strengthening the foundations behind them.",
+    "paragraphs": [
+      "I am an Informatics Engineering graduate and web developer based in Bekasi, Indonesia. My work focuses on responsive interfaces, content-driven websites, and web applications that connect frontend systems with APIs, databases, and external services.",
+      "My projects have involved React, Next.js, TypeScript, Express.js, Prisma, MySQL, payment integration, QR-based ticketing, and static content architecture.",
+      "Fajar Works records not only finished projects, but also the decisions, experiments, technical notes, and learning process behind the work."
+    ]
+  },
+  "direction": {
+    "label": "Current Direction",
+    "title": "A practical path toward stronger engineering foundations.",
+    "description": "The current focus is not only producing more projects, but improving the reasoning, structure, and technical understanding behind each implementation.",
+    "focus": [
+      "Strengthening JavaScript, TypeScript, React, and Next.js fundamentals.",
+      "Building responsive and maintainable content-driven web applications.",
+      "Improving API, backend, database, and third-party service integration.",
+      "Documenting technical decisions through case studies, notes, and learning logs."
+    ],
+    "approach": [
+      "Define the content structure and project scope before adding unnecessary complexity.",
+      "Prioritize semantic HTML, accessibility, responsive behavior, and maintainability.",
+      "Separate content, presentation, data access, and validation responsibilities.",
+      "Refactor based on responsibility and reasons to change, not only file length."
+    ]
+  },
+  "education": {
+    "label": "Education",
+    "title": "Informatics engineering, practical development, and technical research.",
+    "institution": "Universitas Muhammadiyah Purwokerto",
+    "field": "Informatics Engineering",
+    "level": "Undergraduate Program",
+    "duration": "4.5 Years",
+    "graduationYear": 2026,
+    "description": [
+      "Completed a 4.5-year undergraduate program in Informatics Engineering at Universitas Muhammadiyah Purwokerto. The learning experience included web application development, system design, database integration, and technical research.",
+      "During the program, I joined the Kampus Merdeka MSIB Independent Study program at Dicoding in 2024 and later contributed to a published research article based on the Baturraden digital ticketing project."
+    ],
+    "highlights": [
+      {
+        "index": "01",
+        "type": "Independent Study",
+        "title": "MSIB Independent Study — Dicoding",
+        "period": "2024",
+        "description": "Participated in the Kampus Merdeka MSIB Independent Study program at Dicoding for one semester.",
+        "href": "https://drive.google.com/file/d/10vGHwSEmoiOA8mBA4VylEf01QycW1xIh/view",
+        "linkLabel": "View Certificate"
+      },
+      {
+        "index": "02",
+        "type": "Research Publication",
+        "title": "QR Code and Payment Gateway Implementation for Baturraden Tourism Ticketing",
+        "period": "2026",
+        "description": "Contributed as an author to a published article documenting the implementation and evaluation of the Baturraden digital ticketing application.",
+        "href": "https://publikasi.teknokrat.ac.id/index.php/teknokompak/article/view/905",
+        "linkLabel": "View Publication"
+      }
+    ]
+  },
+  "capabilities": {
+    "label": "Capabilities",
+    "title": "A developing technical scope built through practical projects.",
+    "description": "These capabilities represent the areas currently applied, documented, and continuously strengthened through project work and structured learning."
+  },
+  "cv": {
+    "label": "Curriculum Vitae",
+    "title": "Professional information in two language versions.",
+    "description": "Download the resume version that best matches the application or professional context.",
+    "files": [
+      {
+        "index": "01",
+        "language": "Indonesian",
+        "label": "Web Developer CV — Indonesian",
+        "href": "/documents/Fajar_Rahmana_Akbar_CV_Web_Developer.pdf",
+        "fileName": "Fajar_Rahmana_Akbar_CV_Web_Developer.pdf"
+      },
+      {
+        "index": "02",
+        "language": "English",
+        "label": "Web Developer CV — English",
+        "href": "/documents/Fajar_Rahmana_Akbar_CV_Web_Developer_English.pdf",
+        "fileName": "Fajar_Rahmana_Akbar_CV_Web_Developer_English.pdf"
+      }
+    ]
+  }
+}

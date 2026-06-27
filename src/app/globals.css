@@ -25,10 +25,12 @@
 
   --color-ink: #171918;
   --color-muted: #676b68;
+  --color-muted-strong: #535754;
   --color-line: #b8bab4;
 
   --color-accent: #c7552d;
   --color-accent-strong: #963b21;
+  --color-accent-on-dark: #d9663f;
 
   --color-inverse: #f6f3eb;
 
@@ -78,7 +80,6 @@
 }
 
 html {
-  min-width: 320px;
   scroll-behavior: smooth;
   background: var(--color-paper);
 }
@@ -104,6 +105,11 @@ body {
 
 main {
   min-height: 100vh;
+}
+
+#main-content {
+  scroll-margin-top:
+    calc(var(--header-height) + 1rem);
 }
 
 img,
@@ -146,7 +152,7 @@ ol {
 }
 
 ::selection {
-  background: var(--color-accent);
+  background: var(--color-accent-strong);
   color: var(--color-inverse);
 }
 
@@ -170,6 +176,10 @@ ol {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+
+
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
   }
 }
 
@@ -259,6 +269,36 @@ ol {
 
   font-size: 0.75rem;
   line-height: 1.5;
+}
+
+/*
+ * Accessible contextual text colors
+ *
+ * Accent reguler tetap dipakai untuk garis,
+ * indikator, background, hover, dan focus ring.
+ * Teks accent memakai versi yang lebih gelap
+ * agar lolos pada latar terang.
+ */
+.text-accent {
+  color: var(--color-accent-strong);
+}
+
+/*
+ * Panel strong membutuhkan warna muted
+ * yang sedikit lebih gelap.
+ */
+.bg-panel .text-muted,
+.bg-panel-strong .text-muted {
+  color: var(--color-muted-strong);
+}
+
+/*
+ * Accent strong terlalu gelap pada footer.
+ * Gunakan accent yang lebih terang khusus
+ * pada background ink.
+ */
+.bg-ink .text-accent {
+  color: var(--color-accent-on-dark);
 }
 
 /*

@@ -66,18 +66,32 @@ export function SiteHeader() {
               uppercase
               xl:flex
             "
-            aria-label={`${siteData.availability}. Located in ${siteData.location}.`}
           >
+            <span className="sr-only">
+              {siteData.availability}.
+              Located in {siteData.location}.
+            </span>
+
             <span
               aria-hidden="true"
               className="h-1.5 w-1.5 bg-accent"
             />
 
-            <span>{siteData.availabilityCode}</span>
+            <span aria-hidden="true">
+              {siteData.availabilityCode}
+            </span>
 
-            <span className="text-muted">/</span>
+            <span
+              aria-hidden="true"
+              className="text-muted"
+            >
+              /
+            </span>
 
-            <span className="text-muted">
+            <span
+              aria-hidden="true"
+              className="text-muted"
+            >
               {siteData.locationCode}
             </span>
           </div>

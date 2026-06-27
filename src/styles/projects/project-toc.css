@@ -40,7 +40,7 @@
 }
 
 .project-toc__count {
-  color: var(--color-muted);
+  color: var(--color-muted-strong);
   white-space: nowrap;
 }
 
@@ -70,7 +70,7 @@
 }
 
 .project-toc__index {
-  color: var(--color-muted);
+  color: var(--color-muted-strong);
   font-family:
     var(--font-ibm-plex-mono),
     "Courier New",
@@ -130,7 +130,7 @@
   }
 
   .project-toc__link:hover .project-toc__index {
-    color: var(--color-accent);
+    color: var(--color-accent-strong);
   }
 }
 

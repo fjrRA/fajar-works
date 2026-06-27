@@ -1,1 +1,26 @@
-[]
+[
+  {
+    "id": "email",
+    "index": "01",
+    "label": "Email",
+    "value": "fajarrahmanaa98@gmail.com",
+    "href": "mailto:fajarrahmanaa98@gmail.com",
+    "external": false
+  },
+  {
+    "id": "linkedin",
+    "index": "02",
+    "label": "LinkedIn",
+    "value": "fajar-rahmana-akbar",
+    "href": "https://www.linkedin.com/in/fajar-rahmana-akbar/",
+    "external": true
+  },
+  {
+    "id": "github",
+    "index": "03",
+    "label": "GitHub",
+    "value": "fjrRA",
+    "href": "https://github.com/fjrRA",
+    "external": true
+  }
+]

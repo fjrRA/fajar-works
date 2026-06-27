@@ -42,7 +42,7 @@
 }
 
 .note-toc__count {
-  color: var(--color-muted);
+  color: var(--color-muted-strong);
   text-align: right;
 }
 
@@ -75,7 +75,7 @@
 }
 
 .note-toc__index {
-  color: var(--color-muted);
+  color: var(--color-muted-strong);
 
   font-family:
     var(--font-ibm-plex-mono),
@@ -116,7 +116,7 @@
 
 @media (hover: hover) {
   .note-toc__link:hover {
-    color: var(--color-accent);
+    color: var(--color-accent-strong);
     background:
       var(--color-panel-strong);
   }
