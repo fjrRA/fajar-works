@@ -1,4 +1,3 @@
-````markdown
 # Fajar Works
 
 Fajar Works is a content-driven personal portfolio and working archive created by **Fajar Rahmana Akbar**.
@@ -769,4 +768,3 @@ This repository contains personal portfolio content, writing, project documentat
 The source code may be studied for educational purposes.
 
 Portfolio content, written articles, personal information, branding, and visual assets may not be reused, copied, or republished without permission.
-````
