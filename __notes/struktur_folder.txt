@@ -70,8 +70,10 @@ Struktur folder fajar-works
          |- 📁[slug]
             |- 📄page.tsx
          |- 📄page.tsx
+      |- 📄apple-icon.png
       |- 📄favicon.ico
       |- 📄globals.css
+      |- 📄icon.png
       |- 📄layout.tsx
       |- 📄not-found.tsx
       |- 📄page.tsx
