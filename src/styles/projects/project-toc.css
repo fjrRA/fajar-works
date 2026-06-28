@@ -1,24 +1,15 @@
-/* src/styles/projects/project-toc.css */
+/* Project table of contents */
 
-/*
-========================================* Project Table of Contents *========================================*/
 .project-toc {
-  margin-bottom: clamp(2.5rem,
-      6vw,
-      4.5rem);
-  border: 1px solid var(--color-line);
-  background: var(--color-panel);
+  min-width: 0;
 }
 
 .project-toc__header {
-  display: grid;
-  grid-template-columns:
-    minmax(0, 1fr) auto;
+  display: flex;
   align-items: baseline;
+  justify-content: space-between;
   gap: 1rem;
-  padding: 1rem 1.25rem;
-  border-bottom:
-    1px solid var(--color-line);
+  padding-bottom: 1rem;
 }
 
 .project-toc__label,
@@ -28,45 +19,38 @@
     var(--font-ibm-plex-mono),
     "Courier New",
     monospace;
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 600;
-  line-height: 1.4;
+  line-height: 1.5;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
-.project-toc__label {
-  color: var(--color-ink);
-}
-
 .project-toc__count {
   color: var(--color-muted-strong);
-  white-space: nowrap;
+  text-align: right;
 }
 
 .project-toc__list {
   margin: 0;
   padding: 0;
+  border-top: 1px solid var(--color-line);
   list-style: none;
 }
 
-.project-toc__item+.project-toc__item {
-  border-top:
-    1px solid var(--color-line);
+.project-toc__item {
+  border-bottom: 1px solid var(--color-line);
 }
 
 .project-toc__link {
   display: grid;
-  grid-template-columns:
-    2.5rem minmax(0, 1fr);
+  grid-template-columns: 2rem minmax(0, 1fr);
+  gap: 0.6rem;
   align-items: baseline;
-  gap: 0.75rem;
-  padding: 0.9rem 1.25rem;
+  padding-block: 0.85rem;
   color: var(--color-ink);
   text-decoration: none;
-  transition:
-    color var(--transition-fast),
-    background-color var(--transition-fast);
+  transition: color var(--transition-fast);
 }
 
 .project-toc__index {
@@ -75,107 +59,77 @@
     var(--font-ibm-plex-mono),
     "Courier New",
     monospace;
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 600;
-  line-height: 1.5;
   letter-spacing: 0.08em;
-  transition:
-    color var(--transition-fast);
+  transition: color var(--transition-fast);
 }
 
 .project-toc__text {
   min-width: 0;
-  font-size: clamp(0.95rem,
-      1.5vw,
-      1.05rem);
+  font-size: 0.9rem;
   font-weight: 600;
-  line-height: 1.45;
+  line-height: 1.4;
   overflow-wrap: anywhere;
 }
 
-/*
- * Indentasi memperlihatkan hierarchy
- * heading tanpa membuat nested list baru.
- */
-
 .project-toc__item[data-depth="3"] .project-toc__text {
-  padding-left: 1rem;
+  padding-left: 0.75rem;
 }
 
 .project-toc__item[data-depth="4"] .project-toc__text {
-  padding-left: 2rem;
+  padding-left: 1.5rem;
 }
 
-.project-toc__item[data-depth="5"] .project-toc__text {
-  padding-left: 3rem;
-}
-
+.project-toc__item[data-depth="5"] .project-toc__text,
 .project-toc__item[data-depth="6"] .project-toc__text {
-  padding-left: 4rem;
+  padding-left: 2.25rem;
 }
 
 .project-toc__link:focus-visible {
-  position: relative;
-  z-index: 1;
-  outline:
-    2px solid var(--color-accent);
-  outline-offset: -3px;
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
 }
 
 @media (hover: hover) {
-  .project-toc__link:hover {
-    color: var(--color-accent-strong);
-    background:
-      var(--color-panel-strong);
-  }
-
+  .project-toc__link:hover,
   .project-toc__link:hover .project-toc__index {
     color: var(--color-accent-strong);
   }
 }
 
-@media (max-width: 40rem) {
+@media (max-width: 63.999rem) {
+  .project-toc {
+    border: 1px solid var(--color-line);
+    background: var(--color-panel);
+  }
+
   .project-toc__header {
-    grid-template-columns: 1fr;
-    gap: 0.35rem;
-    padding:
-      0.9rem 1rem;
+    padding: 1rem;
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .project-toc__list {
+    border-top: 0;
   }
 
   .project-toc__link {
-    grid-template-columns:
-      2rem minmax(0, 1fr);
-    gap: 0.5rem;
-    padding:
-      0.85rem 1rem;
+    padding: 0.85rem 1rem;
   }
 
-  .project-toc__item[data-depth="3"] .project-toc__text {
-    padding-left: 0.75rem;
-  }
-
-  .project-toc__item[data-depth="4"] .project-toc__text {
-    padding-left: 1.5rem;
-  }
-
-  .project-toc__item[data-depth="5"] .project-toc__text {
-    padding-left: 2.25rem;
-  }
-
-  .project-toc__item[data-depth="6"] .project-toc__text {
-    padding-left: 3rem;
+  .project-toc__item:last-child {
+    border-bottom: 0;
   }
 }
 
-.project-markdown {
-  min-width: 0;
-  color: var(--color-ink);
-}
+@media (max-width: 40rem) {
+  .project-toc__header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
 
-.project-markdown> :first-child {
-  margin-top: 0;
-}
-
-.project-markdown> :last-child {
-  margin-bottom: 0;
+  .project-toc__count {
+    text-align: left;
+  }
 }

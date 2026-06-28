@@ -7,6 +7,20 @@
  * dihasilkan oleh Markdown renderer.
  */
 
+.project-markdown {
+  min-width: 0;
+  max-width: 60rem;
+  color: var(--color-ink);
+}
+
+.project-markdown> :first-child {
+  margin-top: 0;
+}
+
+.project-markdown> :last-child {
+  margin-bottom: 0;
+}
+
 /*
  * Heading
  */
@@ -259,6 +273,88 @@
   background: transparent;
   color: inherit;
   font: inherit;
+}
+
+/* Syntax-highlighted evidence blocks */
+
+.project-markdown figure[data-rehype-pretty-code-figure] {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  margin: 2rem 0 0;
+  border: var(--border-thin) solid var(--color-muted);
+  background: var(--color-ink);
+}
+
+.project-markdown [data-rehype-pretty-code-title] {
+  padding: 0.85rem 1.25rem;
+  border-bottom: var(--border-thin) solid var(--color-muted);
+  color: var(--color-accent-on-dark);
+  background: var(--color-ink);
+  font-family:
+    var(--font-ibm-plex-mono),
+    "Courier New",
+    monospace;
+  font-size: 0.7rem;
+  line-height: 1.5;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.project-markdown figure[data-rehype-pretty-code-figure] pre {
+  max-width: 100%;
+  margin: 0;
+  padding: 1.25rem 0;
+  border: 0;
+  background: var(--color-ink) !important;
+}
+
+.project-markdown figure[data-rehype-pretty-code-figure] code {
+  display: grid;
+  min-width: max-content;
+}
+
+.project-markdown figure[data-rehype-pretty-code-figure] [data-line] {
+  display: inline-block;
+  width: 100%;
+  min-width: max-content;
+  padding-inline: 1.25rem;
+}
+
+.project-markdown [data-highlighted-line] {
+  border-left: 0.2rem solid var(--color-accent);
+  background: rgb(199 85 45 / 14%);
+}
+
+.project-markdown [data-highlighted-chars] {
+  padding: 0.1rem 0.2rem;
+  border: var(--border-thin) solid rgb(199 85 45 / 45%);
+  background: rgb(199 85 45 / 20%);
+}
+
+.project-markdown [data-rehype-pretty-code-caption] {
+  padding: 0.75rem 1.25rem;
+  border-top: var(--border-thin) solid var(--color-muted);
+  color: var(--color-line);
+  background: var(--color-ink);
+  font-family:
+    var(--font-ibm-plex-mono),
+    "Courier New",
+    monospace;
+  font-size: 0.7rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 40rem) {
+  .project-markdown [data-rehype-pretty-code-title],
+  .project-markdown [data-rehype-pretty-code-caption] {
+    padding-inline: 1rem;
+  }
+
+  .project-markdown figure[data-rehype-pretty-code-figure] [data-line] {
+    padding-inline: 1rem;
+  }
 }
 
 /*

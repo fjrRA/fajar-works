@@ -2,17 +2,13 @@
 import { HeroActions } from "./hero-actions";
 import { HeroMetadata } from "./hero-metadata";
 
-import { SectionLabel } from "@/components/ui/section-label";
-
 type HeroProfilePanelProps = {
-  role: string;
   description: string;
   locationCode: string;
   availabilityCode: string;
 };
 
 export function HeroProfilePanel({
-  role,
   description,
   locationCode,
   availabilityCode,
@@ -20,50 +16,37 @@ export function HeroProfilePanel({
   return (
     <div
       className="
-        flex
+        grid
         w-full
         min-w-0
-        flex-col
-        justify-between
-        gap-12
-        px-6
-        py-10
-        md:px-8
-        md:py-12
-        lg:px-10
-        xl:py-14
+        border-t
+        border-line
+        lg:grid-cols-[minmax(0,1fr)_minmax(20rem,0.46fr)]
       "
     >
-      <div className="min-w-0">
-        <SectionLabel index="00">
-          Profile
-        </SectionLabel>
-
+      <div className="min-w-0 px-6 py-8 md:px-8 md:py-10 lg:px-10">
         <p
           className="
-            mt-6
-            text-3xl
-            leading-none
-            font-semibold
-            tracking-[-0.04em]
-            uppercase
-            md:text-4xl
+            max-w-4xl
+            text-xl
+            leading-snug
+            font-medium
+            tracking-[-0.025em]
+            md:text-2xl
           "
         >
-          {role}
-        </p>
-
-        <p className="type-body mt-6 max-w-lg text-muted">
           {description}
         </p>
       </div>
 
-      <HeroMetadata
-        locationCode={locationCode}
-        availabilityCode={availabilityCode}
-      />
+      <div className="border-t border-line px-6 py-8 md:px-8 lg:border-t-0 lg:border-l lg:px-10">
+        <HeroActions />
 
-      <HeroActions />
+        <HeroMetadata
+          locationCode={locationCode}
+          availabilityCode={availabilityCode}
+        />
+      </div>
     </div>
   );
 }

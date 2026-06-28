@@ -4,6 +4,9 @@
 import type { Project } from "@/types/project";
 
 import {
+  ProjectDetailCover,
+} from "./project-detail-cover";
+import {
   ProjectDetailFile,
 } from "./project-detail-file";
 import {
@@ -20,22 +23,24 @@ export function ProjectDetailHeader({
   headingId,
 }: ProjectDetailHeaderProps) {
   return (
-    <header
-      className="
-        grid
-        border-b
-        border-line
-        lg:grid-cols-[minmax(0,1.35fr)_minmax(18rem,0.65fr)]
-      "
-    >
-      <ProjectDetailIntro
-        project={project}
-        headingId={headingId}
-      />
+    <header className="border-b border-line">
+      <div className="grid lg:grid-cols-[minmax(0,1.45fr)_minmax(18rem,0.55fr)]">
+        <ProjectDetailIntro
+          project={project}
+          headingId={headingId}
+        />
 
-      <ProjectDetailFile
-        project={project}
-      />
+        <ProjectDetailFile
+          project={project}
+        />
+      </div>
+
+      {project.coverImage ? (
+        <ProjectDetailCover
+          imageSource={project.coverImage}
+          projectTitle={project.title}
+        />
+      ) : null}
     </header>
   );
 }

@@ -62,6 +62,8 @@ export type HomeContactContent = {
 
 export type HomeContent = {
   heroEyebrow: string;
+  heroStatement: string;
+  heroDescription: string;
   selectedWork: HomeSelectedWorkContent;
   capabilities: HomeCapabilitiesContent;
   latestNotes: HomeLatestNotesContent;

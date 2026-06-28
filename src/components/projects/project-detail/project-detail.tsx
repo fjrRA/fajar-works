@@ -8,6 +8,9 @@ import type {
 import type { Project } from "@/types/project";
 
 import {
+  ProjectBackToTop,
+} from "./project-back-to-top";
+import {
   ProjectCaseStudyNavigation,
 } from "./project-case-study-navigation";
 import {
@@ -36,6 +39,7 @@ export function ProjectDetail({
     <section className="border-b border-line">
       <Container>
         <article
+          id="project-top"
           aria-labelledby={
             PROJECT_DETAIL_HEADING_ID
           }
@@ -43,6 +47,7 @@ export function ProjectDetail({
             min-w-0
             border-x
             border-line
+            scroll-mt-[calc(var(--header-height)+1rem)]
           "
         >
           <ProjectDetailHeader
@@ -65,6 +70,8 @@ export function ProjectDetail({
           />
         </article>
       </Container>
+
+      <ProjectBackToTop />
     </section>
   );
 }

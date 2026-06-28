@@ -1,13 +1,9 @@
-// src/components/home/home-learning-progress.tsx
 import Link from "next/link";
 
+import { HomeLearningEntry } from "@/components/home/home-learning-entry";
 import { Container } from "@/components/layout/container";
-import { LearningLogPreview } from "@/components/learning-log/learning-log-preview";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { SectionLabel } from "@/components/ui/section-label";
-import type {
-  HomeLearningProgressContent,
-} from "@/types/home";
+import type { HomeLearningProgressContent } from "@/types/home";
 import type { LearningLog } from "@/types/learning-log";
 
 type HomeLearningProgressProps = {
@@ -20,111 +16,64 @@ export function HomeLearningProgress({
   learningLogs,
 }: HomeLearningProgressProps) {
   return (
-    <section className="border-b border-line">
+    <section
+      aria-labelledby="home-learning-progress-heading"
+      className="border-b border-line bg-accent-strong text-inverse"
+    >
       <Container>
-        <div
-          className="
-            grid
-            border-x
-            border-line
-            lg:grid-cols-[minmax(16rem,0.42fr)_minmax(0,1fr)]
-          "
-        >
-          <header
-            className="
-              section-block
-              border-b
-              border-line
-              px-6
-              md:px-8
-              lg:border-r
-              lg:border-b-0
-              lg:px-10
-            "
-          >
-            <SectionLabel index="04">
-              Learning Log
-            </SectionLabel>
+        <div className="border-x border-inverse/20">
+          <header className="section-block grid px-6 md:px-8 lg:grid-cols-[minmax(16rem,0.68fr)_minmax(0,1fr)] lg:gap-16 lg:px-10">
+            <div>
+              <p className="type-label text-inverse/70">
+                04 / Learning Log / {String(learningLogs.length).padStart(2, "0")}
+              </p>
 
-            <SectionHeading className="mt-3">
-              {content.heading}
-            </SectionHeading>
+              <SectionHeading
+                id="home-learning-progress-heading"
+                className="mt-3"
+              >
+                {content.heading}
+              </SectionHeading>
+            </div>
 
-            <p className="type-body mt-6 max-w-md text-muted">
-              {content.description}
-            </p>
+            <div className="mt-8 flex max-w-2xl flex-col items-start lg:mt-0">
+              <p className="type-body text-inverse/70">
+                {content.description}
+              </p>
 
-            <Link
-              href={content.allLogsHref}
-              className="
-                group
-                mt-10
-                inline-flex
-                items-center
-                gap-4
-                border-b
-                border-ink
-                pb-2
-                font-mono
-                text-xs
-                font-semibold
-                tracking-[0.1em]
-                uppercase
-                transition-colors
-                duration-150
-                hover:border-accent
-                hover:text-accent
-              "
-            >
-              {content.allLogsLabel} / 03
-
-              <span
-                aria-hidden="true"
-                className="
-                  h-px
-                  w-8
-                  bg-current
-                  transition-transform
-                  duration-200
-                  group-hover:translate-x-1
-                  motion-reduce:transition-none
-                "
-              />
-            </Link>
+              <Link
+                href={content.allLogsHref}
+                className="mt-8 inline-flex items-center gap-3 border-b border-inverse pb-2 font-mono text-xs font-semibold tracking-[0.1em] uppercase transition-colors duration-150 hover:border-inverse/70 hover:text-inverse/75"
+              >
+                {content.allLogsLabel}
+                <span aria-hidden="true">&rarr;</span>
+              </Link>
+            </div>
           </header>
 
           {learningLogs.length > 0 ? (
-            <ol>
-              {learningLogs.map(
-                (learningLog, index) => (
-                  <li
-                    key={learningLog.slug}
-                    className="
-                      border-b
-                      border-line
-                      last:border-b-0
-                    "
-                  >
-                    <LearningLogPreview
-                      learningLog={learningLog}
-                      displayIndex={String(
-                        index + 1,
-                      ).padStart(2, "0")}
-                    />
-                  </li>
-                ),
-              )}
+            <ol className="grid border-t border-inverse/20 md:grid-cols-2 lg:grid-cols-3">
+              {learningLogs.map((learningLog, index) => (
+                <li
+                  key={learningLog.slug}
+                  className="min-w-0 border-b border-inverse/20 last:border-b-0 md:border-r md:odd:border-r md:even:border-r-0 lg:border-b-0 lg:border-r lg:even:border-r lg:last:border-r-0"
+                >
+                  <HomeLearningEntry
+                    learningLog={learningLog}
+                    displayIndex={String(index + 1).padStart(2, "0")}
+                  />
+                </li>
+              ))}
             </ol>
           ) : (
-            <div className="px-6 py-12 md:px-8 lg:px-10">
-              <p className="type-label text-muted">
+            <div className="border-t border-inverse/20 px-6 py-12 md:px-8 lg:px-10">
+              <p className="type-label text-inverse/60">
                 No Published Learning Logs
               </p>
 
-              <p className="type-body mt-4 max-w-lg text-muted">
-                Published learning records will
-                appear here after they are added
-                to the content directory.
+              <p className="type-body mt-4 max-w-lg text-inverse/70">
+                Published learning records will appear here after they are
+                added to the content directory.
               </p>
             </div>
           )}

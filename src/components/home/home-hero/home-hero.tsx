@@ -11,10 +11,14 @@ const HOME_HERO_HEADING_ID =
 
 type HomeHeroProps = {
   eyebrow: string;
+  statement: string;
+  description: string;
 };
 
 export function HomeHero({
   eyebrow,
+  statement,
+  description,
 }: HomeHeroProps) {
   return (
     <section
@@ -24,23 +28,22 @@ export function HomeHero({
       <Container>
         <div
           className="
-            grid
-            min-h-[calc(100svh-var(--header-height))]
             w-full
             min-w-0
             border-x
             border-line
-            lg:grid-cols-[minmax(0,1.35fr)_minmax(20rem,0.65fr)]
           "
         >
           <HeroIdentity
             eyebrow={eyebrow}
             headingId={HOME_HERO_HEADING_ID}
+            name={siteData.name}
+            role={siteData.role}
+            statement={statement}
           />
 
           <HeroProfilePanel
-            role={siteData.role}
-            description={siteData.description}
+            description={description}
             locationCode={siteData.locationCode}
             availabilityCode={
               siteData.availabilityCode

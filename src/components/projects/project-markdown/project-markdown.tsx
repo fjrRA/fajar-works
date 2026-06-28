@@ -1,7 +1,10 @@
 // src/components/projects/project-markdown/project-markdown.tsx
 
-import Markdown from "react-markdown";
+import { MarkdownAsync } from "react-markdown";
+import rehypePrettyCode from "rehype-pretty-code";
 import remarkGfm from "remark-gfm";
+
+import { projectPrettyCodeOptions } from "@/lib/content/project-pretty-code-options";
 
 import {
   createProjectMarkdownComponents,
@@ -11,7 +14,7 @@ type ProjectMarkdownProps = {
   content: string;
 };
 
-export function ProjectMarkdown({
+export async function ProjectMarkdown({
   content,
 }: ProjectMarkdownProps) {
   if (content.trim().length === 0) {
@@ -34,7 +37,7 @@ export function ProjectMarkdown({
 
   return (
     <div className="project-markdown">
-      <Markdown
+      <MarkdownAsync
         /*
          * singleTilde false berarti hanya
          * ~~teks~~ yang dianggap strikethrough.
@@ -48,11 +51,17 @@ export function ProjectMarkdown({
             },
           ],
         ]}
+        rehypePlugins={[
+          [
+            rehypePrettyCode,
+            projectPrettyCodeOptions,
+          ],
+        ]}
         components={components}
         skipHtml
       >
         {content}
-      </Markdown>
+      </MarkdownAsync>
     </div>
   );
 }

@@ -5,45 +5,55 @@ import { SectionLabel } from "@/components/ui/section-label";
 type HeroIdentityProps = {
   eyebrow: string;
   headingId: string;
+  name: string;
+  role: string;
+  statement: string;
 };
 
 export function HeroIdentity({
   eyebrow,
   headingId,
+  name,
+  role,
+  statement,
 }: HeroIdentityProps) {
   return (
     <header
       className="
         flex
+        min-h-[clamp(30rem,72svh,49rem)]
         w-full
         min-w-0
         flex-col
         justify-between
-        border-b
-        border-line
         px-6
         py-10
         md:px-8
         md:py-12
-        lg:border-r
-        lg:border-b-0
         lg:px-10
         xl:py-14
       "
     >
-      <SectionLabel tone="muted">
-        {eyebrow}
-      </SectionLabel>
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <SectionLabel tone="muted">
+          {eyebrow}
+        </SectionLabel>
+
+        <p className="type-meta text-right text-muted uppercase">
+          {name} / {role}
+        </p>
+      </div>
 
       <h1
         id={headingId}
         className="
-          mt-16
-          max-w-full
-          text-[clamp(3.5rem,10vw,10rem)]
-          leading-[0.82]
+          mt-24
+          max-w-7xl
+          text-balance
+          text-[clamp(3.35rem,9.2vw,8.75rem)]
+          leading-[0.86]
           font-bold
-          tracking-[-0.065em]
+          tracking-[-0.06em]
           uppercase
 
           max-[359px]:text-[2.75rem]
@@ -51,9 +61,7 @@ export function HeroIdentity({
           max-[359px]:tracking-[-0.045em]
         "
       >
-        <span className="block">Fajar</span>
-        <span className="block">Rahmana</span>
-        <span className="block">Akbar</span>
+        {statement}
       </h1>
     </header>
   );

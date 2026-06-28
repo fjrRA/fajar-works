@@ -24,6 +24,7 @@ responsibilities:
   - "Content model and CRUD implementation"
   - "JSON and Markdown export workflow"
 repositoryUrl: "https://github.com/fjrRA/zennyx-local-cms"
+coverImage: "/images/projects/zennyx-local-cms/cover.png"
 ---
 
 <!-- content/projects/zennyx-local-cms.md -->
@@ -32,7 +33,7 @@ repositoryUrl: "https://github.com/fjrRA/zennyx-local-cms"
 
 Zennyx Local CMS is a locally operated content management system for the Zennyx Interactive Studio website.
 
-![Zennyx Local CMS case study displayed on the Fajar Works portfolio](/images/projects/baturraden-apps/baturraden-apps.png "Early case study presentation for Zennyx Local CMS inside Fajar Works [1920x1080]")
+![Zennyx Local CMS case study displayed on the Fajar Works portfolio](/images/projects/zennyx-local-cms/cover.png "Early case study presentation for Zennyx Local CMS inside Fajar Works [1920x1080]")
 
 ## Problem
 

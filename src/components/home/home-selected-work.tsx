@@ -2,7 +2,7 @@
 import Link from "next/link";
 
 import { Container } from "@/components/layout/container";
-import { ProjectPreview } from "@/components/projects/project-preview";
+import { SelectedWorkProject } from "@/components/home/selected-work-project";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { SectionLabel } from "@/components/ui/section-label";
 import type { HomeSelectedWorkContent } from "@/types/home";
@@ -19,17 +19,13 @@ export function HomeSelectedWork({
 }: HomeSelectedWorkProps) {
   return (
     <section
+      id="selected-work"
       aria-labelledby="home-selected-work-heading"
       className="border-b border-line"
     >
       <Container>
         <div
-          className="
-            grid
-            border-x
-            border-line
-            lg:grid-cols-[minmax(16rem,0.42fr)_minmax(0,1fr)]
-          "
+          className="border-x border-line"
         >
           <header
             className="
@@ -38,64 +34,38 @@ export function HomeSelectedWork({
               border-line
               px-6
               md:px-8
-              lg:border-r
-              lg:border-b-0
+              grid
+              lg:grid-cols-[minmax(16rem,0.68fr)_minmax(0,1fr)]
+              lg:gap-16
               lg:px-10
             "
           >
-            <SectionLabel index="01">
-              Work
-            </SectionLabel>
+            <div>
+              <SectionLabel index="01">
+                Work / {String(projects.length).padStart(2, "0")}
+              </SectionLabel>
 
-            <SectionHeading
-              id="home-selected-work-heading"
-              className="mt-3"
-            >
-              {content.heading}
-            </SectionHeading>
+              <SectionHeading
+                id="home-selected-work-heading"
+                className="mt-3"
+              >
+                {content.heading}
+              </SectionHeading>
+            </div>
 
-            <p className="type-body mt-6 max-w-md text-muted">
-              {content.description}
-            </p>
+            <div className="mt-8 flex max-w-2xl flex-col items-start lg:mt-0">
+              <p className="type-body text-muted">
+                {content.description}
+              </p>
 
-            <Link
-              href={content.allWorkHref}
-              className="
-                group
-                mt-10
-                inline-flex
-                items-center
-                gap-4
-                border-b
-                border-ink
-                pb-2
-                font-mono
-                text-xs
-                font-semibold
-                tracking-[0.1em]
-                uppercase
-                transition-colors
-                duration-150
-                hover:border-accent
-                hover:text-accent
-              "
-            >
-              {content.allWorkLabel} / 01
-
-              <span
-                aria-hidden="true"
-                className="
-                  h-px
-                  w-8
-                  bg-current
-                  transition-transform
-                  duration-200
-                  ease-out
-                  group-hover:translate-x-1
-                  motion-reduce:transition-none
-                "
-              />
-            </Link>
+              <Link
+                href={content.allWorkHref}
+                className="mt-8 inline-flex items-center gap-3 border-b border-ink pb-2 font-mono text-xs font-semibold tracking-[0.1em] uppercase transition-colors duration-150 hover:border-accent hover:text-accent"
+              >
+                {content.allWorkLabel}
+                <span aria-hidden="true">&rarr;</span>
+              </Link>
+            </div>
           </header>
 
           {projects.length > 0 ? (
@@ -103,13 +73,9 @@ export function HomeSelectedWork({
               {projects.map((project, index) => (
                 <li
                   key={project.slug}
-                  className="
-                    border-b
-                    border-line
-                    last:border-b-0
-                  "
+                  className="border-b border-line last:border-b-0"
                 >
-                  <ProjectPreview
+                  <SelectedWorkProject
                     project={project}
                     displayIndex={String(
                       index + 1,

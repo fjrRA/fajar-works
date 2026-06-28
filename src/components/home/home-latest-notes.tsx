@@ -1,10 +1,10 @@
-// src/components/home/home-latest-notes.tsx
 import Link from "next/link";
 
 import { Container } from "@/components/layout/container";
-import { NotePreview } from "@/components/notes/note-preview";
+import { HomeNoteEntry } from "@/components/home/home-note-entry";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { SectionLabel } from "@/components/ui/section-label";
+import { cn } from "@/lib/utils/cn";
 import type { HomeLatestNotesContent } from "@/types/home";
 import type { Note } from "@/types/note";
 
@@ -18,109 +18,71 @@ export function HomeLatestNotes({
   notes,
 }: HomeLatestNotesProps) {
   return (
-    <section className="border-b border-line">
+    <section
+      aria-labelledby="home-latest-notes-heading"
+      className="border-b border-line"
+    >
       <Container>
-        <div
-          className="
-            grid
-            border-x
-            border-line
-            lg:grid-cols-[minmax(16rem,0.42fr)_minmax(0,1fr)]
-          "
-        >
-          <header
-            className="
-              section-block
-              border-b
-              border-line
-              px-6
-              md:px-8
-              lg:border-r
-              lg:border-b-0
-              lg:px-10
-            "
-          >
-            <SectionLabel index="03">
-              Notes
-            </SectionLabel>
+        <div className="border-x border-line">
+          <header className="section-block grid px-6 md:px-8 lg:grid-cols-[minmax(16rem,0.68fr)_minmax(0,1fr)] lg:gap-16 lg:px-10">
+            <div>
+              <SectionLabel index="03">
+                Notes / {String(notes.length).padStart(2, "0")}
+              </SectionLabel>
 
-            <SectionHeading className="mt-3">
-              {content.heading}
-            </SectionHeading>
+              <SectionHeading
+                id="home-latest-notes-heading"
+                className="mt-3"
+              >
+                {content.heading}
+              </SectionHeading>
+            </div>
 
-            <p className="type-body mt-6 max-w-md text-muted">
-              {content.description}
-            </p>
+            <div className="mt-8 flex max-w-2xl flex-col items-start lg:mt-0">
+              <p className="type-body text-muted">
+                {content.description}
+              </p>
 
-            <Link
-              href={content.allNotesHref}
-              className="
-                group
-                mt-10
-                inline-flex
-                items-center
-                gap-4
-                border-b
-                border-ink
-                pb-2
-                font-mono
-                text-xs
-                font-semibold
-                tracking-[0.1em]
-                uppercase
-                transition-colors
-                duration-150
-                hover:border-accent
-                hover:text-accent
-              "
-            >
-              {content.allNotesLabel} / 02
-
-              <span
-                aria-hidden="true"
-                className="
-                  h-px
-                  w-8
-                  bg-current
-                  transition-transform
-                  duration-200
-                  group-hover:translate-x-1
-                  motion-reduce:transition-none
-                "
-              />
-            </Link>
+              <Link
+                href={content.allNotesHref}
+                className="mt-8 inline-flex items-center gap-3 border-b border-ink pb-2 font-mono text-xs font-semibold tracking-[0.1em] uppercase transition-colors duration-150 hover:border-accent hover:text-accent"
+              >
+                {content.allNotesLabel}
+                <span aria-hidden="true">&rarr;</span>
+              </Link>
+            </div>
           </header>
 
           {notes.length > 0 ? (
-            <ol>
+            <ol className="grid border-t border-line lg:grid-cols-[1.12fr_0.88fr] lg:grid-rows-2">
               {notes.map((note, index) => (
                 <li
                   key={note.slug}
-                  className="
-                    border-b
-                    border-line
-                    last:border-b-0
-                  "
+                  className={cn(
+                    "min-w-0 border-b border-line",
+                    index === 0 &&
+                      "bg-panel lg:row-span-2 lg:border-r lg:border-b-0",
+                    index === notes.length - 1 &&
+                      "border-b-0",
+                  )}
                 >
-                  <NotePreview
+                  <HomeNoteEntry
                     note={note}
-                    displayIndex={String(
-                      index + 1,
-                    ).padStart(2, "0")}
+                    displayIndex={String(index + 1).padStart(2, "0")}
+                    isLead={index === 0}
                   />
                 </li>
               ))}
             </ol>
           ) : (
-            <div className="px-6 py-12 md:px-8 lg:px-10">
+            <div className="border-t border-line px-6 py-12 md:px-8 lg:px-10">
               <p className="type-label text-muted">
                 No Published Notes
               </p>
 
               <p className="type-body mt-4 max-w-lg text-muted">
-                Published writing will appear here
-                after it is added to the content
-                directory.
+                Published writing will appear here after it is added to the
+                content directory.
               </p>
             </div>
           )}

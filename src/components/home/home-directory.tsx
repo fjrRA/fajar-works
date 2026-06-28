@@ -1,8 +1,6 @@
-// src/components/home/home-directory.tsx
 import Link from "next/link";
 
 import { Container } from "@/components/layout/container";
-import { SectionHeading } from "@/components/ui/section-heading";
 import { SectionLabel } from "@/components/ui/section-label";
 import { mainNavigation } from "@/config/navigation";
 
@@ -16,127 +14,63 @@ export function HomeDirectory({
   description,
 }: HomeDirectoryProps) {
   return (
-    <section className="border-b border-line">
+    <section
+      aria-labelledby="home-directory-heading"
+      className="border-b border-line"
+    >
       <Container>
-        <div
-          className="
-            grid
-            border-x
-            border-line
-            lg:grid-cols-[minmax(16rem,0.45fr)_minmax(0,1fr)]
-          "
-        >
-          <header
-            className="
-              section-block
-              border-b
-              border-line
-              px-6
-              md:px-8
-              lg:border-r
-              lg:border-b-0
-              lg:px-10
-            "
-          >
-            <SectionLabel index="06">
-              Directory
-            </SectionLabel>
+        <div className="border-x border-line">
+          <header className="section-block grid gap-8 px-6 md:px-8 lg:grid-cols-[minmax(16rem,0.7fr)_minmax(0,1fr)] lg:items-end lg:gap-16 lg:px-10">
+            <div>
+              <SectionLabel index="06">
+                Directory / {String(mainNavigation.length).padStart(2, "0")}
+              </SectionLabel>
 
-            <SectionHeading className="mt-3">
-              {heading}
-            </SectionHeading>
+              <h2
+                id="home-directory-heading"
+                className="mt-3 text-[clamp(2.5rem,5vw,5.5rem)] leading-[0.9] font-semibold tracking-[-0.055em] uppercase"
+              >
+                {heading}
+              </h2>
+            </div>
 
-            <p className="type-body mt-6 max-w-md text-muted">
+            <p className="type-body max-w-2xl text-muted">
               {description}
             </p>
           </header>
 
-          <nav aria-label="Homepage directory">
+          <nav
+            aria-label="Homepage directory"
+            className="border-t border-line"
+          >
             <ul>
               {mainNavigation.map((item) => (
                 <li
                   key={item.href}
-                  className="
-                    border-b
-                    border-line
-                    last:border-b-0
-                  "
+                  className="border-b border-line last:border-b-0"
                 >
                   <Link
                     href={item.href}
-                    className="
-                      group
-                      grid
-                      grid-cols-[2.5rem_minmax(0,1fr)_auto]
-                      items-start
-                      gap-4
-                      px-6
-                      py-6
-                      transition-colors
-                      duration-150
-                      hover:bg-panel
-                      md:px-8
-                      lg:px-10
-                    "
+                    className="group grid min-w-0 grid-cols-[2.5rem_minmax(0,1fr)_auto] items-center gap-x-4 gap-y-4 px-6 py-7 transition-colors duration-150 md:grid-cols-[4rem_minmax(12rem,0.6fr)_minmax(0,1fr)_auto] md:px-8 lg:px-10 lg:py-8"
                   >
-                    <span
-                      className="
-                        font-mono
-                        text-xs
-                        font-medium
-                        tracking-[0.14em]
-                        text-muted
-                        transition-colors
-                        duration-150
-                        group-hover:text-accent
-                      "
-                    >
+                    <span className="font-mono text-xs font-medium tracking-[0.14em] text-muted transition-colors duration-150 group-hover:text-accent">
                       {item.index}
                     </span>
 
-                    <span>
-                      <span
-                        className="
-                          block
-                          text-xl
-                          leading-none
-                          font-semibold
-                          tracking-[-0.025em]
-                          uppercase
-                          md:text-2xl
-                        "
-                      >
-                        {item.label}
-                      </span>
+                    <span className="text-3xl leading-none font-semibold tracking-[-0.04em] uppercase transition-colors duration-150 group-hover:text-accent md:text-4xl lg:text-5xl">
+                      {item.label}
+                    </span>
 
-                      <span
-                        className="
-                          mt-3
-                          block
-                          max-w-2xl
-                          text-sm
-                          leading-6
-                          text-muted
-                        "
-                      >
-                        {item.description}
-                      </span>
+                    <span className="col-start-2 max-w-2xl text-sm leading-6 text-muted md:col-start-3">
+                      {item.description}
                     </span>
 
                     <span
                       aria-hidden="true"
-                      className="
-                        mt-2
-                        h-px
-                        w-8
-                        bg-line
-                        transition-[background-color,transform]
-                        duration-200
-                        group-hover:translate-x-1
-                        group-hover:bg-accent
-                        motion-reduce:transition-none
-                      "
-                    />
+                      className="col-start-3 row-start-1 font-mono text-lg transition-transform duration-200 group-hover:translate-x-1 md:col-start-4 motion-reduce:transition-none"
+                    >
+                      &rarr;
+                    </span>
                   </Link>
                 </li>
               ))}

@@ -7,16 +7,14 @@ export function HeroActions() {
       aria-label="Homepage primary actions"
       className="
         flex
-        flex-col
-        items-start
-        gap-4
-        sm:flex-row
-        sm:flex-wrap
-        sm:gap-x-8
+        flex-wrap
+        items-center
+        gap-x-8
+        gap-y-4
       "
     >
       <Link
-        href="/projects"
+        href="#selected-work"
         className="
           group
           inline-flex
@@ -36,25 +34,18 @@ export function HeroActions() {
           hover:text-accent
         "
       >
-        View Work / 01
+        Selected Work
 
         <span
           aria-hidden="true"
-          className="
-            h-px
-            w-8
-            bg-current
-            transition-transform
-            duration-200
-            ease-out
-            group-hover:translate-x-1
-            motion-reduce:transition-none
-          "
-        />
+          className="transition-transform duration-200 group-hover:translate-y-0.5 motion-reduce:transition-none"
+        >
+          &darr;
+        </span>
       </Link>
 
       <Link
-        href="/notes"
+        href="/about"
         className="
           inline-flex
           items-center
@@ -72,7 +63,7 @@ export function HeroActions() {
           hover:text-accent
         "
       >
-        Read Notes / 02
+        About Fajar
       </Link>
     </nav>
   );

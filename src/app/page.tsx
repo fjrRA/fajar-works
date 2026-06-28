@@ -1,4 +1,4 @@
-// src/app/page.tsx
+// // src/app/page.tsx
 
 import siteData from "../../content/site.json";
 
@@ -86,6 +86,8 @@ export default function HomePage() {
     <MainContent>
       <HomeHero
         eyebrow={homeContent.heroEyebrow}
+        statement={homeContent.heroStatement}
+        description={homeContent.heroDescription}
       />
 
       <HomeSelectedWork

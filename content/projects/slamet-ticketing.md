@@ -24,6 +24,7 @@ responsibilities:
   - "Payment gateway integration"
   - "Responsive interface implementation"
 repositoryUrl: "https://github.com/fjrRA/slamet-ticketing"
+coverImage: "/images/projects/slamet-ticketing/cover.png"
 ---
 
 <!-- content/projects/slamet-ticketing.md -->
@@ -32,7 +33,7 @@ repositoryUrl: "https://github.com/fjrRA/slamet-ticketing"
 
 Slamet Ticketing is a full-stack ticketing application created for managing mountain tourism reservations and digital ticket transactions.
 
-![Slamet Ticketing case study displayed on the Fajar Works portfolio](/images/projects/baturraden-apps/baturraden-apps.png "Early case study presentation for slamet-ticketing inside Fajar Works [1920x1080]")
+![Slamet Ticketing case study displayed on the Fajar Works portfolio](/images/projects/slamet/ticketing/cover.png "Early case study presentation for slamet-ticketing inside Fajar Works [1920x1080]")
 
 ## Architecture
 
