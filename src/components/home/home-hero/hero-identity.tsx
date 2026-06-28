@@ -50,15 +50,17 @@ export function HeroIdentity({
           mt-24
           max-w-7xl
           text-balance
-          text-[clamp(3.35rem,9.2vw,8.75rem)]
+          text-[clamp(3rem,0.5vw,1.75rem)]
+          md:text-[clamp(3.35rem,9.2vw,8.75rem)]
           leading-[0.86]
           font-bold
           tracking-[-0.06em]
           uppercase
 
-          max-[359px]:text-[2.75rem]
+          max-[424px]:text-[2.75rem]
+          max-[359px]:text-[2.10rem]
           max-[359px]:leading-[0.92]
-          max-[359px]:tracking-[-0.045em]
+          max-[359px]:tracking-[-0.025em]
         "
       >
         {statement}
