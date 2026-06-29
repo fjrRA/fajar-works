@@ -70,11 +70,10 @@
   border-top:
     var(--border-thin) solid var(--color-line);
 
-  font-size: clamp(2rem, 5vw, 4rem);
-  line-height: 0.95;
-  font-weight: 700;
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  line-height: 1;
+  font-weight: 650;
   letter-spacing: -0.045em;
-  text-transform: uppercase;
   text-wrap: balance;
 }
 
@@ -91,10 +90,9 @@
   font-size: clamp(1.5rem,
       3vw,
       2.25rem);
-  line-height: 1;
-  font-weight: 650;
+  line-height: 1.05;
+  font-weight: 600;
   letter-spacing: -0.035em;
-  text-transform: uppercase;
   text-wrap: balance;
 }
 
@@ -127,6 +125,14 @@
       1.5vw,
       1.125rem);
   line-height: 1.8;
+}
+
+.note-markdown>p:first-of-type {
+  color: var(--color-muted-strong);
+  font-size: clamp(1.1rem,
+      1.8vw,
+      1.25rem);
+  line-height: 1.75;
 }
 
 .note-markdown strong {
@@ -257,6 +263,61 @@
     var(--border-thin) solid var(--color-line);
 }
 
+/* ========================================
+ * Note Evidence Images
+ * ======================================== */
+
+.note-markdown-media {
+  width: 100%;
+  min-width: 0;
+  margin:
+    clamp(2.5rem, 6vw, 4.5rem) 0;
+  border-top:
+    var(--border-thin) solid var(--color-line);
+  border-bottom:
+    var(--border-thin) solid var(--color-line);
+}
+
+.note-markdown-media__image {
+  width: 100%;
+  height: auto;
+  padding: clamp(0.4rem,
+      1vw,
+      0.65rem);
+  background: var(--color-panel-strong);
+  object-fit: contain;
+}
+
+.note-markdown-media__caption {
+  display: grid;
+  grid-template-columns:
+    6rem minmax(0, 1fr);
+  gap: 1rem;
+  padding: 0.9rem 0;
+  border-top:
+    var(--border-thin) solid var(--color-line);
+  color: var(--color-muted-strong);
+  font-family:
+    var(--font-ibm-plex-mono),
+    "Courier New",
+    monospace;
+  font-size: 0.72rem;
+  line-height: 1.6;
+}
+
+.note-markdown-media__caption>span:first-child {
+  color: var(--color-accent-strong);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.note-markdown-media[data-orientation="portrait"] {
+  max-width: 44rem;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 @media (max-width: 22rem) {
 
   /*
@@ -282,5 +343,10 @@
   .note-markdown .note-markdown-heading-anchor {
     font-size: 0.625rem;
     transform: translateY(0.5em);
+  }
+
+  .note-markdown-media__caption {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
   }
 }

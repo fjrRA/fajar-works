@@ -1,6 +1,3 @@
-// src/components/notes/note-detail/
-// note-related-note-card.tsx
-
 import Link from "next/link";
 
 import type {
@@ -25,7 +22,9 @@ export function NoteRelatedNoteCard({
         min-w-0
         border-b
         border-line
+        even:bg-panel
         md:border-r
+        md:last:border-r-0
       "
     >
       <Link
@@ -34,45 +33,48 @@ export function NoteRelatedNoteCard({
         className="
           group
           flex
-          min-h-72
+          min-h-[24rem]
           min-w-0
           flex-col
           px-6
-          py-8
+          py-7
           transition-colors
           duration-150
-          hover:bg-panel
+          hover:bg-panel-strong
           focus-visible:outline-2
           focus-visible:-outline-offset-2
           focus-visible:outline-accent
           md:px-8
           lg:px-10
-          lg:py-10
+          lg:py-9
         "
       >
-        <div
+        <header
           className="
             flex
             items-start
             justify-between
-            gap-4
+            gap-6
+            border-b
+            border-line
+            pb-4
           "
         >
-          <span className="type-label text-muted">
-            {displayIndex}
-          </span>
+          <p className="type-label text-muted">
+            Note / {displayIndex}
+          </p>
 
           <time
-            className="type-meta text-muted uppercase"
+            className="type-meta text-right text-muted uppercase"
             dateTime={note.publishedAt}
           >
             {formatContentDate(
               note.publishedAt,
             )}
           </time>
-        </div>
+        </header>
 
-        <div className="mt-auto pt-12">
+        <div className="mt-12">
           <p className="type-meta text-accent uppercase">
             {note.category}
           </p>
@@ -80,12 +82,12 @@ export function NoteRelatedNoteCard({
           <h3
             className="
               mt-3
+              max-w-xl
               wrap-break-word
-              text-2xl
+              text-[clamp(1.75rem,3vw,2.75rem)]
               leading-[1.02]
               font-semibold
-              tracking-[-0.035em]
-              uppercase
+              tracking-[-0.045em]
               transition-colors
               group-hover:text-accent-strong
             "
@@ -93,38 +95,54 @@ export function NoteRelatedNoteCard({
             {note.title}
           </h3>
 
-          <p className="type-body mt-5 text-muted">
+          <p className="type-body mt-5 max-w-xl text-muted">
             {note.excerpt}
           </p>
+        </div>
 
-          <p
+        <footer
+          className="
+            mt-auto
+            flex
+            items-end
+            justify-between
+            gap-6
+            pt-10
+          "
+        >
+          <span
             className="
-              mt-6
+              border-b
+              border-ink
+              pb-1
               font-mono
               text-xs
               font-semibold
               tracking-widest
-              text-accent
               uppercase
             "
           >
-            Read Note
+            Open Note
+          </span>
 
-            <span
-              aria-hidden="true"
-              className="
-                ml-3
-                inline-block
-                transition-transform
-                duration-200
-                group-hover:translate-x-1
-                motion-reduce:transition-none
-              "
-            >
-              →
-            </span>
-          </p>
-        </div>
+          <span
+            aria-hidden="true"
+            className="
+              flex
+              h-9
+              w-9
+              items-center
+              justify-center
+              border
+              border-ink
+              transition-colors
+              group-hover:bg-ink
+              group-hover:text-inverse
+            "
+          >
+            →
+          </span>
+        </footer>
       </Link>
     </article>
   );

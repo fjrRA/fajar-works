@@ -1,13 +1,14 @@
 ---
 title: "Why I Chose a Local CMS for a Static Website"
 slug: "why-i-chose-a-local-cms"
-excerpt: "The reasons for choosing a local dashboard, a MySQL database, and JSON and Markdown exports instead of immediately using a cloud database."
+excerpt: "A technical decision note about separating content management from publication with a local dashboard, database, and explicit file export."
 publishedAt: "2026-06-20"
-updatedAt: "2026-06-20"
+updatedAt: "2026-06-29"
 status: "Published"
 category: "Technical Note"
 language: "en"
-featured: true
+featured: false
+repositoryUrl: "https://github.com/fjrRA/zennyx-local-cms"
 tags:
   - "CMS"
   - "JSON"
@@ -16,65 +17,82 @@ tags:
   - "Architecture"
 ---
 
-## The Problem I Wanted to Solve
+## Decision in one sentence
 
-Static websites are easy to deploy and do not require an active backend server. However, as the amount of content grows, manually editing JSON and Markdown files becomes less convenient.
+I chose to manage content in a local application and export only the files required by the public website, instead of making the website depend on a permanently available CMS or database.
 
-I still needed a more structured way to manage games, devlogs, team information, and website configuration.
+This is not an argument that a local CMS is universally better. It is a decision shaped by the current scale of the project, the cost I want to avoid, and the architecture I want to understand by building it myself.
 
-## Why Not Use a Cloud Database Right Away?
+## Context and constraint
 
-At the current stage, I do not want to add the cost of a cloud database, backend hosting, or a VPS.
+The public website reads structured JSON and long-form Markdown. That keeps deployment simple, but manual editing becomes harder as games, devlogs, team members, and configuration entries grow.
 
-I am also still learning how to build a better content management system. Because of this, a local solution is more suitable for my current needs and capabilities.
+I needed a safer editing surface without adding an always-on backend to the published site. The main constraints were practical:
 
-## Chosen Architecture
+- the public website should remain static;
+- content should be editable through forms rather than raw files;
+- data should stay local while the tool is still evolving;
+- the export boundary should remain visible and understandable.
 
-The Local CMS consists of:
+The public Zennyx Local CMS repository is currently only a shell. The implementation evidence in this note therefore comes from the local project record and screenshots stored in Fajar Works, not from code that is already available publicly.
 
-- React and TypeScript for the admin dashboard
-- Express.js for the REST API
-- Prisma and local MySQL for storage
-- An exporter for generating JSON and Markdown
-- A static public website that reads the exported files
+## Options I considered
 
-The CMS does not need to be active when the public website is opened. It is only used when I want to modify or add content.
+| Option | What it solves | Why I did not choose it yet |
+| --- | --- | --- |
+| Edit JSON and Markdown manually | No extra application is required | Repetitive editing and validation become fragile as content grows |
+| Use a hosted CMS or cloud database | Content is available from anywhere | It adds service setup, cost, and a production dependency I do not currently need |
+| Build a local CMS | Gives me forms, validation, and a clear export step | Requires maintaining a second application and a deliberate publishing workflow |
 
-### Example Exported Data Structure
+The third option carries more development work, but that work is also part of the learning objective: modelling content, building CRUD flows, and making a reliable boundary between authoring and publishing.
 
-After content is managed through the Local CMS, the exporter can generate a data structure that is read by the public website.
+## The chosen boundary
 
-```ts title="TypeScript" showLineNumbers
-type ExportedGame = {
+Zennyx Local CMS uses a React and TypeScript dashboard, an Express API, Prisma, and a local MySQL database. The public website does not query that stack. It receives exported JSON, Markdown, and image files.
+
+The important code is not a large controller or a clever abstraction. It is the small contract at the export boundary:
+
+```ts title="Export contract — simplified" showLineNumbers
+type ExportedContent = {
   slug: string;
   title: string;
-  status: "Draft" | "Published";
+  status: "draft" | "published";
   tags: string[];
 };
 
-const game: ExportedGame = {
-  slug: "andara-beat-em-up",
-  title: "Untitled Andara Beat 'em Up",
-  status: "Published",
-  tags: ["Beat 'em Up", "2D"],
-};
+export function canPublish(entry: ExportedContent) {
+  return entry.status === "published";
+}
 ```
 
-The `export:all` command then generates `games.json` and Markdown files that can be transferred to the public website repository.
+This reduced example is not copied from the unpublished repository. It records the rule the architecture depends on: the authoring system may hold drafts, but only an explicit, validated representation crosses into the public site.
 
-> The Local CMS is not part of the production server. It is only used when content needs to be updated or exported.
+> The CMS is an authoring tool, not part of the production request path. If it is closed, the published website continues to work.
 
-| Section | Technology | Output |
-| --- | --- | --- |
-| Admin dashboard | React and TypeScript | Content management forms |
-| Local API | Express.js | CRUD endpoints |
-| Storage | Prisma and MySQL | Local data |
-| Exporter | Node.js | JSON and Markdown |
+## Evidence from the local build
 
-## Advantages and Limitations
+The game-management screen is the first useful proof of the idea. It turns a content model into an interface where entries can be inspected and managed without opening a source file.
 
-This approach is affordable, can be learned gradually, and provides full control over the data structure.
+![Zennyx Local CMS game management table with status, actions, and navigation](/images/projects/zennyx-local-cms/game-management.png "Game management translates the local content model into an operational editing surface. [1763x927]")
 
-Its main limitation is that the publication process is not yet fully automated. Exported files still need to be transferred to the public website repository before the website is deployed again.
+The second proof is the export result. A successful export matters more than the dashboard looking polished, because the exported files are the actual handoff to the public website.
 
-For my current needs, this limitation is still acceptable.
+![Zennyx Local CMS export screen showing generated content files](/images/projects/zennyx-local-cms/export-success.png "The export step makes publication deliberate and keeps the static website independent from the CMS runtime. [1763x1863]")
+
+## Tradeoffs and limits
+
+The architecture is affordable, inspectable, and suitable for gradual learning. It also has real limitations:
+
+- editing is tied to the machine where the local application and database live;
+- backups and migrations are my responsibility;
+- exporting and transferring files can become stale if the process is not checked;
+- collaboration is awkward compared with a hosted system;
+- the public repository cannot yet verify the implementation described here.
+
+Those limits are acceptable for a personal studio tool, but they would become warning signs if remote editors, concurrent work, or frequent publication became requirements.
+
+## Next step
+
+The next useful improvement is not another dashboard widget. It is a verifiable publishing path: validate exported files, show exactly what changed, and make the transfer into the public repository difficult to forget.
+
+If those requirements grow beyond a local workflow, moving to a hosted database or CMS would not invalidate this work. The content contract and the lessons from building the exporter would still be reusable.

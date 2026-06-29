@@ -188,15 +188,18 @@ Struktur folder fajar-works
       |- 📁notes
          |- 📁notes-detail
             |- 📄index.ts
+            |- 📄note-back-to-top.tsx
             |- 📄note-detail-file.tsx
             |- 📄note-detail-header.tsx
             |- 📄note-detail-intro.tsx
             |- 📄note-detail.tsx
             |- 📄note-markdown-components.tsx
             |- 📄note-markdown-heading.tsx
+            |- 📄note-markdown-image.tsx
             |- 📄note-markdown.tsx
             |- 📄note-related-note-card.tsx
             |- 📄note-related-note.tsx
+            |- 📄note-repository-reference.tsx
             |- 📄note-table-of-contents.tsx
          |- 📄index.ts
          |- 📄note-preview.tsx
@@ -300,6 +303,7 @@ Struktur folder fajar-works
          |- 📄markdown-image-metadata.ts
          |- 📄note-headings.ts
          |- 📄note-pretty-code-options.ts
+         |- 📄note-reading-stats.ts
          |- 📄note-related.ts
          |- 📄project-headings.ts
          |- 📄project-navigation.ts

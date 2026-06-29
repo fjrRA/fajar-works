@@ -1,0 +1,63 @@
+export function NoteBackToTop() {
+  return (
+    <a
+      href="#note-top"
+      aria-label="Back to the top of this note"
+      className="
+        group
+        fixed
+        right-0
+        bottom-20
+        z-40
+        flex
+        items-stretch
+        border-y
+        border-l
+        border-ink
+        bg-paper
+        transition-transform
+        duration-150
+        hover:-translate-y-1
+        md:bottom-24
+      "
+    >
+      <span
+        aria-hidden="true"
+        className="
+          flex
+          h-11
+          w-11
+          items-center
+          justify-center
+          bg-ink
+          text-lg
+          text-inverse
+          transition-colors
+          group-hover:bg-accent
+        "
+      >
+        ↑
+      </span>
+
+      <span
+        aria-hidden="true"
+        className="
+          hidden
+          border-l
+          border-ink
+          px-2
+          py-3
+          font-mono
+          text-[0.625rem]
+          font-semibold
+          tracking-[0.14em]
+          uppercase
+          [writing-mode:vertical-rl]
+          sm:block
+        "
+      >
+        Note / Top
+      </span>
+    </a>
+  );
+}

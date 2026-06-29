@@ -15,6 +15,9 @@ import {
   NoteMarkdownHeading,
   type NoteMarkdownHeadingTag,
 } from "./note-markdown-heading";
+import {
+  NoteMarkdownImage,
+} from "./note-markdown-image";
 
 type HeadingIdGenerator = (
   headingText: string,
@@ -120,6 +123,34 @@ export function createNoteMarkdownComponents():
     },
 
     /*
+     * Markdown membungkus image tunggal dengan
+     * paragraf. Karena renderer image menghasilkan
+     * <figure>, wrapper <p> perlu dilepas agar struktur
+     * HTML tetap valid dan hydration tidak berbeda.
+     */
+    p({ node, children }) {
+      const meaningfulChildren =
+        node?.children.filter(
+          (child) =>
+            child.type !== "text" ||
+            child.value.trim().length > 0,
+        ) ?? [];
+
+      const hasStandaloneImage =
+        meaningfulChildren.length === 1 &&
+        meaningfulChildren[0].type ===
+          "element" &&
+        meaningfulChildren[0].tagName ===
+          "img";
+
+      if (hasStandaloneImage) {
+        return <>{children}</>;
+      }
+
+      return <p>{children}</p>;
+    },
+
+    /*
      * Link eksternal dibuka pada tab baru.
      * Link internal dan fragment anchor tetap
      * berada di tab yang sama.
@@ -145,6 +176,16 @@ export function createNoteMarkdownComponents():
         >
           {children}
         </a>
+      );
+    },
+
+    img({ src, alt, title }) {
+      return (
+        <NoteMarkdownImage
+          src={src}
+          alt={alt}
+          title={title}
+        />
       );
     },
 

@@ -19,5 +19,6 @@ export type Note = {
   featured: boolean;
   tags: string[];
   coverImage?: string;
+  repositoryUrl?: string;
   content: string;
 };

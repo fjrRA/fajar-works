@@ -1,16 +1,9 @@
 /* src/styles/notes/note-toc.css */
 
-/* ========================================
- * Note Table of Contents
- * ======================================== */
-
 .note-toc {
   min-width: 0;
-
-  border:
+  border-top:
     var(--border-thin) solid var(--color-line);
-
-  background: var(--color-panel);
 }
 
 .note-toc__header {
@@ -19,9 +12,7 @@
     minmax(0, 1fr) auto;
   gap: 1rem;
   align-items: baseline;
-
-  padding: 0.9rem 1rem;
-
+  padding: 0.9rem 0;
   border-bottom:
     var(--border-thin) solid var(--color-line);
 }
@@ -29,7 +20,6 @@
 .note-toc__label,
 .note-toc__count {
   margin: 0;
-
   font-family:
     var(--font-ibm-plex-mono),
     "Courier New",
@@ -52,8 +42,8 @@
   list-style: none;
 }
 
-.note-toc__item+.note-toc__item {
-  border-top:
+.note-toc__item {
+  border-bottom:
     var(--border-thin) solid var(--color-line);
 }
 
@@ -62,21 +52,17 @@
   grid-template-columns:
     2rem minmax(0, 1fr);
   gap: 0.5rem;
-
   min-width: 0;
-  padding: 0.85rem 1rem;
-
+  padding: 0.9rem 0;
   color: var(--color-ink);
   text-decoration: none;
-
   transition:
     color var(--transition-fast),
-    background-color var(--transition-fast);
+    padding-left var(--transition-fast);
 }
 
 .note-toc__index {
   color: var(--color-muted-strong);
-
   font-family:
     var(--font-ibm-plex-mono),
     "Courier New",
@@ -87,11 +73,9 @@
 
 .note-toc__text {
   min-width: 0;
-
   font-size: 0.875rem;
   line-height: 1.45;
-  font-weight: 600;
-
+  font-weight: 550;
   overflow-wrap: anywhere;
 }
 
@@ -106,19 +90,14 @@
 }
 
 .note-toc__link:focus-visible {
-  position: relative;
-  z-index: 1;
-
-  outline:
-    2px solid var(--color-accent);
-  outline-offset: -3px;
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
 }
 
 @media (hover: hover) {
   .note-toc__link:hover {
+    padding-left: 0.35rem;
     color: var(--color-accent-strong);
-    background:
-      var(--color-panel-strong);
   }
 }
 

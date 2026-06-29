@@ -13,6 +13,7 @@ import type {
 } from "./read-note-document";
 import {
   optionalDateString,
+  optionalGitHubRepositoryUrl,
   optionalLocalImagePath,
   requireAllowedValue,
   requireBoolean,
@@ -131,6 +132,13 @@ export function parseNoteFrontmatter({
       "coverImage",
       fileName,
     ),
+
+    repositoryUrl:
+      optionalGitHubRepositoryUrl(
+        data.repositoryUrl,
+        "repositoryUrl",
+        fileName,
+      ),
 
     content,
   };

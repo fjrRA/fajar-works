@@ -1,13 +1,14 @@
 ---
 title: "Building Fajar Works: A Portfolio as a Work Archive"
 slug: "building-fajar-works"
-excerpt: "A note about why I built a portfolio website that presents not only projects, but also my learning process, writing, and professional development."
+excerpt: "A build log about turning a conventional portfolio into an evidence-led archive for projects, technical notes, learning records, and ongoing development."
 publishedAt: "2026-06-25"
-updatedAt: "2026-06-25"
+updatedAt: "2026-06-29"
 status: "Published"
 category: "Build Log"
 language: "en"
 featured: true
+repositoryUrl: "https://github.com/fjrRA/fajar-works"
 tags:
   - "Portfolio"
   - "Next.js"
@@ -15,26 +16,71 @@ tags:
   - "Personal Website"
 ---
 
-## Why Build Fajar Works?
+## Why this build exists
 
-At first, I thought of a portfolio website only as a place to display a few projects. Over time, however, I realized that projects alone do not always explain the process behind the work I have done.
+I first imagined a portfolio as a small collection of finished projects. That presented outcomes, but it removed the decisions, revisions, and periods of uncertainty that made the work meaningful.
 
-For that reason, Fajar Works was designed as a combination of a portfolio, technical notes, a Learning Log, and an archive of personal development.
+Fajar Works became a broader archive: selected projects show what was built, technical notes explain decisions, the Learning Log records practice, and profile information gives that work a professional context. The website is still a portfolio, but it behaves more like a working file than a polished final brochure.
 
-## Design Direction
+The Fajar Works repository is public so the architecture and the progress behind the interface can be inspected directly.
 
-I chose a minimalist industrial and editorial style. I did not want the website to look too similar to a startup landing page or a SaaS dashboard.
+## Direction and constraints
 
-The visual structure is built using lines, grids, large typography, monospace metadata, and orange as an accent color.
+The visual direction is minimalist, industrial, and editorial. Lines, large type, monospace metadata, an off-white paper tone, and one orange accent provide structure without turning every section into a card.
 
-## Content Architecture
+The stronger constraint is content: a page should not make a weak project look substantial through decoration alone. Project screenshots therefore carry the visual proof, while notes use a quieter reading sheet where hierarchy and evidence matter more than presentation effects.
 
-The website content is stored using JSON and Markdown. This approach allows the website to remain static without requiring a cloud database or a backend server that must continuously run.
+That distinction keeps the site related without making every route a copy of the homepage or project detail page.
 
-In the future, the data can be managed through a Local CMS and exported back into files for the public website.
+## Content is part of the architecture
 
-## Current State
+Projects, notes, and learning logs live in local files. Structured fields carry metadata; Markdown carries long-form writing. The site can pre-render those files without requiring a production database or an always-on CMS.
 
-The global foundation, navigation, footer, homepage, Selected Work, Capabilities, and Current Focus sections have begun to take shape.
+The `Note` type is a small but important contract because it defines what the index, detail page, metadata, related-note system, and structured data can rely on:
 
-The website is still evolving, but it now has a clearer visual system and content structure than a single conventional portfolio page.
+```ts title="src/types/note.ts" showLineNumbers
+export type Note = {
+  slug: string;
+  title: string;
+  excerpt: string;
+  publishedAt: string;
+  updatedAt?: string;
+  status: "Published" | "Draft";
+  category: string;
+  language: "id" | "en";
+  featured: boolean;
+  tags: string[];
+  coverImage?: string;
+  content: string;
+};
+```
+
+This is more useful than scattering page copy across components. A new note can enter the system through content, while the route remains responsible for validation, rendering, navigation, and metadata.
+
+## What changed in the redesign
+
+The homepage moved toward evidence-led project screenshots and away from repeated generic panels. Project detail pages became case-study records with an overview, problem, features, technical evidence, and evaluation.
+
+The note detail page now takes a different role. It uses natural-case editorial titles, a horizontal publication record, a calm reading column, and a margin index. Technical notes, learning reflections, and build logs share the same reading foundation, but their internal hierarchy follows the kind of thinking they need to preserve.
+
+These changes are not a search for novelty in every section. They are an attempt to make the content type visible before the reader starts reading.
+
+## Decisions and tradeoffs
+
+The local-content approach keeps ownership and deployment simple, but publishing still involves files and version control. The strict visual grid creates consistency, but it can also make unrelated sections feel templated if every layout uses the same columns. Large typography gives the site identity, but it needs calmer moments around long-form text.
+
+The redesign treats those tensions as constraints rather than bugs to hide:
+
+- screenshots dominate where visual proof exists;
+- long-form text uses a narrower measure and more breathing room;
+- metadata stays compact and functional;
+- repeated card grids are replaced by indexes, rows, and editorial divisions;
+- a component is shared only when the content really shares a purpose.
+
+## Current state and next pass
+
+The global navigation, footer, homepage, project detail, note index, and note detail systems now share a clearer language. Markdown supports tables, code highlighting, generated contents, related entries, and evidence images.
+
+The next pass should focus less on adding sections and more on maintaining the archive: complete the real project evidence, keep learning records honest, review accessibility at small viewports, and update old notes when the implementation changes.
+
+Fajar Works is not finished, and that is now part of its function. It records the work while the work is still moving.

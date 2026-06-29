@@ -1,6 +1,3 @@
-// src/components/notes/note-detail/
-// note-related-notes.tsx
-
 import { SectionHeading } from "@/components/ui/section-heading";
 import { SectionLabel } from "@/components/ui/section-label";
 import type {
@@ -18,31 +15,12 @@ type NoteRelatedNotesProps = {
 const RELATED_NOTES_HEADING_ID =
   "related-notes-heading";
 
-function getRelatedNotesGridClassName(
-  noteCount: number,
-): string {
-  if (noteCount === 1) {
-    return "grid";
-  }
-
-  if (noteCount === 2) {
-    return "grid md:grid-cols-2";
-  }
-
-  return "grid md:grid-cols-2 xl:grid-cols-3";
-}
-
 export function NoteRelatedNotes({
   notes,
 }: NoteRelatedNotesProps) {
   if (notes.length === 0) {
     return null;
   }
-
-  const gridClassName =
-    getRelatedNotesGridClassName(
-      notes.length,
-    );
 
   return (
     <section
@@ -61,7 +39,7 @@ export function NoteRelatedNotes({
           py-10
           md:px-8
           lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.38fr)]
-          lg:px-10
+          lg:px-12
           lg:py-12
         "
       >
@@ -76,7 +54,7 @@ export function NoteRelatedNotes({
             }
             className="mt-3"
           >
-            Related Notes
+            Further Notes
           </SectionHeading>
         </div>
 
@@ -87,7 +65,7 @@ export function NoteRelatedNotes({
         </p>
       </header>
 
-      <div className={gridClassName}>
+      <div className="grid md:grid-cols-2">
         {notes.map((note, index) => (
           <NoteRelatedNoteCard
             key={note.slug}

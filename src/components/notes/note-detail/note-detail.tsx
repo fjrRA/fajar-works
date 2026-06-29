@@ -5,11 +5,17 @@ import { Container } from "@/components/layout/container";
 import {
   extractNoteHeadings,
 } from "@/lib/content/note-headings";
+import {
+  getNoteReadingStats,
+} from "@/lib/content/note-reading-stats";
 import type {
   RelatedNoteItem,
 } from "@/lib/content/note-related";
 import type { Note } from "@/types/note";
 
+import {
+  NoteBackToTop,
+} from "./note-back-to-top";
 import {
   NoteDetailHeader,
 } from "./note-detail-header";
@@ -19,6 +25,9 @@ import {
 import {
   NoteRelatedNotes,
 } from "./note-related-notes";
+import {
+  NoteRepositoryReference,
+} from "./note-repository-reference";
 import {
   NoteTableOfContents,
 } from "./note-table-of-contents";
@@ -38,10 +47,16 @@ export function NoteDetail({
   const headings =
     extractNoteHeadings(
       note.content,
+    ).filter(
+      (heading) =>
+        heading.depth === 2,
     );
 
   const hasHeadings =
     headings.length > 0;
+
+  const readingStats =
+    getNoteReadingStats(note.content);
 
   return (
     <section className="border-b border-line">
@@ -54,7 +69,9 @@ export function NoteDetail({
           "
         >
           <article
+            id="note-top"
             lang={note.language}
+            className="scroll-mt-[calc(var(--header-height)+1rem)]"
             aria-labelledby={
               NOTE_DETAIL_HEADING_ID
             }
@@ -64,6 +81,7 @@ export function NoteDetail({
               headingId={
                 NOTE_DETAIL_HEADING_ID
               }
+              readingStats={readingStats}
             />
 
             <div
@@ -90,8 +108,8 @@ export function NoteDetail({
                     lg:col-start-2
                     lg:row-start-1
                     lg:border-b-0
-                    lg:px-8
-                    lg:py-16
+                    lg:px-7
+                    lg:py-20
                   "
                 >
                   <NoteTableOfContents
@@ -110,7 +128,7 @@ export function NoteDetail({
                   md:py-16
                   lg:col-start-1
                   lg:row-start-1
-                  lg:px-10
+                  lg:px-12
                   lg:py-20
                   ${hasHeadings
                     ? "lg:border-r lg:border-line"
@@ -118,18 +136,52 @@ export function NoteDetail({
                   }
                 `}
               >
-                <NoteMarkdown
-                  content={note.content}
-                />
+                <div className="mx-auto max-w-4xl">
+                  <NoteMarkdown
+                    content={note.content}
+                  />
+
+                  <div
+                    className="
+                      mt-16
+                      flex
+                      flex-wrap
+                      items-center
+                      justify-between
+                      gap-5
+                      border-t
+                      border-line
+                      pt-6
+                    "
+                  >
+                    <p className="type-label text-muted">
+                      End of note
+                    </p>
+
+                    <p className="type-meta text-muted uppercase">
+                      {note.category} / {readingStats.readingMinutes} min
+                    </p>
+                  </div>
+                </div>
               </section>
             </div>
           </article>
+
+          {note.repositoryUrl ? (
+            <NoteRepositoryReference
+              repositoryUrl={
+                note.repositoryUrl
+              }
+            />
+          ) : null}
 
           <NoteRelatedNotes
             notes={relatedNotes}
           />
         </div>
       </Container>
+
+      <NoteBackToTop />
     </section>
   );
 }

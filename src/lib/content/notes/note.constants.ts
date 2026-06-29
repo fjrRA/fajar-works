@@ -37,4 +37,5 @@ export const NOTE_FRONTMATTER_FIELDS = [
   "featured",
   "tags",
   "coverImage",
+  "repositoryUrl",
 ] as const;
