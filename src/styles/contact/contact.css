@@ -1,0 +1,193 @@
+/* Contact page: correspondence desk and routing surfaces. */
+
+.contact-hero__signal {
+  container-type: inline-size;
+  background: var(--color-accent);
+  color: var(--color-inverse);
+}
+
+.contact-hero__main {
+  container-type: inline-size;
+}
+
+.contact-hero__title {
+  font-size: clamp(2rem, 11cqi, 6.5rem);
+  line-height: 0.84;
+  letter-spacing: -0.065em;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.contact-hero__availability-title {
+  max-inline-size: 95%;
+  font-size: clamp(1.75rem, 8.5cqi, 3.5rem);
+  line-height: 0.96;
+  letter-spacing: -0.045em;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+@media (max-width: 22.499rem) {
+  .contact-hero__title {
+    font-size: 1.875rem;
+    line-height: 0.86;
+    letter-spacing: -0.055em;
+  }
+
+  .contact-hero__availability-title {
+    font-size: 1.65rem;
+    letter-spacing: -0.035em;
+  }
+}
+
+.contact-hero__signal-body {
+  border-bottom: 1px solid rgb(246 243 235 / 34%);
+}
+
+.contact-hero__signal-copy {
+  color: #f1d2c7;
+}
+
+.contact-hero__email {
+  border-top: 1px solid rgb(246 243 235 / 34%);
+  transition:
+    color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.contact-hero__email:hover {
+  background: var(--color-inverse);
+  color: var(--color-ink);
+}
+
+.contact-hero__ledger,
+.contact-channels__register {
+  background: var(--color-panel);
+}
+
+.contact-channel-card {
+  border-bottom: 1px solid var(--color-line);
+}
+
+.contact-channel-card > a {
+  min-height: 21rem;
+  height: 100%;
+  transition:
+    color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.contact-channel-card--primary {
+  background: var(--color-ink);
+  color: var(--color-inverse);
+}
+
+.contact-channel-card--primary > a {
+  min-height: 34rem;
+}
+
+.contact-channel-card--primary > a:hover {
+  background: #292c2a;
+}
+
+.contact-channel-card--primary
+  .contact-channel-card__register {
+  color: var(--color-accent-on-dark);
+}
+
+.contact-channel-card--primary
+  .contact-channel-card__index,
+.contact-channel-card--primary
+  .contact-channel-card__meta {
+  color: var(--color-line);
+}
+
+.contact-channel-card--primary
+  .contact-channel-card__footer,
+.contact-channel-card--primary
+  .contact-channel-card__action {
+  border-color: rgb(246 243 235 / 28%);
+}
+
+.contact-channel-card--supporting > a:hover {
+  background: var(--color-panel-strong);
+}
+
+.contact-channel-card--supporting
+  .contact-channel-card__register {
+  color: var(--color-accent-strong);
+}
+
+.contact-channel-card--supporting
+  .contact-channel-card__index,
+.contact-channel-card--supporting
+  .contact-channel-card__meta {
+  color: var(--color-muted);
+}
+
+.contact-channel-card--supporting
+  .contact-channel-card__footer,
+.contact-channel-card--supporting
+  .contact-channel-card__action {
+  border-color: var(--color-line);
+}
+
+.contact-channel-card__action {
+  transition:
+    color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.contact-channel-card--primary
+  a:hover
+  .contact-channel-card__action {
+  background: var(--color-inverse);
+  color: var(--color-ink);
+}
+
+.contact-channel-card--supporting
+  a:hover
+  .contact-channel-card__action {
+  background: var(--color-ink);
+  color: var(--color-inverse);
+}
+
+.contact-opportunities__scope {
+  background: var(--color-paper);
+}
+
+.contact-professional-note {
+  background: #d9c9c0;
+}
+
+.contact-professional-note__cta {
+  border-top: 1px solid rgb(246 243 235 / 30%);
+  background: #7c3f2d;
+  color: var(--color-inverse);
+  transition: background-color var(--transition-fast);
+}
+
+.contact-professional-note__cta:hover {
+  background: #663223;
+}
+
+.contact-professional-note__arrow {
+  border-color: rgb(246 243 235 / 38%);
+}
+
+@media (min-width: 40rem) and (max-width: 63.999rem) {
+  .contact-channel-card--supporting:first-child {
+    border-right: 1px solid var(--color-line);
+  }
+}
+
+@media (min-width: 64rem) {
+  .contact-channel-card--primary {
+    border-right: 1px solid var(--color-line);
+    border-bottom: 0;
+  }
+
+  .contact-channel-card--supporting:last-child {
+    border-bottom: 0;
+  }
+}

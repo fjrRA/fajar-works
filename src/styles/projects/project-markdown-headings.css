@@ -1,0 +1,75 @@
+.project-markdown-heading {
+  scroll-margin-top: calc(var(--header-height) + 1.5rem);
+}
+
+.project-markdown .project-markdown-heading-anchor {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: clamp(0.5rem, 1vw, 0.75rem);
+  color: var(--color-accent);
+  font-family:
+    var(--font-ibm-plex-mono),
+    "Courier New",
+    monospace;
+  font-size: 0.75rem;
+  line-height: 1;
+  text-decoration: none;
+  vertical-align: 0.15em;
+  opacity: 0.8;
+  transition:
+    color var(--transition-fast),
+    opacity var(--transition-fast);
+}
+
+.project-markdown .project-markdown-heading-anchor:hover {
+  color: var(--color-accent-strong);
+  opacity: 1;
+}
+
+.project-markdown-heading:target .project-markdown-heading-anchor {
+  color: var(--color-accent-strong);
+  opacity: 1;
+}
+
+.project-markdown h2 {
+  max-width: var(--reading-max-width);
+  margin-top: clamp(3.5rem, 7vw, 6rem);
+  padding-top: clamp(2rem, 4vw, 3rem);
+  border-top: var(--border-thin) solid var(--color-line);
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 0.95;
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+  text-transform: uppercase;
+}
+
+.project-markdown>h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.project-markdown h3 {
+  max-width: var(--reading-max-width);
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  line-height: 1;
+  font-weight: 650;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+  text-transform: uppercase;
+}
+
+.project-markdown h4 {
+  max-width: var(--reading-max-width);
+  margin-top: 2.5rem;
+  color: var(--color-accent);
+  font-family: monospace;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}

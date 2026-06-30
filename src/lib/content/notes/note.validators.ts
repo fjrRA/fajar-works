@@ -1,46 +1,22 @@
-// src/lib/content/notes/note.validators.ts
+import {
+  createContentFieldValidators,
+} from "@/lib/content/validation/content-field.validators";
 
-function createInvalidFieldError(
-  fieldName: string,
-  fileName: string,
-) {
-  return new Error(
-    `Note "${fileName}" has a missing or invalid "${fieldName}" field.`,
-  );
-}
+const validators =
+  createContentFieldValidators("Note", {
+    requireUniqueStringArrays: true,
+  });
 
-export function requireString(
-  value: unknown,
-  fieldName: string,
-  fileName: string,
-): string {
-  if (
-    typeof value !== "string" ||
-    value.trim().length === 0
-  ) {
-    throw createInvalidFieldError(
-      fieldName,
-      fileName,
-    );
-  }
-
-  return value.trim();
-}
-
-export function requireBoolean(
-  value: unknown,
-  fieldName: string,
-  fileName: string,
-): boolean {
-  if (typeof value !== "boolean") {
-    throw createInvalidFieldError(
-      fieldName,
-      fileName,
-    );
-  }
-
-  return value;
-}
+export const {
+  requireString,
+  requireBoolean,
+  requireStringArray,
+  requireAllowedValue,
+  requireDateString,
+  optionalString,
+  optionalDateString,
+  optionalGitHubRepositoryUrl,
+} = validators;
 
 export function requireSlug(
   value: unknown,
@@ -52,12 +28,7 @@ export function requireSlug(
     fileName,
   );
 
-  const isValidSlug =
-    /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(
-      slug,
-    );
-
-  if (!isValidSlug) {
+  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) {
     throw new Error(
       [
         `Note "${fileName}" has invalid slug "${slug}".`,
@@ -67,152 +38,6 @@ export function requireSlug(
   }
 
   return slug;
-}
-
-export function requireStringArray(
-  value: unknown,
-  fieldName: string,
-  fileName: string,
-): string[] {
-  if (
-    !Array.isArray(value) ||
-    value.length === 0 ||
-    value.some(
-      (item) =>
-        typeof item !== "string" ||
-        item.trim().length === 0,
-    )
-  ) {
-    throw createInvalidFieldError(
-      fieldName,
-      fileName,
-    );
-  }
-
-  const normalizedItems = value.map(
-    (item) => item.trim(),
-  );
-
-  const normalizedKeys =
-    normalizedItems.map((item) =>
-      item.toLowerCase(),
-    );
-
-  if (
-    new Set(normalizedKeys).size !==
-    normalizedKeys.length
-  ) {
-    throw new Error(
-      `Note "${fileName}" has duplicate values in "${fieldName}".`,
-    );
-  }
-
-  return normalizedItems;
-}
-
-export function requireAllowedValue<
-  TValue extends string,
->(
-  value: unknown,
-  allowedValues: readonly TValue[],
-  fieldName: string,
-  fileName: string,
-): TValue {
-  const normalizedValue = requireString(
-    value,
-    fieldName,
-    fileName,
-  );
-
-  if (
-    !allowedValues.includes(
-      normalizedValue as TValue,
-    )
-  ) {
-    throw new Error(
-      `Note "${fileName}" has unsupported "${fieldName}" value "${normalizedValue}".`,
-    );
-  }
-
-  return normalizedValue as TValue;
-}
-
-export function requireDateString(
-  value: unknown,
-  fieldName: string,
-  fileName: string,
-): string {
-  const dateValue = requireString(
-    value,
-    fieldName,
-    fileName,
-  );
-
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(dateValue)) {
-    throw new Error(
-      `Note "${fileName}" must use YYYY-MM-DD for "${fieldName}".`,
-    );
-  }
-
-  const [year, month, day] = dateValue
-    .split("-")
-    .map(Number);
-
-  const parsedDate = new Date(
-    Date.UTC(year, month - 1, day),
-  );
-
-  const isValidDate =
-    parsedDate.getUTCFullYear() === year &&
-    parsedDate.getUTCMonth() ===
-    month - 1 &&
-    parsedDate.getUTCDate() === day;
-
-  if (!isValidDate) {
-    throw new Error(
-      `Note "${fileName}" has an invalid "${fieldName}" date.`,
-    );
-  }
-
-  return dateValue;
-}
-
-export function optionalString(
-  value: unknown,
-  fieldName: string,
-  fileName: string,
-): string | undefined {
-  if (
-    value === undefined ||
-    value === null
-  ) {
-    return undefined;
-  }
-
-  return requireString(
-    value,
-    fieldName,
-    fileName,
-  );
-}
-
-export function optionalDateString(
-  value: unknown,
-  fieldName: string,
-  fileName: string,
-): string | undefined {
-  if (
-    value === undefined ||
-    value === null
-  ) {
-    return undefined;
-  }
-
-  return requireDateString(
-    value,
-    fieldName,
-    fileName,
-  );
 }
 
 export function optionalLocalImagePath(
@@ -245,66 +70,12 @@ export function optionalLocalImagePath(
   return imagePath;
 }
 
-export function optionalGitHubRepositoryUrl(
-  value: unknown,
-  fieldName: string,
-  fileName: string,
-): string | undefined {
-  const repositoryUrl = optionalString(
-    value,
-    fieldName,
-    fileName,
-  );
-
-  if (!repositoryUrl) {
-    return undefined;
-  }
-
-  let parsedUrl: URL;
-
-  try {
-    parsedUrl = new URL(repositoryUrl);
-  } catch {
-    throw new Error(
-      `Note "${fileName}" has invalid "${fieldName}" URL "${repositoryUrl}".`,
-    );
-  }
-
-  const pathSegments =
-    parsedUrl.pathname
-      .split("/")
-      .filter(Boolean);
-
-  const isGitHubRepository =
-    parsedUrl.protocol === "https:" &&
-    parsedUrl.hostname.toLowerCase() ===
-      "github.com" &&
-    pathSegments.length === 2 &&
-    parsedUrl.search.length === 0 &&
-    parsedUrl.hash.length === 0;
-
-  if (!isGitHubRepository) {
-    throw new Error(
-      [
-        `Note "${fileName}" has unsupported "${fieldName}" URL "${repositoryUrl}".`,
-        "Use a direct HTTPS GitHub repository URL such as",
-        '"https://github.com/owner/repository".',
-      ].join(" "),
-    );
-  }
-
-  return repositoryUrl.replace(/\/$/, "");
-}
-
 export function validateDateOrder(
   publishedAt: string,
   updatedAt: string | undefined,
   fileName: string,
 ): void {
-  if (
-    updatedAt &&
-    updatedAt < publishedAt
-  ) {
+  if (updatedAt && updatedAt < publishedAt) {
     throw new Error(
       `Note "${fileName}" has "updatedAt" earlier than "publishedAt".`,
     );
@@ -316,9 +87,7 @@ export function validateKnownFields(
   allowedFields: readonly string[],
   fileName: string,
 ): void {
-  const unknownFields = Object.keys(
-    data,
-  ).filter(
+  const unknownFields = Object.keys(data).filter(
     (field) =>
       !allowedFields.includes(field),
   );

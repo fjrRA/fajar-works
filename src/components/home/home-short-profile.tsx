@@ -27,7 +27,10 @@ export function HomeShortProfile({
             <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,1.5fr)_minmax(18rem,0.5fr)] lg:items-end lg:gap-16">
               <h2
                 id="home-short-profile-heading"
-                className="max-w-6xl text-balance text-[clamp(3rem,7.5vw,7.5rem)] leading-[0.88] font-semibold tracking-[-0.06em] uppercase"
+                className="max-w-6xl text-balance text-[clamp(3rem,7.5vw,7.5rem)] leading-[0.88] font-semibold tracking-[-0.06em] uppercase
+                
+                max-[374px]:text-[2.65rem]
+                "
               >
                 {content.heading}
               </h2>

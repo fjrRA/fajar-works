@@ -1,23 +1,25 @@
-// src/components/contact/
-// contact-channel-card.tsx
-
-import type { Social } from "@/types/social";
+import type {
+  Social,
+} from "@/types/social";
 
 type ContactChannelCardProps = {
   social: Social;
+  variant: "primary" | "supporting";
 };
 
 export function ContactChannelCard({
   social,
+  variant,
 }: ContactChannelCardProps) {
+  const isPrimary = variant === "primary";
+
   return (
     <article
-      className="
+      className={`
+        contact-channel-card
+        contact-channel-card--${variant}
         min-w-0
-        border-b
-        border-line
-        md:border-r
-      "
+      `}
     >
       <a
         href={social.href}
@@ -34,14 +36,10 @@ export function ContactChannelCard({
         className="
           group
           flex
-          min-h-72
           min-w-0
           flex-col
           px-6
           py-8
-          transition-colors
-          duration-150
-          hover:bg-panel
           focus-visible:outline-2
           focus-visible:-outline-offset-2
           focus-visible:outline-accent
@@ -58,62 +56,83 @@ export function ContactChannelCard({
         <div
           className="
             flex
-            items-start
+            items-center
             justify-between
             gap-4
           "
         >
-          <span className="type-label text-accent-strong">
-            {social.index}
+          <span className="contact-channel-card__register type-label">
+            {isPrimary
+              ? "Primary route"
+              : "Supporting route"}
           </span>
 
           <span
             aria-hidden="true"
-            className="
-              text-accent-strong
-              transition-transform
-              duration-200
-              group-hover:translate-x-1
-              motion-reduce:transition-none
-            "
+            className="contact-channel-card__index type-label"
           >
-            {social.external
-              ? "↗"
-              : "→"}
+            {social.index}
           </span>
         </div>
 
-        <div className="mt-auto pt-16">
-          <p className="type-meta text-muted uppercase">
-            Contact Channel
-          </p>
-
+        <div className="mt-auto pt-16 lg:pt-20">
           <h3
-            className="
-              mt-3
-              text-3xl
-              leading-none
+            className={`
+              contact-channel-card__title
               font-semibold
-              tracking-[-0.04em]
+              tracking-[-0.055em]
               uppercase
-            "
+              ${
+                isPrimary
+                  ? "text-[clamp(3.5rem,8vw,7.5rem)] leading-[0.82]"
+                  : "text-[clamp(2rem,4vw,3.25rem)] leading-[0.9]"
+              }
+            `}
           >
             {social.label}
           </h3>
 
-          <p
+          <div
             className="
-              mt-5
+              contact-channel-card__footer
+              mt-8
+              flex
               min-w-0
-              wrap-break-word
-              font-mono
-              text-sm
-              leading-6
-              text-muted
+              items-end
+              justify-between
+              gap-6
+              border-t
+              pt-5
             "
           >
-            {social.value}
-          </p>
+            <div className="min-w-0">
+              <p className="contact-channel-card__meta type-meta uppercase">
+                {isPrimary
+                  ? "Write directly"
+                  : "Review profile"}
+              </p>
+
+              <p
+                className="
+                  mt-2
+                  min-w-0
+                  wrap-break-word
+                  font-mono
+                  text-sm
+                  leading-6
+                "
+              >
+                {social.value}
+              </p>
+            </div>
+
+            <span
+              aria-hidden="true"
+              className="contact-channel-card__action flex size-11 shrink-0 items-center justify-center border text-lg"
+            >
+              {social.external ? "↗" : "→"}
+            </span>
+          </div>
         </div>
       </a>
     </article>

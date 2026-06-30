@@ -1,8 +1,8 @@
 // src/components/contact/index.ts
 
 export {
-  ContactAvailability,
-} from "./contact-availability";
+  ContactHero,
+} from "./contact-hero";
 
 export {
   ContactChannels,

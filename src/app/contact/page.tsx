@@ -5,13 +5,10 @@ import {
 } from "@/lib/metadata/create-page-metadata";
 
 import {
-  ContactAvailability,
   ContactChannels,
+  ContactHero,
   ContactOpportunities,
 } from "@/components/contact";
-import {
-  PageHeader,
-} from "@/components/layout/page-header";
 import {
   getContactContent,
 } from "@/lib/content/get-contact-content";
@@ -58,25 +55,11 @@ export default function ContactPage() {
 
   return (
     <MainContent>
-      <PageHeader
-        index={content.header.index}
-        label={content.header.label}
-        titleSize="long"
-        title={
-          <>
-            Start a
-            <br />
-            Conversation
-          </>
-        }
-        description={
-          content.header.description
-        }
-      />
-
-      <ContactAvailability
-        content={content.availability}
+      <ContactHero
+        header={content.header}
+        availability={content.availability}
         site={site}
+        email={email}
       />
 
       <ContactChannels
