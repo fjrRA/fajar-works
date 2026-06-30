@@ -1,0 +1,201 @@
+/* src/styles/learning-log/learning-log-detail.css */
+
+/* ========================================
+ * Sticky Learning Index
+ * ======================================== */
+
+.learning-log-toc {
+  min-width: 0;
+  background: var(--color-paper);
+}
+
+.learning-log-toc__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 1.5rem;
+  border-bottom:
+    var(--border-thin) solid var(--color-line);
+  background: var(--color-panel);
+}
+
+.learning-log-toc__label,
+.learning-log-toc__count {
+  margin: 0;
+  font-family:
+    var(--font-ibm-plex-mono),
+    "Courier New",
+    monospace;
+  font-size: 0.68rem;
+  line-height: 1.5;
+  font-weight: 600;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.learning-log-toc__count {
+  color: var(--color-muted-strong);
+  text-align: right;
+}
+
+.learning-log-toc__list {
+  display: flex;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  list-style: none;
+  scrollbar-width: thin;
+  scrollbar-color:
+    var(--color-line) transparent;
+}
+
+.learning-log-toc__item {
+  flex: 0 0 min(17rem, 76vw);
+  border-right:
+    var(--border-thin) solid var(--color-line);
+}
+
+.learning-log-toc__link {
+  display: grid;
+  grid-template-columns:
+    2rem minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: start;
+  min-height: 5.25rem;
+  padding: 1rem 1.25rem;
+  color: var(--color-ink);
+  text-decoration: none;
+  transition:
+    color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.learning-log-toc__index {
+  color: var(--color-accent-strong);
+  font-family:
+    var(--font-ibm-plex-mono),
+    "Courier New",
+    monospace;
+  font-size: 0.68rem;
+  line-height: 1.5;
+}
+
+.learning-log-toc__text {
+  min-width: 0;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.learning-log-toc__link:focus-visible {
+  position: relative;
+  z-index: 1;
+  outline: 2px solid var(--color-accent);
+  outline-offset: -3px;
+}
+
+@media (hover: hover) {
+  .learning-log-toc__link:hover {
+    color: var(--color-accent-strong);
+    background: var(--color-panel-strong);
+  }
+}
+
+@media (min-width: 64rem) {
+  .learning-log-toc {
+    display: grid;
+    grid-template-columns:
+      14rem minmax(0, 1fr);
+  }
+
+  .learning-log-toc__header {
+    display: block;
+    padding: 1rem 1.75rem;
+    border-right:
+      var(--border-thin) solid var(--color-line);
+    border-bottom: 0;
+  }
+
+  .learning-log-toc__count {
+    margin-top: 0.4rem;
+    text-align: left;
+  }
+}
+
+/* ========================================
+ * Learning Record Typography
+ * ======================================== */
+
+.learning-log-markdown {
+  counter-reset: learning-checkpoint;
+}
+
+.learning-log-markdown h2 {
+  counter-increment: learning-checkpoint;
+  grid-template-columns:
+    4.5rem minmax(0, 1fr);
+  gap: 0.75rem;
+  max-width: none;
+  font-size: clamp(2.2rem, 5vw, 3.75rem);
+  line-height: 1;
+  font-weight: 620;
+  letter-spacing: -0.045em;
+  text-transform: none;
+}
+
+.learning-log-markdown h2
+  .note-markdown-heading-anchor {
+  align-self: start;
+  padding-top: 0.35rem;
+  font-size: 0;
+  line-height: 1;
+  transform: none;
+}
+
+.learning-log-markdown h2
+  .note-markdown-heading-anchor::before {
+  content:
+    counter(learning-checkpoint, decimal-leading-zero);
+  font-size: 0.7rem;
+}
+
+.learning-log-markdown h3 {
+  max-width: 46rem;
+  font-size: clamp(1.5rem, 3vw, 2.35rem);
+  line-height: 1.08;
+  font-weight: 600;
+  text-transform: none;
+}
+
+.learning-log-markdown > p:first-of-type {
+  color: var(--color-ink);
+  font-size: clamp(1rem, 1.5vw, 1.125rem);
+  line-height: 1.8;
+}
+
+@media (min-width: 48rem) {
+  .learning-log-markdown > p,
+  .learning-log-markdown > ul,
+  .learning-log-markdown > ol,
+  .learning-log-markdown > blockquote,
+  .learning-log-markdown > hr,
+  .learning-log-markdown > h3,
+  .learning-log-markdown > h4,
+  .learning-log-markdown > .note-markdown-table,
+  .learning-log-markdown > figure[data-rehype-pretty-code-figure] {
+    max-width: calc(100% - 5.25rem);
+    margin-left: 5.25rem;
+  }
+}
+
+@media (max-width: 30rem) {
+  .learning-log-markdown h2 {
+    grid-template-columns:
+      2.75rem minmax(0, 1fr);
+    gap: 0.5rem;
+    font-size: 2rem;
+  }
+}

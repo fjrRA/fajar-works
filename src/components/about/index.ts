@@ -17,5 +17,9 @@ export {
 } from "./about-education";
 
 export {
+  AboutHero,
+} from "./about-hero";
+
+export {
   AboutProfile,
 } from "./about-profile";

@@ -1,35 +1,34 @@
-// src/components/learning-log/
-// learning-log-detail/
-// learning-log-related-card.tsx
-
 import Link from "next/link";
 
 import type {
   RelatedLearningLogItem,
 } from "@/lib/content/learning-log-related";
-
 import {
   formatContentDate,
 } from "@/lib/utils/format-content-date";
 
 type LearningLogRelatedCardProps = {
   learningLog:
-  RelatedLearningLogItem;
+    RelatedLearningLogItem;
   displayIndex: string;
+  relationshipLabel: string;
 };
 
 export function LearningLogRelatedCard({
   learningLog,
   displayIndex,
+  relationshipLabel,
 }: LearningLogRelatedCardProps) {
   return (
     <article
       className="
-      flex
+        flex
         min-w-0
         border-b
         border-line
+        even:bg-panel
         md:border-r
+        md:last:border-r-0
       "
     >
       <Link
@@ -38,122 +37,164 @@ export function LearningLogRelatedCard({
           learningLog.slug
         }
         className="
-    group
-    flex
-    min-h-80
-    min-w-0
-    flex-1
-    flex-col
-    px-6
-    py-8
-    transition-colors
-    duration-150
-    hover:bg-panel
-    focus-visible:outline-2
-    focus-visible:-outline-offset-2
-    focus-visible:outline-accent
-    md:px-8
-    lg:px-10
-    lg:py-10
-  "
+          group
+          flex
+          flex-1
+          min-h-[27rem]
+          min-w-0
+          flex-col
+          px-6
+          py-8
+          transition-colors
+          duration-150
+          hover:bg-panel-strong
+          focus-visible:outline-2
+          focus-visible:-outline-offset-2
+          focus-visible:outline-accent
+          md:px-8
+          lg:px-10
+          lg:py-10
+        "
       >
-        <div
+        <header
           className="
-      flex
-      items-start
-      justify-between
-      gap-4
-    "
+            flex
+            items-start
+            justify-between
+            gap-5
+          "
         >
-          <span className="type-label text-muted">
-            {displayIndex}
+          <span
+            className="
+              bg-ink
+              px-3
+              py-2
+              font-mono
+              text-[0.625rem]
+              font-semibold
+              tracking-[0.12em]
+              text-inverse
+              uppercase
+            "
+          >
+            {relationshipLabel}
           </span>
 
-          <time
-            className="type-meta text-muted uppercase"
-            dateTime={learningLog.loggedAt}
-          >
-            {formatContentDate(
-              learningLog.loggedAt,
-            )}
-          </time>
-        </div>
+          <div className="text-right">
+            <p className="type-label text-muted">
+              {displayIndex}
+            </p>
 
-        <div className="mt-14">
-          <p className="type-meta text-accent uppercase">
-            {learningLog.category}
+            <time
+              className="type-meta mt-2 block text-muted uppercase"
+              dateTime={learningLog.loggedAt}
+            >
+              {formatContentDate(
+                learningLog.loggedAt,
+              )}
+            </time>
+          </div>
+        </header>
+
+        <div className="mt-12">
+          <p
+            className="
+              flex
+              items-center
+              gap-3
+              type-meta
+              text-accent
+              uppercase
+            "
+          >
+            <span
+              aria-hidden="true"
+              className="h-1.5 w-1.5 bg-accent"
+            />
+
+            {learningLog.status}
           </p>
 
           <h3
             className="
-        mt-3
-        wrap-break-word
-        text-2xl
-        leading-[1.02]
-        font-semibold
-        tracking-[-0.035em]
-        uppercase
-        transition-colors
-        duration-150
-        group-hover:text-accent-strong
-      "
+              mt-4
+              max-w-xl
+              wrap-break-word
+              text-[clamp(1.75rem,3vw,2.75rem)]
+              leading-[1.02]
+              font-semibold
+              tracking-[-0.045em]
+              transition-colors
+              duration-150
+              group-hover:text-accent-strong
+            "
           >
             {learningLog.title}
           </h3>
 
-          <p className="type-body mt-5 text-muted">
+          <p className="type-body mt-5 max-w-xl text-muted">
             {learningLog.excerpt}
-          </p>
-
-          <p
-            className="
-        mt-6
-        font-mono
-        text-xs
-        leading-6
-        tracking-[0.06em]
-        text-muted
-        uppercase
-      "
-          >
-            {learningLog.source}
-
-            <span className="mx-2 text-line">
-              /
-            </span>
-
-            {learningLog.module}
           </p>
         </div>
 
-        <p
-          className="
-      mt-auto
-      pt-8
-      font-mono
-      text-xs
-      font-semibold
-      tracking-widest
-      text-accent
-      uppercase
-    "
-        >
-          Read Learning Log
-
-          <span
-            aria-hidden="true"
+        <footer className="mt-auto pt-10">
+          <div
             className="
-        ml-3
-        inline-block
-        transition-transform
-        duration-200
-        group-hover:translate-x-1
-        motion-reduce:transition-none
-      "
+              grid
+              gap-3
+              border-t
+              border-line
+              pt-5
+              font-mono
+              text-[0.6875rem]
+              leading-5
+              text-muted
+              uppercase
+              sm:grid-cols-[5rem_minmax(0,1fr)]
+            "
           >
-            →
-          </span>
-        </p>
+            <span>Source</span>
+            <span>{learningLog.source}</span>
+
+            <span>Module</span>
+            <span>{learningLog.module}</span>
+          </div>
+
+          <p
+            className="
+              mt-7
+              flex
+              items-center
+              justify-between
+              gap-6
+              font-mono
+              text-xs
+              font-semibold
+              tracking-widest
+              uppercase
+            "
+          >
+            Open Record
+
+            <span
+              aria-hidden="true"
+              className="
+                flex
+                h-9
+                w-9
+                items-center
+                justify-center
+                border
+                border-ink
+                transition-colors
+                group-hover:bg-ink
+                group-hover:text-inverse
+              "
+            >
+              →
+            </span>
+          </p>
+        </footer>
       </Link>
     </article>
   );

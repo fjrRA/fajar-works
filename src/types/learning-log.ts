@@ -17,5 +17,6 @@ export type LearningLog = {
   module: string;
   progress: string;
   topics: string[];
+  repositoryUrl?: string;
   content: string;
 };

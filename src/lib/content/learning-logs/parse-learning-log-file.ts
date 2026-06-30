@@ -12,6 +12,7 @@ import {
 } from "./learning-log.constants";
 import {
   optionalDateString,
+  optionalGitHubRepositoryUrl,
   requireAllowedValue,
   requireBoolean,
   requireDateString,
@@ -147,6 +148,12 @@ export function parseLearningLogFile(
       "topics",
       fileName,
     ),
+    repositoryUrl:
+      optionalGitHubRepositoryUrl(
+        data.repositoryUrl,
+        "repositoryUrl",
+        fileName,
+      ),
     content: content.trim(),
   };
 }

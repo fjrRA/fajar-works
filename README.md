@@ -36,8 +36,7 @@ This approach allows the public website to be prerendered without requiring a co
 - Technical notes archive
 - Dynamic note detail pages
 - Structured Learning Log system
-- Chronological Learning Log navigation
-- Related Learning Log recommendations
+- Consolidated Learning Trail with chronological and related-record labels
 - Markdown content rendering
 - GitHub Flavored Markdown support
 - Syntax highlighting for code blocks
@@ -249,8 +248,8 @@ Each published Learning Log includes:
 - Technical topics
 - Markdown article content
 - Generated table of contents
-- Newer and older entries
-- Related Learning Logs
+- Consolidated Learning Trail
+- Chronological and relevance labels
 - Dynamic metadata
 - TechArticle structured data
 
@@ -260,18 +259,11 @@ Learning Log detail pages use the route:
 /learning-log/[slug]
 ```
 
-### Chronological Navigation
+### Learning Trail
 
-Each Learning Log can display:
+Each Learning Log ends with one Learning Trail instead of separate chronological and related sections. Records can be labelled as newer, older, or related.
 
-- Newer Log
-- Older Log
-
-The navigation is based on the `loggedAt` date.
-
-### Related Learning Logs
-
-Related Learning Logs are selected using similarities in:
+Chronological labels are based on the `loggedAt` date. Related records are selected using similarities in:
 
 - Learning source
 - Category
@@ -280,7 +272,7 @@ Related Learning Logs are selected using similarities in:
 
 Entries with stronger similarities receive a higher relevance score.
 
-When there are not enough directly related entries, the system can use other published Learning Logs as fallback content.
+When there are not enough directly related entries, the system can use other published Learning Logs as fallback content. This keeps chronology and relevance visible without repeating the same destination in two navigation blocks.
 
 ## Markdown Rendering
 
@@ -699,8 +691,7 @@ Also verify:
 - Learning Log detail pages
 - Markdown rendering
 - Table of contents links
-- Newer and Older Log navigation
-- Related content
+- Learning Trail labels and destinations
 - Custom 404 page
 - Mobile layout
 - Keyboard navigation

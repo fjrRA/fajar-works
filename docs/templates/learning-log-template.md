@@ -1,7 +1,7 @@
 ---
 title: "Learning Log Title"
 slug: "learning-log-title"
-excerpt: "A short description explaining what was learned, practised, or developed in this learning record."
+excerpt: "A short description of the session, evidence, and review state recorded here."
 loggedAt: "YYYY-MM-DD"
 updatedAt: "YYYY-MM-DD"
 published: false
@@ -9,41 +9,46 @@ status: "In Progress"
 category: "Course Log"
 source: "Course, project, book, or documentation source"
 module: "Section or module name"
-progress: "Current progress snapshot"
+progress: "Current progress / review state"
 topics:
   - "Topic One"
   - "Topic Two"
   - "Topic Three"
 ---
 
-## Tujuan Pembelajaran
+## Session objective
 
-Jelaskan tujuan utama dari sesi, bagian kursus, atau proses pengembangan ini.
+Jelaskan kemampuan minimum atau hasil yang ingin dicapai dari sesi ini.
 
-## Materi yang Dipelajari
+## Concepts I can explain
 
-Jelaskan konsep-konsep penting yang dipelajari.
+Jelaskan konsep yang sudah dapat diterangkan dengan kata-kata sendiri.
 
-## Praktik yang Dilakukan
+## Practice evidence
 
-Jelaskan latihan, eksperimen, atau kode yang dibuat.
+Masukkan latihan, prediksi output, kode, atau perubahan yang membuktikan pemahaman.
 
-```js
-const example = "Replace with a useful example";
+```js title="Small practice example" showLineNumbers
+const example = "Replace with evidence you can explain";
 ```
 
-## Tantangan dan Kesalahan
+## What remained difficult
 
-Jelaskan hal yang membingungkan, error yang ditemukan, atau kesalahan pemahaman.
+Sebutkan bagian spesifik yang masih membingungkan, bukan hanya “belum paham”.
 
-## Penyelesaian
+## Correction and review note
 
-Jelaskan bagaimana masalah tersebut diperbaiki atau dipahami.
+Jelaskan kesalahan awal, koreksi, dan alasan koreksi tersebut bekerja.
 
-## Hasil
+## Connection to real projects
 
-Jelaskan hasil akhir dari sesi pembelajaran.
+Hubungkan ke proyek nyata jika memang relevan. Tulis jujur jika belum dibutuhkan.
 
-## Langkah Selanjutnya
+## Outcome and next review
 
-Tuliskan materi atau pekerjaan yang akan dilanjutkan setelah log ini.
+Catat status sebenarnya, bukti yang sudah dimiliki, dan target review berikutnya.
+
+<!--
+Lihat docs/templates/learning-log-writing-guide.md untuk template
+Course Lesson, Challenge, Course Project, dan Build / Field Record.
+-->

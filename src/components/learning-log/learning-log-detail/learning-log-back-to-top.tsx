@@ -1,0 +1,63 @@
+export function LearningLogBackToTop() {
+  return (
+    <a
+      href="#learning-log-top"
+      aria-label="Back to the top of this learning record"
+      className="
+        group
+        fixed
+        bottom-20
+        left-0
+        z-40
+        flex
+        items-stretch
+        border-y
+        border-r
+        border-ink
+        bg-accent
+        text-inverse
+        transition-transform
+        duration-150
+        hover:-translate-y-1
+        md:bottom-24
+      "
+    >
+      <span
+        aria-hidden="true"
+        className="
+          flex
+          h-11
+          w-11
+          items-center
+          justify-center
+          border-r
+          border-ink
+          bg-paper
+          text-lg
+          text-ink
+          transition-colors
+          group-hover:bg-ink
+          group-hover:text-inverse
+        "
+      >
+        ↑
+      </span>
+
+      <span
+        className="
+          hidden
+          items-center
+          px-4
+          font-mono
+          text-[0.625rem]
+          font-semibold
+          tracking-[0.14em]
+          uppercase
+          sm:flex
+        "
+      >
+        Review / Top
+      </span>
+    </a>
+  );
+}

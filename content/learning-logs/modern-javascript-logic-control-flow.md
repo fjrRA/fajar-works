@@ -1,15 +1,15 @@
 ---
 title: "Modern JavaScript: Logic & Control Flow"
 slug: "modern-javascript-logic-control-flow"
-excerpt: "A completed learning record covering conditional statements, truthy and falsy values, logical operators, short-circuit evaluation, and ternary expressions."
+excerpt: "A reviewed course record about conditions, truthy and falsy values, logical operators, nullish coalescing, and preserving valid zero values."
 loggedAt: "2026-06-17"
-updatedAt: "2026-06-17"
+updatedAt: "2026-06-30"
 published: true
 status: "Completed"
 category: "Course Log"
-source: "Modern JavaScript From The Beginning 2.0"
+source: "Udemy - Modern JavaScript From The Beginning 2.0"
 module: "Section 5 - Logic & Control Flow"
-progress: "Section 5 Completed"
+progress: "Section 5 Completed / Applied Practice"
 topics:
   - "If Statements"
   - "Switch Statements"
@@ -19,36 +19,72 @@ topics:
   - "Ternary Operator"
 ---
 
-## What I Learned
+## Session objective
 
-This section discusses how programs make decisions based on conditions.
+The objective was to understand how JavaScript chooses which branch to execute and how non-boolean values behave inside a condition.
 
-The material covers the use of `if`, `else if`, `else`, nested conditions, comparison operators, and switch statements.
+I considered the section useful only if I could predict a branch before running it and distinguish “missing” data from a valid value that happens to be falsy.
 
-## Truthy and Falsy
+## Concepts I can explain
 
-I learned that a value does not always need to be a boolean to be evaluated as a condition.
+### Conditions and comparison
 
-Values such as an empty string, zero, `null`, `undefined`, and `NaN` are considered falsy. Empty arrays and empty objects, however, are still considered truthy.
+`if`, `else if`, and `else` evaluate branches in order. A switch statement can make several explicit cases easier to scan, but it does not remove the need to understand the values being compared.
 
-## Logical Operators
+Strict equality is the safer default when I want both value and type to match. Nested conditions are possible, although early returns can sometimes make the same logic easier to follow.
 
-The operators covered in this section include:
+### Truthy, falsy, and short-circuiting
 
-- AND
-- OR
-- NOT
-- Nullish coalescing
-- Logical assignment
+An empty string, zero, `null`, `undefined`, and `NaN` are falsy. Empty arrays and objects are truthy. This matters because a condition can reject zero even when zero is meaningful data.
 
-I also learned about short-circuit evaluation, where JavaScript stops evaluating an expression because the result can already be determined from an earlier operand.
+AND and OR can stop evaluating once the result is already known. Nullish coalescing is narrower: it falls back only for `null` or `undefined`, which allows values such as zero and an empty string to remain intact.
 
-## Challenges
+## Practice evidence
 
-One important challenge is distinguishing between zero as a valid value and a value that should be considered unavailable.
+The most useful practice was a ticket-limit rule where zero means “do not issue any tickets” and must not be replaced by a default:
 
-Nullish coalescing can help in situations where zero must still be preserved as a valid value.
+```js title="Preserving zero with nullish coalescing" showLineNumbers
+function resolveTicketLimit(settings) {
+  const requestedLimit =
+    settings.limit ?? 10;
 
-## Outcome
+  if (requestedLimit < 0) {
+    return 0;
+  }
 
-This section has been completed and reinforced through output-prediction exercises, code corrections, and examples based on ticketing and dashboard systems.
+  return requestedLimit;
+}
+
+console.log(resolveTicketLimit({ limit: 0 }));
+```
+
+The expected output is `0`. Replacing `??` with `||` would incorrectly produce the default value because zero is falsy.
+
+## Mistake and challenge
+
+My main mistake was treating all falsy values as unavailable values. That shortcut is convenient until the domain gives zero, an empty string, or `false` a legitimate meaning.
+
+The harder challenge is not remembering the falsy list. It is choosing a condition that matches the business rule instead of choosing the shortest expression.
+
+## Correction
+
+Before adding a fallback, I now ask what “missing” means for that field:
+
+- use `??` when only `null` or `undefined` should fall back;
+- use `||` when every falsy value should fall back;
+- use an explicit comparison when the domain rule is more specific;
+- prefer a readable branch when a compact expression hides the decision.
+
+This turns the operator into a consequence of the rule rather than a memorized trick.
+
+## Connection to real projects
+
+Ticket quantities, pagination limits, form fields, and dashboard filters can all contain valid zero or empty values. The same distinction appears in Fajar Works when optional metadata is parsed: absence should be handled deliberately instead of being confused with any falsy value.
+
+Control flow is also part of content validation, route selection, status labels, and deciding whether optional sections should render.
+
+## Outcome and next review
+
+The section is complete and has been reinforced through output prediction and correction exercises. I can explain why the ticket-limit example preserves zero and which operator would break it.
+
+The next review should combine several conditions into one small validation function, then simplify it only after every branch has a named reason to exist.

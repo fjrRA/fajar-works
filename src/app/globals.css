@@ -11,6 +11,10 @@
 @import "../styles/notes/note-markdown-table.css";
 @import "../styles/notes/note-toc.css";
 
+@import "../styles/learning-log/learning-log-detail.css";
+
+@import "../styles/about/about-cv.css";
+
 /*
  * Tailwind theme tokens
  *

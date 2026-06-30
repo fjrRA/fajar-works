@@ -19,11 +19,9 @@ import {
   AboutCv,
   AboutDirection,
   AboutEducation,
+  AboutHero,
   AboutProfile,
 } from "@/components/about";
-import {
-  PageHeader,
-} from "@/components/layout/page-header";
 import {
   getAboutContent,
 } from "@/lib/content/get-about-content";
@@ -72,18 +70,13 @@ export default function AboutPage() {
       />
 
       <MainContent>
-        <PageHeader
-          index={content.header.index}
-          label={content.header.label}
-          title={content.header.title}
-          description={
-            content.header.description
-          }
+        <AboutHero
+          content={content.header}
+          site={site}
         />
 
         <AboutProfile
           content={content.profile}
-          site={site}
         />
 
         <AboutDirection

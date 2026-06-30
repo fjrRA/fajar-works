@@ -125,7 +125,7 @@ export default async function LearningLogDetailPage({
     getRelatedLearningLogs(
       publishedLearningLogs,
       learningLog.slug,
-      3,
+      2,
     );
 
   const navigation =

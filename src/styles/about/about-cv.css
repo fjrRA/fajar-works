@@ -1,0 +1,45 @@
+/* src/styles/about/about-cv.css */
+
+.about-cv {
+  border-color: var(--color-line);
+  background: #7c3f2d;
+  color: var(--color-inverse);
+}
+
+.about-cv__frame,
+.about-cv__header,
+.about-cv__document,
+.about-cv__document-rule,
+.about-cv__document-action {
+  border-color: rgb(246 243 235 / 30%);
+}
+
+.about-cv .about-cv__label {
+  color: #ffe2d4;
+}
+
+.about-cv__muted {
+  color: #ead3c8;
+}
+
+.about-cv__document {
+  transition:
+    color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.about-cv__document:hover {
+  background: #663223;
+}
+
+.about-cv__document-action {
+  transition:
+    color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.about-cv__document:hover
+  .about-cv__document-action {
+  background: var(--color-inverse);
+  color: var(--color-ink);
+}

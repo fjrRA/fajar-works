@@ -1,7 +1,3 @@
-// src/components/learning-log/
-// learning-log-detail/
-// learning-log-table-of-contents.tsx
-
 import type {
   LearningLogHeading,
 } from "@/lib/content/learning-log-headings";
@@ -19,15 +15,6 @@ function formatIndex(
   );
 }
 
-function formatCount(
-  count: number,
-): string {
-  return String(count).padStart(
-    2,
-    "0",
-  );
-}
-
 export function LearningLogTableOfContents({
   headings,
 }: LearningLogTableOfContentsProps) {
@@ -36,49 +23,41 @@ export function LearningLogTableOfContents({
   }
 
   return (
-    /*
-     * note-toc digunakan sebagai
-     * shared table-of-contents style.
-     */
     <nav
-      className="note-toc"
-      aria-label="Learning Log sections"
+      className="learning-log-toc"
+      aria-label="Learning Log checkpoints"
     >
-      <div className="note-toc__header">
-        <p className="note-toc__label">
-          On This Page
+      <div className="learning-log-toc__header">
+        <p className="learning-log-toc__label">
+          Learning Index
         </p>
 
-        <p className="note-toc__count">
-          {formatCount(headings.length)}{" "}
-          {headings.length === 1
-            ? "Section"
-            : "Sections"}
+        <p className="learning-log-toc__count">
+          {formatIndex(
+            headings.length - 1,
+          )} checkpoints
         </p>
       </div>
 
-      <ol className="note-toc__list">
+      <ol className="learning-log-toc__list">
         {headings.map(
           (heading, index) => (
             <li
               key={heading.id}
-              className="note-toc__item"
-              data-depth={
-                heading.depth
-              }
+              className="learning-log-toc__item"
             >
               <a
-                className="note-toc__link"
+                className="learning-log-toc__link"
                 href={`#${heading.id}`}
               >
                 <span
-                  className="note-toc__index"
+                  className="learning-log-toc__index"
                   aria-hidden="true"
                 >
                   {formatIndex(index)}
                 </span>
 
-                <span className="note-toc__text">
+                <span className="learning-log-toc__text">
                   {heading.text}
                 </span>
               </a>

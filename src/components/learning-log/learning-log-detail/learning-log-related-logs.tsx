@@ -1,15 +1,12 @@
-// src/components/learning-log/
-// learning-log-detail/
-// learning-log-related-logs.tsx
-
 import {
   SectionHeading,
 } from "@/components/ui/section-heading";
-
 import {
   SectionLabel,
 } from "@/components/ui/section-label";
-
+import type {
+  LearningLogNavigation,
+} from "@/lib/content/learning-log-navigation";
 import type {
   RelatedLearningLogItem,
 } from "@/lib/content/learning-log-related";
@@ -20,46 +17,46 @@ import {
 
 type LearningLogRelatedLogsProps = {
   learningLogs:
-  readonly RelatedLearningLogItem[];
+    readonly RelatedLearningLogItem[];
+  navigation: LearningLogNavigation;
 };
 
-const RELATED_LEARNING_LOGS_HEADING_ID =
-  "related-learning-logs-heading";
+const LEARNING_TRAIL_HEADING_ID =
+  "learning-trail-heading";
 
-function getRelatedLogsGridClassName(
-  learningLogCount: number,
+function getRelationshipLabel(
+  learningLogSlug: string,
+  navigation: LearningLogNavigation,
 ): string {
-  if (learningLogCount === 1) {
-    return "grid";
+  if (
+    navigation.newer?.slug ===
+    learningLogSlug
+  ) {
+    return "Newer Record";
   }
 
-  if (learningLogCount === 2) {
-    return "grid md:grid-cols-2";
+  if (
+    navigation.older?.slug ===
+    learningLogSlug
+  ) {
+    return "Older Record";
   }
 
-  return `
-    grid
-    md:grid-cols-2
-    xl:grid-cols-3
-  `;
+  return "Related Record";
 }
 
 export function LearningLogRelatedLogs({
   learningLogs,
+  navigation,
 }: LearningLogRelatedLogsProps) {
   if (learningLogs.length === 0) {
     return null;
   }
 
-  const gridClassName =
-    getRelatedLogsGridClassName(
-      learningLogs.length,
-    );
-
   return (
     <section
       aria-labelledby={
-        RELATED_LEARNING_LOGS_HEADING_ID
+        LEARNING_TRAIL_HEADING_ID
       }
       className="border-t border-line"
     >
@@ -72,44 +69,47 @@ export function LearningLogRelatedLogs({
           px-6
           py-10
           md:px-8
-          lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.38fr)]
+          lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.42fr)]
           lg:px-10
           lg:py-12
         "
       >
         <div>
-          <SectionLabel index="03">
-            Continue Learning
+          <SectionLabel index="04">
+            Continue / Review
           </SectionLabel>
 
           <SectionHeading
-            id={
-              RELATED_LEARNING_LOGS_HEADING_ID
-            }
+            id={LEARNING_TRAIL_HEADING_ID}
             className="mt-3"
           >
-            Related Learning Logs
+            Learning Trail
           </SectionHeading>
         </div>
 
         <p className="type-body max-w-md text-muted lg:justify-self-end">
-          More learning records connected
-          through source, category, module,
-          or shared technical topics.
+          Chronological neighbours are
+          labelled directly. Other records
+          are selected through shared source,
+          module, or technical topics.
         </p>
       </header>
 
-      <div className={gridClassName}>
+      <div className="grid md:grid-cols-2">
         {learningLogs.map(
           (learningLog, index) => (
             <LearningLogRelatedCard
               key={learningLog.slug}
-              learningLog={
-                learningLog
-              }
+              learningLog={learningLog}
               displayIndex={String(
                 index + 1,
               ).padStart(2, "0")}
+              relationshipLabel={
+                getRelationshipLabel(
+                  learningLog.slug,
+                  navigation,
+                )
+              }
             />
           ),
         )}

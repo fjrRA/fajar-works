@@ -28,11 +28,7 @@ export async function LearningLogMarkdown({
     createLearningLogMarkdownComponents();
 
   return (
-    /*
-     * note-markdown digunakan sebagai
-     * shared article typography style.
-     */
-    <div className="note-markdown">
+    <div className="note-markdown learning-log-markdown">
       <MarkdownAsync
         remarkPlugins={[
           [

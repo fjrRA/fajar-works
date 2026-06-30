@@ -158,6 +158,7 @@ Struktur folder fajar-works
       |- 📁learning-log
          |- 📁learning-log-detail
             |- 📄index.ts
+            |- 📄learning-log-back-to-top.tsx
             |- 📄learning-log-detail-file.tsx
             |- 📄learning-log-detail-intro.tsx
             |- 📄learning-log-detail-metadata.tsx
